@@ -4,25 +4,24 @@
 A futuro agrego los macros de los estilos AED2 para tenerlos más facil y rápido. Por ahora, paja... :tired_face:
 
 Flecha
-```\tadFlecha```
+  \tadFlecha
 
 Nombre del TAD
-```\tadNombre{}```
+
+  \tadNombre{}
 
 Funciones
-```\tadNombreFuncion{}```
+
+  \tadNombreFuncion{}
 
 Ejemplos:
-```
-\begin{tad}{\tadNombre{NombreDelTAD}}
-\tadGeneros{NombreDelGenero}
-\tadExporta{Cosas, Que, Exporta}
-\tadIgualdadObservacionalSimple{}
-\tadIgualdadObservacional{}{}{}{}
-\tadGeneradores
 
-```
-
+  \begin{tad}{\tadNombre{NombreDelTAD}}
+  \tadGeneros{NombreDelGenero}
+  \tadExporta{Cosas, Que, Exporta}
+  \tadIgualdadObservacionalSimple{}
+  \tadIgualdadObservacional{}{}{}{}
+  \tadGeneradores
 
 Otros Comandos
 
