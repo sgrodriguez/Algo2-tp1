@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.12.22)  24 AUG 2015 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.12.22)  24 AUG 2015 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -362,7 +362,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip79
 )
-No file apunte_tads_basicos.aux.
+(./apunte_tads_basicos.aux
+LaTeX Info: Redefining \. on input line 23.
+LaTeX Info: Redefining \% on input line 23.
+)
 \openout1 = `apunte_tads_basicos.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
@@ -379,6 +382,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
 LaTeX Font Info:    ... okay on input line 46.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
 LaTeX Font Info:    ... okay on input line 46.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -461,6 +465,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 46.
 LaTeX Info: Redefining \pageref on input line 46.
 LaTeX Info: Redefining \nameref on input line 46.
+
+(./apunte_tads_basicos.out) (./apunte_tads_basicos.out)
 \@outlinefile=\write3
 \openout3 = `apunte_tads_basicos.out'.
 
@@ -478,6 +484,10 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(./apunte_tads_basicos.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
 )
 \tf@toc=\write4
 \openout4 = `apunte_tads_basicos.toc'.
@@ -533,10 +543,6 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 99.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 99.
-
-
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 110.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 110.
 Package babel Info: Redefining spanish shorthand >>
@@ -561,7 +567,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 110.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 110.
-[2]
+ [2]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 149.
 Package babel Info: Redefining spanish shorthand >>
@@ -606,9 +612,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 149.
-
-
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 165.
 
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 165.
@@ -660,9 +663,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 180.
 
-
-LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 217.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 217.
 Package babel Info: Redefining spanish shorthand >>
@@ -712,9 +712,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 237.
-
-
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 274.
 
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 274.
@@ -766,9 +763,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 301.
 
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 330.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 330.
 Package babel Info: Redefining spanish shorthand >>
@@ -818,9 +812,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 363.
-
-
-LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 390.
 
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 390.
@@ -896,9 +887,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 442.
 
-
-LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 447.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 447.
 Package babel Info: Redefining spanish shorthand >>
@@ -949,9 +937,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 485.
 
-
-LaTeX Warning: Reference `LastPage' on page 9 undefined on input line 501.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 501.
 Package babel Info: Redefining spanish shorthand >>
@@ -989,10 +974,6 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 539.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 539.
-
-
-LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 556.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 556.
 Package babel Info: Redefining spanish shorthand >>
@@ -1017,7 +998,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 556.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 556.
-[10]
+ [10]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 583.
 Package babel Info: Redefining spanish shorthand >>
@@ -1043,9 +1024,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 583.
 
-
-LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 613.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 613.
 Package babel Info: Redefining spanish shorthand >>
@@ -1070,15 +1048,8 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 613.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 613.
-[11]
-
-Package lastpage Warning: Rerun to get the references right on input line 633.
-
-
+[11] 
 AED: lastpage setting LastPage
-
-LaTeX Warning: Reference `LastPage' on page 12 undefined on input line 633.
-
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 633.
 Package babel Info: Redefining spanish shorthand >>
@@ -1124,29 +1095,16 @@ LaTeX Info: Redefining \% on input line 23.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 633.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 633.
-
-
-Package rerunfilecheck Warning: File `apunte_tads_basicos.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `apunte_tads_basicos.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  C3518AA509486B57F527CC6EE66B132A;657.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package rerunfilecheck Info: File `apunte_tads_basicos.out' has not changed.
+(rerunfilecheck)             Checksum: C3518AA509486B57F527CC6EE66B132A;657.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 633.
  ) 
 Here is how much of TeX's memory you used:
- 7958 strings out of 493109
- 111860 string characters out of 6135009
- 225466 words of memory out of 5000000
- 11272 multiletter control sequences out of 15000+600000
- 22088 words of font info for 66 fonts, out of 8000000 for 9000
+ 7981 strings out of 493109
+ 112212 string characters out of 6135009
+ 225599 words of memory out of 5000000
+ 11286 multiletter control sequences out of 15000+600000
+ 22777 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,18n,43p,433b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
@@ -1172,11 +1130,12 @@ st/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2014/texmf-dist
 onts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2014/texmf-dist/fon
 ts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
-ype1/public/cm-super/sfxc1440.pfb>
-Output written on apunte_tads_basicos.pdf (12 pages, 297347 bytes).
+ype1/public/cm-super/sfxc1000.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
+e1/public/cm-super/sfxc1440.pfb>
+Output written on apunte_tads_basicos.pdf (12 pages, 319637 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 134 compressed objects within 2 object streams
+ 237 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
  27 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
 

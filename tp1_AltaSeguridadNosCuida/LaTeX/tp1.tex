@@ -35,7 +35,7 @@
 \thispagestyle{fancy}
 \addtolength{\headheight}{1pt}
 \lhead{Algoritmos y Estructuras de Datos II}
-\rhead{$1^{\mathrm{er}}$ cuatrimestre de 2012}
+\rhead{$2^{\mathrm{do}}$ cuatrimestre de 2015}
 \cfoot{\thepage /\pageref{LastPage}}
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -57,6 +57,47 @@
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
+\tadGeneros{uni}
+\tadExporta{uni, generadores}
+\tadIgualdadObservacional{uni_{1}} {uni_{2}}{uni}{$(estudiantes?(uni_{1})\ \igobs \ estudiantes?(uni_{2}))\ \land \ (hippies?(uni_{1})\ \igobs \ hippies?(uni_{2}))\ \land (vigilantes?(uni_{1})\ \igobs \ vigilantes?(uni_{2}))\ \land (campus?(uni_{1})\ \igobs \ campus(uni_{2}))$}
+
+\end{tad}
+
+
+\section{TAD \tadNombre{Estudiante}}
+
+\begin{tad}{\tadNombre{Estudiante}}
+\tadGeneros{est}
+\tadExporta{est, generadores}
+\tadUsa{\tadNombre{Secuencia, Direccion}}
+
+\tadIgualdadObservacional{e_{1}}{e_{2}}{est}{$camino?(e_{1})\ \igobs \ camino?(e_{2})$}
+
+\tadObservadores
+
+\tadOperacion{camino?}{est}{secu(dir)}{}
+
+\tadGeneradores
+
+\tadOperacion{nuevoEst}{secu(dir)}{est}{}
+
+\tadAxiomas[\paratodo{secu(dir)}{d}]
+
+\tadAxioma{camino?(nuevoEst(d))}{d}
+
+
+
+\end{tad}
+
+\begin{tad}{\tadNombre{Direccion}}
+\tadGeneros{dir}
+\tadExporta{dir, generadores}
+\tadGeneradores
+
+\tadOperacion{n}{}{dir}{}
+\tadOperacion{s}{}{dir}{}
+\tadOperacion{e}{}{dir}{}
+\tadOperacion{o}{}{dir}{}
 
 \end{tad}
 
