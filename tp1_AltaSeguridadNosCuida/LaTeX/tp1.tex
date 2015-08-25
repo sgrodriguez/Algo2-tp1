@@ -61,21 +61,27 @@
 \tadExporta{uni, generadores}
 \tadIgualdadObservacional{uni_{1}} {uni_{2}}{uni}{$(estudiantes?(uni_{1})\ \igobs \ estudiantes?(uni_{2}))\ \land \ (hippies?(uni_{1})\ \igobs \ hippies?(uni_{2}))\ \land (vigilantes?(uni_{1})\ \igobs \ vigilantes?(uni_{2}))\ \land (campus?(uni_{1})\ \igobs \ campus(uni_{2}))$}
 
+\tadObservadores
+
+\tadOperacion{cuantosHippies}{uni}{nat}{}
+\tadOperacion{cuantosEstudiantes}{uni}{nat}{}
+
 \end{tad}
 
 
-\section{TAD \tadNombre{Estudiante}}
+\section{TAD \tadNombre{Est-Hip}}
 
-\begin{tad}{\tadNombre{Estudiante}}
-\tadGeneros{est}
-\tadExporta{est, generadores}
+\begin{tad}{\tadNombre{Est-Hip}}
+\tadGeneros{esthip}
+\tadExporta{esthip, generadores}
 \tadUsa{\tadNombre{Secuencia, Direccion}}
 
-\tadIgualdadObservacional{e_{1}}{e_{2}}{est}{$camino?(e_{1})\ \igobs \ camino?(e_{2})$}
+\tadIgualdadObservacional{eh_{1}}{eh_{2}}{esthip}{$esEst(eh_{1})\ \igobs \ esEst(eh_{2})\ \land (\ (esEst(eh_{1})\ \land \ esEst(eh_{2}))\ \impluego \ (camino?(eh_{1})\ \igobs \ camino?(eh_{2})) \ )$}
 
 \tadObservadores
 
-\tadOperacion{camino?}{est}{secu(dir)}{}
+\tadOperacion{camino?}{esthip/eh}{secu(dir)}{esEst($eh$)}
+\tadOperacion{esEst}{esthip}{bool}{}
 
 \tadGeneradores
 
@@ -100,5 +106,8 @@
 \tadOperacion{o}{}{dir}{}
 
 \end{tad}
+
+$\\ $
+
 
 \end{document}
