@@ -10,6 +10,7 @@
 \usepackage{aed2-symb,aed2-itef,aed2-tad}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \usepackage{calc}
+\usepackage{ascii}
 
 \newcommand{\f}[1]{\text{#1}}
 \renewcommand{\paratodo}[2]{$\forall~#2$: #1}
@@ -54,60 +55,46 @@
 \newpage
 
 %TADS
+
+%%%%%%%%%%%%%%%%%%%
+% TAD UNIVERSIDAD %
+%%%%%%%%%%%%%%%%%%%
+
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
 \tadGeneros{uni}
-\tadExporta{uni, generadores}
-\tadIgualdadObservacional{uni_{1}} {uni_{2}}{uni}{$(estudiantes?(uni_{1})\ \igobs \ estudiantes?(uni_{2}))\ \land \ (hippies?(uni_{1})\ \igobs \ hippies?(uni_{2}))\ \land (vigilantes?(uni_{1})\ \igobs \ vigilantes?(uni_{2}))\ \land (campus?(uni_{1})\ \igobs \ campus(uni_{2}))$}
+\tadExporta{Generadores, Observadores Basicos}
+\tadUsa{\tadNombre{Nat, Conju($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$)}}
+
+\tadIgualdadObservacional{u}{u'}{uni}{
+alto?(u) $\igobs$  alto?(u') $\land$
+ancho?(u) $\igobs$  ancho?(u') $\land$ 
+obstaculos?(u) $\igobs$  obstaculos?(u') $\land$
+agentes?(u) $\igobs$  agentes?(u') $\land$
+estudiantes?(u) $\igobs$  estudiantes?(u') $\land$
+hippies?(u) $\igobs$  hippies?(u')
+}
 
 \tadObservadores
 
-\tadOperacion{cuantosHippies}{uni}{nat}{}
-\tadOperacion{cuantosEstudiantes}{uni}{nat}{}
-
-\end{tad}
-
-
-\section{TAD \tadNombre{Est-Hip}}
-
-\begin{tad}{\tadNombre{Est-Hip}}
-\tadGeneros{esthip}
-\tadExporta{esthip, generadores}
-\tadUsa{\tadNombre{Secuencia, Direccion}}
-
-\tadIgualdadObservacional{eh_{1}}{eh_{2}}{esthip}{$esEst(eh_{1})\ \igobs \ esEst(eh_{2})\ \land (\ (esEst(eh_{1})\ \land \ esEst(eh_{2}))\ \impluego \ (camino?(eh_{1})\ \igobs \ camino?(eh_{2})) \ )$}
-
-\tadObservadores
-
-\tadOperacion{camino?}{esthip/eh}{secu(dir)}{esEst($eh$)}
-\tadOperacion{esEst}{esthip}{bool}{}
+\tadOperacion{alto?}{uni}{nat}{}
+\tadOperacion{ancho?}{uni}{nat}{}
+\tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
+\tadOperacion{agentes?}{uni}{conj(($as$, $pos$))}{}
+\tadOperacion{estudiantes?}{uni}{conj(($est$, $pos$))}{}
+\tadOperacion{hippies?}{uni}{conj($pos$)}{}
 
 \tadGeneradores
 
-\tadOperacion{nuevoEst}{secu(dir)}{est}{}
+\tadOperacion{nuevaUni}{nat, nat, conj($pos$), conj($as$, $pos$)}{uni}{}
+\tadOperacion{agregarE}{uni, ($est$, $pos$)}{uni}{}
+\tadOperacion{agregarH}{uni, pos}{uni}{}
 
-\tadAxiomas[\paratodo{secu(dir)}{d}]
+\tadAxiomas[\paratodo{}{}]
 
-\tadAxioma{camino?(nuevoEst(d))}{d}
-
-
-
-\end{tad}
-
-\begin{tad}{\tadNombre{Direccion}}
-\tadGeneros{dir}
-\tadExporta{dir, generadores}
-\tadGeneradores
-
-\tadOperacion{n}{}{dir}{}
-\tadOperacion{s}{}{dir}{}
-\tadOperacion{e}{}{dir}{}
-\tadOperacion{o}{}{dir}{}
+\tadAxioma{}{}
 
 \end{tad}
-
-$\\ $
-
 
 \end{document}
