@@ -64,7 +64,7 @@
 
 \begin{tad}{\tadNombre{Universidad}}
 \tadGeneros{uni}
-\tadExporta{Generadores, Observadores Basicos}
+\tadExporta{uni, Generadores, Observadores Basicos}
 \tadUsa{\tadNombre{Nat, Conju($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$)}}
 
 \tadIgualdadObservacional{u}{u'}{uni}{
@@ -81,20 +81,135 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadOperacion{alto?}{uni}{nat}{}
 \tadOperacion{ancho?}{uni}{nat}{}
 \tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
-\tadOperacion{agentes?}{uni}{conj(($as$, $pos$))}{}
-\tadOperacion{estudiantes?}{uni}{conj(($est$, $pos$))}{}
+\tadOperacion{agentes?}{uni}{conj($\langle as$, $pos \rangle$)}{}
+\tadOperacion{estudiantes?}{uni}{conj($\langle est$, $pos \rangle$)}{}
 \tadOperacion{hippies?}{uni}{conj($pos$)}{}
 
 \tadGeneradores
 
-\tadOperacion{nuevaUni}{nat, nat, conj($pos$), conj($as$, $pos$)}{uni}{}
-\tadOperacion{agregarE}{uni, ($est$, $pos$)}{uni}{}
+\tadOperacion{nuevaUni}{nat, nat, conj($pos$), conj($\langle as$, $pos \rangle$)}{uni}{}
+\tadOperacion{agregarE}{uni, ($\langle est$, $pos \rangle$)}{uni}{}
 \tadOperacion{agregarH}{uni, pos}{uni}{}
+
+\tadOtrasOperaciones
+
+\tadOperacion{cuantosE}{uni}{nat}{}
+\tadOperacion{cuantosH}{uni}{nat}{}
+\tadOperacion{masVigilante}{uni}{As}{}
+\tadOperacion{queHay}{uni,pos}{tipoEnum}{}
+\tadOperacion{moverTodo}{conj($\langle as$, $pos \rangle$), conj($pos$), conj($\langle est$, $pos \rangle$), nat, nat, conj(pos)}{$\langle conj(\langle as, pos \rangle), conj(pos), conj(\langle est, pos \rangle) \rangle$}{}
 
 \tadAxiomas[\paratodo{}{}]
 
-\tadAxioma{}{}
+Observadores Basicos
+
+\tadAxioma{agentes?(nuevaUni(al,an,co,cAs))}{$\Pi_{1}$(moverTodo(cAs, $\emptyset$, $\emptyset$, al, an, co))}
+\tadAxioma{agentes?(agregarH(uni,pos))}{
+	$\Pi_{1}$ (moverTodo(agentes?(uni), pos\ U\ hippies?(uni), estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+\tadAxioma{agentes?(agregarE(uni,$\langle est$, $pos \rangle$))}{
+	$\Pi_{1}$ (moverTodo(agentes?(uni), hippies?(uni), $\langle est$, $pos \rangle$\ U\\ estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+
+\tadAxioma{hippies?(nuevaUni(al,an,co,cAs))}{$\emptyset$}
+
+\tadAxioma{hippies?(agregarH(uni,pos))}{
+	$\Pi_{2}$(moverTodo(agentes?(uni), pos\ U\ hippies?(uni), estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+\tadAxioma{hippies?(agregarE(uni,$\langle est$, $pos \rangle$))}{
+	$\Pi_{2}$(moverTodo(agentes?(uni), hippies?(uni), $\langle est$, $pos \rangle$\ U\\ estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+
+\tadAxioma{estudiantes?(nuevaUni(al,an,co,cAs))}{$\emptyset$}
+
+\tadAxioma{estudiantes?(agregarH(uni,pos))}{
+	$\Pi_{3}$(moverTodo(agentes?(uni), pos\ U\ hippies?(uni), estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+\tadAxioma{estudiantes?(agregarE(uni,$\langle est$, $pos \rangle$))}{
+	$\Pi_{3}$(moverTodo(agentes?(uni), hippies?(uni), $\langle est$, $pos \rangle$\ U\\ estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
+}
+
+\tadAxioma{alto?(nuevaUni(al,an,co,cAs))}{al}
+\tadAxioma{alto?(agregarH(uni,pos))}{alto?(uni)}
+\tadAxioma{alto?(agregarE(uni,$\langle est$, $pos \rangle$))}{alto?(uni)}
+
+\tadAxioma{ancho?(nuevaUni(al,an,co,cAs))}{an}
+\tadAxioma{ancho?(agregarH(uni,pos))}{ancho?(uni)}
+\tadAxioma{ancho?(agregarE(uni,$\langle est$, $pos \rangle$))}{ancho?(uni)}
+
+\tadAxioma{obstaculos?(nuevaUni(al,an,co,cAs))}{co}
+\tadAxioma{obstaculos?(agregarH(uni,pos))}{obstaculos?(uni)}
+\tadAxioma{obstaculos?(agregarE(uni,$\langle est$, $pos \rangle$))}{obstaculos?(uni)}
+
+Otras Operaciones
+
+\tadAxioma{cuantosE(uni)}{\# estudantes?(uni)}
+\tadAxioma{cuantosH(uni)}{\# hippies?(uni)}
+\tadAxioma{masVigilante(uni)}{maxAtrapados(agentes?(uni))}
+
+\tadAxioma{maxAtrapados(cAs)}{max(\ hippiesAtrapados(dameUno(cAs)),\ maxAtrapados(sinUno(cAs))\ )}
+
 
 \end{tad}
+
+%%%%%%%%%%%%%%%
+% TAD AGENTES %
+%%%%%%%%%%%%%%%
+
+\section{TAD \tadNombre{Agente}}
+
+\begin{tad}{\tadNombre{Agente}}
+\tadGeneros{as}
+\tadExporta{as, Generadores, Observadores Basicos, hippiesAtrapados}
+\tadUsa{\tadNombre{Nat, Bool}}
+
+\tadIgualdadObservacional{a}{a'}{as}{}
+
+\tadObservadores
+
+\tadOperacion{numPlaca}{as}{nat}{}
+\tadOperacion{hippiesAtrapados}{as}{nat}{}
+\tadOperacion{numSanciones}{as}{nat}{}
+
+\tadGeneradores
+
+\tadOperacion{nuevoAs}{nat}{as}{}
+\tadOperacion{capturarH}{as\ a}{as}{}
+\tadOperacion{sancionar}{as}{as}{}
+
+\tadOtrasOperaciones
+
+\tadOperacion{inactivo?}{as}{bool}{}
+
+\tadAxiomas[\paratodo{}{}]
+
+Observadores Basicos
+
+\tadAxioma{numPlaca(nuevoAs(n))}{n}
+\tadAxioma{numPlaca(capturarH(a))}{numPlaca(a)}
+\tadAxioma{numPlaca(sancionar(a))}{numPlaca(a)}
+
+\tadAxioma{hippiesAtrapados(nuevoAs(n))}{0}
+\tadAxioma{hippiesAtrapados(capturarH(a))}{$1 +$ hippiesAtrapados(a)}
+\tadAxioma{hippiesAtrapados(sancionar(a))}{hippiesAtrapados(a)}
+
+\tadAxioma{numSanciones(nuevoAs(n))}{0}
+\tadAxioma{numSanciones(capturarH(a))}{numSanciones(a)}
+\tadAxioma{numSanciones(sancionar(a))}{$1 +$ numSanciones(a)}
+
+Otras Operaciones
+
+\tadAxioma{inactivo?(a)}{\IF numSanciones(a) $>$ 3 THEN true ELSE false FI}
+
+\end{tad}
+
+% NICO DEFINI ESTOS GIL DE GOMA:% % % % 
+%                                     %
+% TAD dir es enum                     %
+% TAD pos es \langle nat, nat \rangle %
+% TAD est es conj(dir)                %
+% % % % % % % % % % % % % % % % % % % % 
+
+
 
 \end{document}
