@@ -210,6 +210,35 @@ Otras Operaciones
 % TAD est es conj(dir)                %
 % % % % % % % % % % % % % % % % % % % % 
 
+%%%%%%%%%%%%%%%
+% TAD AGENTES %
+%%%%%%%%%%%%%%%
+
+\section{TAD \tadNombre{Tablero}}
+
+\begin{tad}{\tadNombre{Tablero}}
+\tadGeneros{tab}
+\tadExporta{tab, Generadores, Observadores Basicos}
+\tadUsa{\tadNombre{Nat, Pos, Bool, Conj($\alpha$)}}
+
+\tadIgualdadObservacional{t}{t'}{tab}{}
+
+\tadObservadores
+
+\tadOperacion{alto?}{tab}{nat}{}
+\tadOperacion{ancho?}{tab}{nat}{}
+\tadOperacion{ocupadas?}{tab}{conj($pos$)}{}
+
+\tadGeneradores
+
+\tadOperacion{nuevoTablero}{nat\ $an$, nat\ $al$}{tab $t$}{}
+\tadOperacion{agregarFicha}{nat\ $id$, pos\ $p$}{tab $t$}{}
+
+\tadAxiomas[\paratodo{}{}]
+
+\tadAxioma{}{}
+
+\end{tad}
 
 
 \end{document}
