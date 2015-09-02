@@ -1,0 +1,207 @@
+adondeQuierenMoverseAs (ca,ch,ce,an,al,cobs) = 
+	if vacio?(ca) then 
+		vacio 
+	else 
+		Ag( posibleMovAs(dameUno(ca), sinUno(ca), ch, ce, an, al, cobs), 
+			adondeQuierenMoverseAs(sinUno(ca),ch,ce,an,al,cobs) ) 
+	fi
+
+
+posibleMovAs (agente, ca,ch,ce,an,al,cobs) = 
+	if ( inactivo?(prim(agente)) ) then
+		vacio
+	else
+		if vacio?(ch) then
+			
+			if dirLibres(seg(agente), Macro1) interseccion 
+			direccionesOptimas (dameUno(cPosMasCercanaShort( seg(agente), posNoOcupadas( entradas(an, al), (damePosicionesAs(ca) U ch U damePosicionesEst(ce) U cobs) ) )) ) = vacio then
+
+				dirLibres(seg(agente), Macro1)
+			else
+				dirLibers(seg(agente), Macro1) interseccion 
+				direccionesOptimas (dameUno(cPosMasCercanaShort( seg(agente), posNoOcupadas( entradas(an, al), (damePosicionesAs(ca) U ch U damePosicionesEst(ce) U cobs) ) )) )
+			fi
+
+		else
+			
+			if dirLibres(seg(agente), Macro1) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( seg(agente), ch ))) = vacio then
+				dirLibres(seg(agente), Macro1)
+			else
+				dirLibres(seg(agente), Macro1) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( seg(agente), ch )))
+			fi
+
+		fi
+	fi
+Macro1 = ca, ch, ce, an, al, cobs
+
+
+dirLibres(pos, Macro1) = dirNoOcupadas( dirValidas(pos, an, al), pos, ca, ch, ce, cobs)
+
+
+dirValidas(pos, an, al) = 
+	{n,s,e,o} - (if col?(pos) = 0 then {o} else vacio fi) - (if col?(pos) = an-1 then {e} else vacio fi) - (if fila?(pos) = 0 then {n} else vacio fi) - (if fila?(pos) = al-1 then {s} else vacio fi)
+
+
+
+dirNoOcupadas( cDirs, pos, ca, ch, ce, cobs ) = 								{R: no(col?(pos) = 0 y (o) pertenece cDirs) y no(fila?(pos) = 0 y (n) pertenece cDirs) }
+if (vacio(cDirs)) then
+	vacio
+else
+	if (Macro2 pertenece ch) or (Macro2 pertenece cobs) or (Macro2 pertenece damePosicionesAs(ca)) or Macro2 pertenece damePosicionesEst(ce) then
+		dirNoOcupadas( sinUno(cDirs), pos, ca, ch, ce, cobs)
+	else
+		Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, ca, ch, ce, cobs) )
+	fi
+fi
+Macro2 = mover( pos, dameUno(cDirs) )
+
+
+TAD POS
+mover(pos, dir) = 															{R: no(col?(pos) = 0 y (o) = dir) y no(fila?(pos) = 0 y (n) = dir) }
+if ( dir = n ) then
+	<fila?(pos)-1, col?(pos)>
+else if ( dir = s ) //segun nico se puede
+	<fila?(pos)+1, col?(pos)>
+else if ( dir = o )
+	<fila?(pos), col?(pos)-1>
+else
+	<fila?(pos), col?(pos)+1>
+fi
+
+
+damePosicionesAs(ca) = 
+if vacio?(ca) then
+	vacio
+else
+	Ag(seg(dameUno(ca)), damePosicionesAs(sinUno(ca)))
+fi
+
+
+damePosicionesEst(ce) = 
+if vacio?(ce) then
+	vacio
+else
+	Ag(seg(dameUno(ce)), damePosicionesEst(sinUno(ce)))
+fi
+
+
+entradas(an, al) = 
+if an = 0 then
+	vacio	
+else
+	Ag( pos(0, an-1), Ag( pos(al-1, an-1), entradas(an-1,al) ) )
+fi
+
+
+posNoOcupadas(cPos, cLugaresOcupados) = 
+if (vacio(cPos)) then
+	vacio
+else
+	if no(dameUno(cPos) pertenece cLugaresOcupados) then
+		Ag( dameUno(cPos), posNoOcupadas(sinUno(cpos), cLugaresOcupados) )
+	else
+		posNoOcupadas(sinUno(cpos), cLugaresOcupados)
+	fi
+fi
+
+
+direccionesOptimas(pos1,pos2) = 
+	{n,s,e,o} - (if fila?(pos1) <= fila?(pos2) then {n} else vacio fi) - (if fila?(pos1) >= fila?(pos2) then {s} else vacio fi) - 
+				(if col?(pos1) <= col?(pos2) then {o} else vacio fi) - (if col?(pos1) >= col?(pos2) then {e} else vacio fi)
+
+
+cPosMasCercanaShort(pos, cPos) = cPosMasCercana(pos,cPos, menorDistancia(pos,cPos))
+
+cPosMasCercana(pos, cPos, menorDist) = 
+if vacio(cPos) then
+	vacio
+else
+	if(dist(pos, dameUno(cPos)) = menorDist then
+		Ag(pos, cPosMasCercana(pos, sinUno(cPos), menorDist))
+	else
+		cPosMasCercana(pos, sinUno(cPos), menorDist)
+	fi
+fi
+
+
+menorDistancia(pos, cPos) = 			{R: cPos no vacia}
+if not vacio(sinUno(cPos)) then
+	min{ dist(pos, dameUno(cPos)), menorDistancia(pos, sinUno(cpos)) }
+else
+	dist(pos, dameUno(cPos))
+fi
+
+
+
+
+dist(pos1,pos2) =
+(max{fila?(pos1), fila?(pos2)} - min{fila?(pos1), fila?(pos2)}) + (max{col?(pos1), col?(pos2)} - min{col?(pos1), col?(pos2)})
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------
+------------------------------------------------HIPPIES------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+adondeQuierenMoverseH (ca,ch,ce,an,al,cobs) = 
+	if vacio?(ch) then 
+		vacio 
+	else 
+		Ag( posibleMovH(dameUno(ch), ca, sinUno(ch), ce, an, al, cobs), 
+			adondeQuierenMoverseH(ca,sinUno(ch),ce,an,al,cobs) ) 
+	fi
+
+posibleMovH (h, ca,ch,ce,an,al,cobs) = 
+	if vacio?(ce) then
+		vacio
+	else
+		if dirLibres(h, Macro1) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( h, ce ))) = vacio then
+				dirLibres(h, Macro1)
+			else
+				dirLibres(h, Macro1) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( h, ce )))
+			fi
+	fi
+
+----------------------------------------------------------------------------------------------------------
+------------------------------------------------ESTUDIANTE------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+adondeQuierenMoverseE (ca,ch,ce,an,al,cobs) = 
+	if vacio?(ce) then 
+		vacio 
+	else 
+		Ag( posibleMovE(dameUno(ce), ca, ch, sinUno(ce), an, al, cobs), 
+			adondeQuierenMoverseE(ca,ch,sinUno(ce),an,al,cobs) ) 
+	fi
+
+posibleMovE (e, ca,ch,ce,an,al,cobs) = 
+if not prim(direccion?(pri(e))) pertenece dirLibres(seg(e), Macro1) then
+	vacio
+else
+	{ prim(direccion?(pri(e))) }
+fi
+
+
+
+
+
+
+
+final(ca,ch,ce,an,al,cobs) = 
+if (vacio(  adondeQuierenMoverseAs(Macro1) U adondeQuierenMoverseH(Macro1) U adondeQuierenMoverseE(Macro1)  )) then
+	<ca, ch, ce>
+else
+	final(prim(moverUnLugar(Macro1)), seg(moverUnLugar(Macro1)), ter(moverUnLugar(Macro1)), an, al, cobs)
+fi
+

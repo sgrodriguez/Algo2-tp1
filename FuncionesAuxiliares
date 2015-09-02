@@ -1,0 +1,18 @@
+adondeQuierenMoverseAs (ca,ch,ce,an,al,cobs) = conj(dirPosible)
+posibleMovAs (agente, ca,ch,ce,an,al,cobs) = dirPosible
+dirLibres(pos, ca, ch, ce, an, al, cobs) = dirPosible
+dirValidas(pos, an, al) = dirPosible
+dirNoOcupadas( cDirs, pos, ca, ch, ce, cobs ) = dirPosible
+TAD POS -> mover(pos, dir) = pos
+TAD POS -> dist
+damePosicionesAs(ca) = conj(pos)
+damePosicionesEst(ce) = conj(pos)
+entradas(an, al) = conj(pos)
+posNoOcupadas(cPos, cLugaresOcupados) = conj(pos)
+
+posMasCercana(pos, cPos) = conj(pos)
+TAD POS -> cPosMasCercanaShort(pos, cPos) = conj(pos)
+TAD POS -> cPosMasCercana(pos, cPos, menorDist) = conj(pos)
+TAD POS -> menorDistancia(pos, cPos) = nat
+TAD POS -> dist(pos1, pos2) = nat
+direccionesOptimas(pos1,pos2) = dirPosible
