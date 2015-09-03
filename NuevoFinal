@@ -1,0 +1,218 @@
+Generadores
+
+nuevaUni : conj(<As, pos>) x al x an x conj(pos)
+
+agregarE : uni x id x est x pos -> uni
+agregarH : uni x hip x pos -> uni
+
+moverAs : uni x id -> uni
+moverE : uni x id -> uni
+moverH : uni x id -> uni
+
+id es nat
+hip es id
+
+observadores basicos
+
+alto?
+ancho?
+obstaculos?
+
+agentes? : uni -> conj ()
+hippies? : uni -> conj ()
+estudiantes? : uni -> conj ()
+
+
+axiomas
+
+alto? (nuevaUni(ca, al, an, cobs)) = al
+alto? (agregarE(u, i, e, pos)) = alto?(u)
+alto? (agregarH(u, i, pos)) = alto?(u)
+alto? (moverAs(u, i)) = alto?(u)
+alto? (moverE(u, i)) = alto?(u)
+alto? (moverH(u, i)) = alto?(u)
+
+ancho? (nuevaUni(ca, al, an, cobs)) = an
+ancho? (agregarE(u, i, e, pos)) = ancho?(u)
+ancho? (agregarH(u, i, pos)) = ancho?(u)
+ancho? (moverAs(u, i)) = ancho?(u)
+ancho? (moverE(u, i)) = ancho?(u)
+ancho? (moverH(u, i)) = ancho?(u)
+
+obstaculos? (nuevaUni(ca, al, an, cobs)) = cobs
+obstaculos? (agregarE(u, i, e, pos)) = obstaculos?(u)
+obstaculos? (agregarH(u, i, pos)) = obstaculos?(u)
+obstaculos? (moverAs(u, i)) = obstaculos?(u)
+obstaculos? (moverE(u, i)) = obstaculos?(u)
+obstaculos? (moverH(u, i)) = obstaculos?(u)
+
+
+agentes? (nuevaUni(ca, al, an, cobs)) = ca
+
+agentes? (agregarE(uni, i, e, pos)) = 
+	if movRest \in queSituacion(cuatroVecinos(pos, uni)) then 
+		sancionar(pos, agentes?(uni)) 
+	else 
+		agentes?(uni) 
+	fi
+
+agentes? (agregarH(uni, i, pos)) = 
+	if movRest \in queSituacion(cuatroVecinos(pos, uni)) then 
+		capturar(pos, agentes?(uni)) 
+	else 
+		agentes?(uni) 
+	fi
+
+agentes? (moverAs(uni, i)) = prim(moverAgenteYSancionarYCapturar(i, uni))
+
+agentes? (moverE(uni, i)) = prim(moverEstudiante(i,uni))
+
+agentes? (moverH(uni, i)) = prim(moverHippie(i,uni))
+
+
+
+hippies? (nuevaUni(ca, al, an, cobs)) = vacio
+
+hippies? (agregarE(uni, i, e, pos)) = 
+	if dosHippies \in queSituacion(cuatroVecinos(pos, uni)) then 
+		1= Ag(<i, pos>, hippies?(uni)) 
+		2= hippies?(agregarH(uni, i, pos))
+	else 
+		hippies?(uni) 
+	fi
+
+hippies? (agregarH(uni, i, pos)) = 
+	if movRest \in queSituacion(cuatroVecinos(pos, uni)) and unAgente \in queSituacion(cuatroVecinos(pos, uni)) then 
+		hippies?(uni)
+	else 
+		if movRest \in queSituacion(cuatroVecinos(pos, uni)) and cuatroEstudiantes \in queSituacion(cuatroVecinos(pos, uni)) then 
+			hippies?(uni)
+		else
+			Ag(<i, pos>, hippies?(uni))
+		fi
+	fi
+
+hippies? (moverAs(uni, i)) = seg(moverAgenteYSancionarYCapturar(i, uni))
+
+hippies? (moverE(uni, i)) = seg(moverEstudiante(i,uni))
+
+hippies? (moverH(uni, i)) = seg(moverHippie(i,uni))
+
+
+
+estudiantes? (nuevaUni(ca, al, an, cobs)) = vacio
+
+estudiantes? (agregarE(uni, i, e, pos)) = 
+	if dosHippies \in queSituacion(cuatroVecinos(pos, uni)) then 
+		estudiantes?(uni) 
+	else 
+		Ag(<i, e, p>, estudiantes?(uni))
+	fi
+
+estudiantes? (agregarH(uni, i, pos)) = 
+	if queSituacion(cuatroVecinos(pos, uni)) = *******************************************************************************************************************************************preguntar********************************************************************************************* then 
+		ag hippie a est????? estudiantes?(uni)
+	else 
+		estudiantes?(uni) (me fijo si encierra a algun otro estudiante????)
+	fi
+
+estudiantes? (moverAs(uni, i)) = ter(moverAgenteYSancionarYCapturar(i, uni))
+
+estudiantes? (moverE(uni, i)) = ter(moverEstudiante(i,uni))
+
+estudiantes? (moverH(uni, i)) = ter(moverHippie(i,uni))
+
+
+
+
+
+
+
+capturar(p, cAsPos) =
+	if p \in posiciones4Vecinas( seg(dameUno(cAsPos)) ) then
+		Ag( <darCabezaHippie(prim(dameUno(cAsPos))), seg(dameUno(cAsPos))>, capturar(p, sinUno(cAsPos)) )
+	else
+		Ag( dameUno(cAsPos), capturar(p, sinUno(cAsPos)) )
+	fi
+
+sancionar(p, cAsPos) =
+	if p \in posiciones4Vecinas( seg(dameUno(cAsPos)) ) then
+		Ag( <cagarAPatadones(prim(dameUno(cAsPos))), seg(dameUno(cAsPos))>, sancionar(p, sinUno(cAsPos)) )
+	else
+		Ag( dameUno(cAsPos), sancionar(p, sinUno(cAsPos)) )
+	fi
+
+posiciones4Vecinos(p) =
+	if fila?(p) = 0 Y col?(p) = 0 then
+		{pos(1,0), pos(0,1)}
+	else
+		if fila?(p) = 0 then
+			{ pos(0, col?(p)-1), pos(0, col?(p)+1), pos(1, col?(p)) }
+		else
+			if col?(p) = 0 then
+				{ pos(fila?(p)-1, 0), pos(fila?(p)+1, 0), pos(fila?(p), 1) }
+			else
+				{ 	pos(fila?(p), col?(p)-1), 
+					pos(fila?(p), col?(p)+1), 
+					pos(fila?(p)+1, col?(p)), 
+					pos(fila?(p)-1, col?(p)) }
+			fi
+		fi
+	fi
+
+cuatroVecinosShort(p, u) = cuatroVecinos(p, u, posiciones4Vecinos(p))
+
+cuatroVecinos(p, u, p4v) = 
+	if vacio(p4v) then
+		vacio
+	else
+		Ag( queTipoHay(dameUno(p4v), u), cuatroVecinos(p, u, sinUno(p4v))
+	fi
+
+queTipoHay(p, u) = 
+	if fila?(p) = alto?(u) or col?(p) = ancho?(u) then
+		FueraDeRango
+	else
+		if p \in obstaculos?(u) then
+			Obstaculo
+		elseif p \in damePosicionesAs(agentes?(u)) then
+			Agente
+		elseif p \in damePosicionesH(hippies?(u)) then
+			Hippie
+		elseif p \in damePosicionesEst(estudiantes?(u)) then
+			Estudiante
+		else
+			Vacio
+		fi
+	fi
+
+queSituacion(mcT) = 
+	MovRest?(mcT) U UnAgente?(mcT) U DosHippies?(mcT) U CuatroEstudiantes?(mcT)
+
+movRest?(mcT) = 
+	if #(Vacio, mcT) = 0 then
+		{movRest}
+	else
+		vacio
+	fi
+
+UnAgente?(mcT) = 
+	if #(Agente, mcT) > 0 then
+		{unAgente}
+	else
+		vacio
+	fi
+
+DosHippies?(mcT) = 
+	if #(Hippie, mcT) >= 2 then
+		{dosHippies}
+	else
+		vacio
+	fi
+
+CuatroEstudiantes?(mcT) = 
+	if #(Estudiante, mcT) = 4? then
+		{cuatroEstudiantes}
+	else
+		vacio
+	fi

@@ -1,0 +1,44 @@
+moverAgentesYSancionarYCapturar(id, uni) ->
+	<cAs, cH, cEst>
+
+moverEstudianteYConvertir(id, uni) ->
+	<cAs, cH, cEst>
+
+moverHippieYConvertir(id, uni) ->
+	<cAs, cH, cEst>
+
+posiciones4Vecinas(pos) ->
+	conj(pos)
+
+cuatroVecinos(pos, uni) ->
+	multiconj(tipoElem)
+
+queSituacion (<tipoElem a, tipoElem b, tipoElem c, tipoElem d>) =
+	conj(structSituacionesRodeo)
+
+structSituacionesRodeo: 		nat
+	movRest 					0
+	unAgente		 			1
+	dosHippies 					2
+	cuatroEstudiantes		 	3
+
+capturar(pos, conj(<agentes, pos>)) ->
+	conj(<agentes, pos>)    	 [deberia chequear con posiciones4Vecinas y darle una captura a cada agente que haya participado en la matanza del hippie en pos 'pos']
+
+
+sancionar(pos, conj(<agentes, pos>)) ->
+	conj(<agentes, pos>)    	 [deberia chequear con posiciones4Vecinas y darle una sancion a cada agente que haya participado en la captura del estudiante en pos 'pos']
+
+tipoElem:				nat
+	Vacio				0
+	Obstaculo			1
+	Agente				2
+	Hippie 				3
+	Estudiante 			4
+	FueraDeRango		5
+
+queTipoHay(pos, uni) -> tipoElem
+
+damePosicionesAs(conj(<as, pos>)) -> conj(pos)
+damePosicionesEst(conj(<i, est, pos>)) -> conj(pos)
+damePosicionesH(conj(<i, pos>)) -> conj(pos)
