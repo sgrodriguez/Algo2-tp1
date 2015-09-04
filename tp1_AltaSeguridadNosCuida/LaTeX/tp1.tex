@@ -18,16 +18,16 @@
 \sloppy
 
 \hypersetup{%
- % Para que el PDF se abra a página completa.
+ % Para que el PDF se abra a pÃ¡gina completa.
  pdfstartview= {FitH \hypercalcbp{\paperheight-\topmargin-1in-\headheight}},
- pdfauthor={Cátedra de Algoritmos y Estructuras de Datos II - DC - UBA},
- pdfkeywords={TADs básicos},
- pdfsubject={Tipos abstractos de datos básicos}
+ pdfauthor={CÃ¡tedra de Algoritmos y Estructuras de Datos II - DC - UBA},
+ pdfkeywords={TADs bÃ¡sicos},
+ pdfsubject={Tipos abstractos de datos bÃ¡sicos}
 }
 
-\parskip=5pt % 10pt es el tama\textbf{?}ño de fuente
+\parskip=5pt % 10pt es el tama\textbf{?}Ã±o de fuente
 
-% Pongo en 0 la distancia extra entre ítemes.
+% Pongo en 0 la distancia extra entre Ã­temes.
 \let\olditemize\itemize
 \def\itemize{\olditemize\itemsep=0pt}
 
@@ -88,8 +88,11 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadGeneradores
 
 \tadOperacion{nuevaUni}{nat, nat, conj($pos$), conj($\langle as$, $pos \rangle$)}{uni}{}
-\tadOperacion{agregarE}{uni, ($\langle est$, $pos \rangle$)}{uni}{}
-\tadOperacion{agregarH}{uni, pos}{uni}{}
+\tadOperacion{agregarE}{uni, id, ($\langle est$, $pos \rangle$)}{uni}{}
+\tadOperacion{agregarH}{uni, hip, pos}{uni}{}
+\tadOperacion{moverAs}{uni, id}{uni}{}
+\tadOperacion{moverE}{uni, id}{uni}{}
+\tadOperacion{moverH}{uni, id}{uni}{}
 
 \tadOtrasOperaciones
 
@@ -103,17 +106,18 @@ hippies?(u) $\igobs$  hippies?(u')
 
 Observadores Basicos
 
-\tadAxioma{agentes?(nuevaUni(al,an,co,cAs))}{$\Pi_{1}$(moverTodo(cAs, $\emptyset$, $\emptyset$, al, an, co))}
-\tadAxioma{agentes?(agregarH(uni,pos))}{
-	$\Pi_{1}$ (moverTodo(agentes?(uni), pos\ U\ hippies?(uni), estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
-}
-\tadAxioma{agentes?(agregarE(uni,$\langle est$, $pos \rangle$))}{
-	$\Pi_{1}$ (moverTodo(agentes?(uni), hippies?(uni), $\langle est$, $pos \rangle$\ U\\ estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
-}
+\tadAxioma{agentes?(nuevaUni(al,an,co,cAs))}{cAs}
+\tadAxioma{agentes?(agregarH(uni,hip,pos))}{\IF movRest $\in$ queSituacion(cuatroVecinos(pos, uni)) THEN 
+		capturar(pos, agentes?(uni)) ELSE agentes?(uni)	FI}
+\tadAxioma{agentes?(agregarE(uni,id,$\langle est$, $pos \rangle$))}{\IF movRest $\in$ queSituacion(cuatroVecinos(pos, uni)) THEN 
+	sancionar(pos, agentes?(uni)) ELSE agentes?(uni)	FI}
+\tadAxioma{agentes?(moverAs(uni,i))}{prim(moverAgenteYSancionarYCapturar(i, uni))}
+\tadAxioma{agentes?(moverE(uni,i))}{prim(moverEstudiante(i,uni))}
+\tadAxioma{agentes?(moverH(uni,i))}{prim(moverHippie(i,uni))}
 
 \tadAxioma{hippies?(nuevaUni(al,an,co,cAs))}{$\emptyset$}
 
-\tadAxioma{hippies?(agregarH(uni,pos))}{
+\tadAxioma{hippies?(agregarH(uni,hip, pos))}{
 	$\Pi_{2}$(moverTodo(agentes?(uni), pos\ U\ hippies?(uni), estudiantes?(uni), alto?(uni), ancho?(uni), obstaculos?(uni)))
 }
 \tadAxioma{hippies?(agregarE(uni,$\langle est$, $pos \rangle$))}{
