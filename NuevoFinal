@@ -240,13 +240,14 @@ damePosicionesH(ch) =
 	fi
 
 moverEstudianteYChequearSituaciones(i, u) = 
-	if ( vacio(recorrido(dameEstudiante(i, estudiantes?(u)))) ) then
+	if ( vacio(dameEstudiante(i, estudiantes?(u))) ) then
 		<agentes?(u), hippies?(u), estudiantes?(u)>
 	else
-		if not( prim(recorrido(dameEstudiante(i, u))) \in dirLibres() ) then
+		if not( prim(dameEstudiante(i, u)) \in dirLibres(dameEstudiantePos(i, estudiantes?(u)), u) ) then
 			<agentes?(u), hippies?(u), estudiantes?(u)>
 		else
-			<agentes?(u), hippies?(u), Ag(moverEstudiante(i, u), sacarEstudianteId(i, estudiantes?(u)))>
+			<agentes?(u), hippies?(u), Ag(<i, 	fin(dameEstudiante(i, u)), 
+											mover(dameEstudiantePos(i, estudiantes?(u)), prim(dameEstudiante(i, u)))>, sacarEstudianteId(i, estudiantes?(u)))>
 		fi
 	fi
 
@@ -255,6 +256,13 @@ dameEstudiante(i, cEst) =
 		seg(dameUno(cEst))
 	else
 		dameEstudiante(i, sinUno(cEst))
+	fi
+
+dameEstudiantePos(i, cEst) = 
+	if prim(dameUno(cEst)) = i then
+		ter(dameUno(cEst))
+	else
+		dameEstudiantePos(i, sinUno(cEst))
 	fi
 
 
@@ -269,10 +277,12 @@ sacarEstudianteId(i, cEst) =
 		fi
 	fi
 
-moverEstudiante(i, u) = 
-	
-
-
+entradas?(an, al) = 
+	if an = 0 then
+		vacio	
+	else
+		Ag( pos(0, an-1), Ag( pos(al-1, an-1), entradas(an-1,al) ) )
+	fi
 
 
 dirLibres(pos, u) = dirNoOcupadas( dirValidas(pos, ancho?(u), alto?(u)), pos, u)
@@ -283,16 +293,172 @@ dirValidas(pos, an, al) =
 
 
 dirNoOcupadas( cDirs, pos, u ) = 								{R: no(col?(pos) = 0 y (o) pertenece cDirs) y no(fila?(pos) = 0 y (n) pertenece cDirs) }
-if (vacio(cDirs)) then
-	vacio
-else
-	if (	Macro2 pertenece damePosicionesH(hippies?(u))) or 
-			Macro2 pertenece obstaculos?(u) or 
-			Macro2 pertenece damePosicionesAs(agentes?(u)) or 
-			Macro2 pertenece damePosicionesEst(estudiantes?(u)) then
-		dirNoOcupadas( sinUno(cDirs), pos, u)
+	if (vacio(cDirs)) then
+		vacio
 	else
-		Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, u) )
+		if (	Macro2 pertenece damePosicionesH(hippies?(u))) or 
+				Macro2 pertenece obstaculos?(u) or 
+				Macro2 pertenece damePosicionesAs(agentes?(u)) or 
+				Macro2 pertenece damePosicionesEst(estudiantes?(u)) then
+			dirNoOcupadas( sinUno(cDirs), pos, u)
+		else
+			Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, u) )
+		fi
 	fi
-fi
 Macro2 = mover( pos, dameUno(cDirs) )
+
+posNoOcupadas(cPos, u) = 
+	if (vacio(cPos)) then
+		vacio
+	else
+		if not dameUno(cPos) pertenece ( damePosicionesAs(agentes?(u)) U
+										damePosicionesEst(estudiantes?(u)) U
+										damePosicionesH(hippies?(u)) U
+										obstaculos?(u) ) then
+			Ag( dameUno(cPos), posNoOcupadas(sinUno(cPos), u) )
+		else
+			posNoOcupadas(sinUno(cpos), u)
+		fi
+	fi
+
+
+direccionesOptimas(pos1,pos2) = 
+	{n,s,e,o} - (if fila?(pos1) <= fila?(pos2) then {n} else vacio fi) - (if fila?(pos1) >= fila?(pos2) then {s} else vacio fi) - 
+				(if col?(pos1) <= col?(pos2) then {o} else vacio fi) - (if col?(pos1) >= col?(pos2) then {e} else vacio fi)
+
+
+cPosMasCercanaShort(pos, cPos) = cPosMasCercana(pos,cPos, menorDistancia(pos,cPos))
+
+cPosMasCercana(pos, cPos, menorDist) = 
+	if vacio(cPos) then
+		vacio
+	else
+		if(dist(pos, dameUno(cPos)) = menorDist then
+			Ag(pos, cPosMasCercana(pos, sinUno(cPos), menorDist))
+		else
+			cPosMasCercana(pos, sinUno(cPos), menorDist)
+		fi
+	fi
+
+menorDistancia(pos, cPos) = 			{R: cPos no vacia}
+	if not vacio(sinUno(cPos)) then
+		min{ dist(pos, dameUno(cPos)), menorDistancia(pos, sinUno(cpos)) }
+	else
+		dist(pos, dameUno(cPos))
+	fi
+
+dist(pos1,pos2) =
+(max{fila?(pos1), fila?(pos2)} - min{fila?(pos1), fila?(pos2)}) + (max{col?(pos1), col?(pos2)} - min{col?(pos1), col?(pos2)})
+
+mover(pos, dir) = 															{R: no(col?(pos) = 0 y (o) = dir) y no(fila?(pos) = 0 y (n) = dir) }
+	if ( dir = n ) then
+		<fila?(pos)-1, col?(pos)>
+	else if ( dir = s ) //segun nico se puede
+		<fila?(pos)+1, col?(pos)>
+	else if ( dir = o )
+		<fila?(pos), col?(pos)-1>
+	else
+		<fila?(pos), col?(pos)+1>
+	fi
+
+moverAgenteYChequearSituacion(i, u) = 
+	if (vacio?(hippies?(u)) y dameAgentePos(i, agentes?(u)) \in entradas?(alto?(u), ancho?(u))) or inactivo?(dameAgente(i,u)) then
+		<agentes?(u), hippies?(u), estudiantes?(u)>
+	else
+		if vacio (posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)) then
+			<agentes?(u), hippies?(u), estudiantes?(u)>
+		else
+			<Ag(
+			<i, 
+			dameAgente(i, agentes?(u)), 
+			mover(dameAgentePos(i, agentes?(u)), dameUno(posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)))>,
+			sacarAgenteId(i, agentes?(u)) ), hippies?(u), estudiantes?(u)>
+		fi
+	fi
+
+posibleMovAs (agente, pos, u) = 
+	if ( inactivo?(agente) ) then
+		vacio
+	else
+		if vacio?(hippes?(u)) then
+			
+			if dirLibres(agente, u) interseccion 
+			direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) )) = vacio then
+				dirLibres(pos, u)
+			else
+				dirLibres(pos, u) interseccion 
+				direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) ))
+			fi
+
+		else
+			
+			if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) ))) = vacio then
+				dirLibres(pos, u)
+			else
+				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) )))
+			fi
+		fi
+	fi
+
+dameAgente(i, cAs) = 
+	if prim(dameUno(cAs)) = i then
+		seg(dameUno(cAs))
+	else
+		dameAgente(i, sinUno(cAs))
+	fi
+
+dameAgentePos(i, cAs) = 
+	if prim(dameUno(cAs)) = i then
+		ter(dameUno(cAs))
+	else
+		dameAgentePos(i, sinUno(cAs))
+	fi
+
+
+sacarAgenteId(i, cAs) = 
+	if vacio(cAs) then
+		vacio
+	else
+		if prim(dameUno(cAs)) = i then
+			sinUno(cAs)
+		else
+			Ag(dameUno(cAs), sacarAgente(i, sinUno(cAs)))
+		fi
+	fi
+
+moverHippieYChequearSituacion(i, u) =
+	if vacio ( posibleMovH(dameHippiePos(i, u), u) ) then
+		<agentes?(u), hippies?(u), estudiantes?(u)>
+	else
+		<agentes?(u), Ag(<i, mover(dameHippiePos(i,u), dameUno(posibleMovH(dameHippiePos(i, u), u)))>, sacarHippieId(i, hippies?(u))), estudiantes?(u)>
+	fi
+
+posibleMovH (pos, u) = 
+	if vacio?(estudiantes?(u)) then
+		vacio
+	else
+		if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) ))) = vacio then
+				dirLibres(pos, u)
+			else
+				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) )))
+			fi
+	fi
+
+dameHippiePos(i, cH) = 
+	if prim(dameUno(cH)) = i then
+		seg(dameUno(cH))
+	else
+		dameHippiePos(i, sinUno(cH))
+	fi
+
+
+sacarHippieId(i, cH) = 
+	if vacio(cH) then
+		vacio
+	else
+		if prim(dameUno(cH)) = i then
+			sinUno(cH)
+		else
+			Ag(dameUno(cH), sacarHippie(i, sinUno(cH)))
+		fi
+	fi

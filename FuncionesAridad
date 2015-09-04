@@ -43,8 +43,30 @@ damePosicionesAs(conj(<as, pos>)) -> conj(pos)
 damePosicionesEst(conj(<i, est, pos>)) -> conj(pos)
 damePosicionesH(conj(<i, pos>)) -> conj(pos)
 
+entradas?(nat, nat) -> conj(pos)
+
+dirLibres(pos, uni) -> conj(dir)
+dirValidas(pos, nat, nat) -> conj(dir)
+dirNoOcupadas(conj(dir), pos, uni) -> conj(dir)
+posNoOcupadas(conj(pos), uni) -> conj(pos)
+direccionesOptimas(pos, pos) -> conj(dir)
+cPosMasCercanaShort(pos, conj(pos)) -> conj(pos)
+cPosMasCercana(pos, conj(pos), nat) -> conj(pos)
+menorDistancia(pos, conj(pos)) -> nat
+dist(pos, pos) -> nat
 
 \\Movimiento Estudiantes
-
 dameEstudiante(id, conj(<i, est, pos>)) -> est 				{R: i \in conj}
+dameEstudiantePos(id, conj(<i, est, pos>)) -> pos			{R: i \in conj}
 sacarEstudianteId(id, conj(<i, est, pos>)) -> conj(<i, est, pos>)
+
+\\Movimiento Agentes
+posibleMovAs(As, pos, uni) -> conj(dir)
+dameAgente(id, conj(<i, as, pos>)) -> as 				{R: i \in conj}
+dameAgentePos(id, conj(<i, as, pos>)) -> pos			{R: i \in conj}
+sacarAgenteId(id, conj(<i, as, pos>)) -> conj(<i, as, pos>)
+
+\\Movimiento Hippies
+posibleMovH(pos, uni) -> conj(dir)
+dameHippiePos(id, conj(<i, pos>)) -> pos			{R: i \in conj}
+sacarHippieId(id, conj(<i, pos>)) -> conj(<i, as, pos>)
