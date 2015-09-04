@@ -216,3 +216,83 @@ CuatroEstudiantes?(mcT) =
 	else
 		vacio
 	fi
+
+damePosicionesAs(ca) = 
+	if vacio?(ca) then
+		vacio
+	else
+		Ag(seg(dameUno(ca)), damePosicionesAs(sinUno(ca)))
+	fi
+
+
+damePosicionesEst(ce) = 
+	if vacio?(ce) then
+		vacio
+	else
+		Ag(ter(dameUno(ce)), damePosicionesEst(sinUno(ce)))
+	fi
+
+damePosicionesH(ch) = 
+	if vacio?(ch) then
+		vacio
+	else
+		Ag(seg(dameUno(ch)), damePosicionesH(sinUno(ch)))
+	fi
+
+moverEstudianteYChequearSituaciones(i, u) = 
+	if ( vacio(recorrido(dameEstudiante(i, estudiantes?(u)))) ) then
+		<agentes?(u), hippies?(u), estudiantes?(u)>
+	else
+		if not( prim(recorrido(dameEstudiante(i, u))) \in dirLibres() ) then
+			<agentes?(u), hippies?(u), estudiantes?(u)>
+		else
+			<agentes?(u), hippies?(u), Ag(moverEstudiante(i, u), sacarEstudianteId(i, estudiantes?(u)))>
+		fi
+	fi
+
+dameEstudiante(i, cEst) = 
+	if prim(dameUno(cEst)) = i then
+		seg(dameUno(cEst))
+	else
+		dameEstudiante(i, sinUno(cEst))
+	fi
+
+
+sacarEstudianteId(i, cEst) = 
+	if vacio(cEst) then
+		vacio
+	else
+		if prim(dameUno(cEst)) = i then
+			sinUno(cEst)
+		else
+			Ag(dameUno(cEst), sacarEstudiante(i, sinUno(cEst)))
+		fi
+	fi
+
+moverEstudiante(i, u) = 
+	
+
+
+
+
+dirLibres(pos, u) = dirNoOcupadas( dirValidas(pos, ancho?(u), alto?(u)), pos, u)
+
+
+dirValidas(pos, an, al) = 
+	{n,s,e,o} - (if col?(pos) = 0 then {o} else vacio fi) - (if col?(pos) = an-1 then {e} else vacio fi) - (if fila?(pos) = 0 then {n} else vacio fi) - (if fila?(pos) = al-1 then {s} else vacio fi)
+
+
+dirNoOcupadas( cDirs, pos, u ) = 								{R: no(col?(pos) = 0 y (o) pertenece cDirs) y no(fila?(pos) = 0 y (n) pertenece cDirs) }
+if (vacio(cDirs)) then
+	vacio
+else
+	if (	Macro2 pertenece damePosicionesH(hippies?(u))) or 
+			Macro2 pertenece obstaculos?(u) or 
+			Macro2 pertenece damePosicionesAs(agentes?(u)) or 
+			Macro2 pertenece damePosicionesEst(estudiantes?(u)) then
+		dirNoOcupadas( sinUno(cDirs), pos, u)
+	else
+		Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, u) )
+	fi
+fi
+Macro2 = mover( pos, dameUno(cDirs) )

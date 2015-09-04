@@ -42,3 +42,9 @@ queTipoHay(pos, uni) -> tipoElem
 damePosicionesAs(conj(<as, pos>)) -> conj(pos)
 damePosicionesEst(conj(<i, est, pos>)) -> conj(pos)
 damePosicionesH(conj(<i, pos>)) -> conj(pos)
+
+
+\\Movimiento Estudiantes
+
+dameEstudiante(id, conj(<i, est, pos>)) -> est 				{R: i \in conj}
+sacarEstudianteId(id, conj(<i, est, pos>)) -> conj(<i, est, pos>)
