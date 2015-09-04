@@ -461,4 +461,4 @@ sacarHippieId(i, cH) =
 		else
 			Ag(dameUno(cH), sacarHippie(i, sinUno(cH)))
 		fi
-	fi
+	fi 

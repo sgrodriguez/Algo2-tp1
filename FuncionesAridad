@@ -13,7 +13,7 @@ posiciones4Vecinas(pos) ->
 cuatroVecinos(pos, uni) ->
 	multiconj(tipoElem)
 
-queSituacion (<tipoElem a, tipoElem b, tipoElem c, tipoElem d>) =
+queSituacion (multiconj(tipoElem)) =
 	conj(structSituacionesRodeo)
 
 structSituacionesRodeo: 		nat
