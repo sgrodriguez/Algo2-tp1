@@ -50,18 +50,10 @@ obstaculos? (moverH(u, i)) = obstaculos?(u)
 agentes? (nuevaUni(ca, al, an, cobs)) = ca
 
 agentes? (agregarE(uni, i, e, pos)) = 
-	if movRest \in queSituacion(cuatroVecinos(pos, uni)) then 
-		sancionar(pos, agentes?(uni)) 
-	else 
-		agentes?(uni) 
-	fi
+	prim(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
 agentes? (agregarH(uni, i, pos)) = 
-	if movRest \in queSituacion(cuatroVecinos(pos, uni)) then 
-		capturar(pos, agentes?(uni)) 
-	else 
-		agentes?(uni) 
-	fi
+	prim(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
 agentes? (moverAs(uni, i)) = prim(moverAgenteYSancionarYCapturar(i, uni))
 
@@ -74,23 +66,10 @@ agentes? (moverH(uni, i)) = prim(moverHippie(i,uni))
 hippies? (nuevaUni(ca, al, an, cobs)) = vacio
 
 hippies? (agregarE(uni, i, e, pos)) = 
-	if dosHippies \in queSituacion(cuatroVecinos(pos, uni)) then 
-		1= Ag(<i, pos>, hippies?(uni)) 
-		2= hippies?(agregarH(uni, i, pos))
-	else 
-		hippies?(uni) 
-	fi
+	seg(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
 hippies? (agregarH(uni, i, pos)) = 
-	if movRest \in queSituacion(cuatroVecinos(pos, uni)) and unAgente \in queSituacion(cuatroVecinos(pos, uni)) then 
-		hippies?(uni)
-	else 
-		if movRest \in queSituacion(cuatroVecinos(pos, uni)) and cuatroEstudiantes \in queSituacion(cuatroVecinos(pos, uni)) then 
-			hippies?(uni)
-		else
-			Ag(<i, pos>, hippies?(uni))
-		fi
-	fi
+	seg(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
 hippies? (moverAs(uni, i)) = seg(moverAgenteYSancionarYCapturar(i, uni))
 
@@ -103,18 +82,10 @@ hippies? (moverH(uni, i)) = seg(moverHippie(i,uni))
 estudiantes? (nuevaUni(ca, al, an, cobs)) = vacio
 
 estudiantes? (agregarE(uni, i, e, pos)) = 
-	if dosHippies \in queSituacion(cuatroVecinos(pos, uni)) then 
-		estudiantes?(uni) 
-	else 
-		Ag(<i, e, p>, estudiantes?(uni))
-	fi
+	ter(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
-estudiantes? (agregarH(uni, i, pos)) = 
-	if queSituacion(cuatroVecinos(pos, uni)) = *******************************************************************************************************************************************preguntar********************************************************************************************* then 
-		ag hippie a est????? estudiantes?(uni)
-	else 
-		estudiantes?(uni) (me fijo si encierra a algun otro estudiante????)
-	fi
+estudiantes? (agregarH(u, i, pos)) = 
+	ter(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
 estudiantes? (moverAs(uni, i)) = ter(moverAgenteYSancionarYCapturar(i, uni))
 
@@ -128,21 +99,21 @@ estudiantes? (moverH(uni, i)) = ter(moverHippie(i,uni))
 
 
 
-capturar(p, cAsPos) =
-	if p \in posiciones4Vecinas( seg(dameUno(cAsPos)) ) then
-		Ag( <darCabezaHippie(prim(dameUno(cAsPos))), seg(dameUno(cAsPos))>, capturar(p, sinUno(cAsPos)) )
+capturar(p, cAs) =
+	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
+		Ag( <prim(cAs), darCaptura(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
 	else
-		Ag( dameUno(cAsPos), capturar(p, sinUno(cAsPos)) )
+		Ag( dameUno(cAs), capturar(p, sinUno(cAs)) )
 	fi
 
-sancionar(p, cAsPos) =
-	if p \in posiciones4Vecinas( seg(dameUno(cAsPos)) ) then
-		Ag( <cagarAPatadones(prim(dameUno(cAsPos))), seg(dameUno(cAsPos))>, sancionar(p, sinUno(cAsPos)) )
+sancionar(p, cAs) =
+	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
+		Ag( <prim(cAs), darSancion(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
 	else
-		Ag( dameUno(cAsPos), sancionar(p, sinUno(cAsPos)) )
+		Ag( dameUno(cAs), sancionar(p, sinUno(cAs)) )
 	fi
 
-posiciones4Vecinos(p) =
+posiciones4Vecinas(p) =
 	if fila?(p) = 0 Y col?(p) = 0 then
 		{pos(1,0), pos(0,1)}
 	else
@@ -160,26 +131,26 @@ posiciones4Vecinos(p) =
 		fi
 	fi
 
-cuatroVecinosShort(p, u) = cuatroVecinos(p, u, posiciones4Vecinos(p))
+cuatroVecinosShort(p, tripla, u) = cuatroVecinos(p, tripla, u, posiciones4Vecinas(p))
 
-cuatroVecinos(p, u, p4v) = 
+cuatroVecinos(p, tripla, u, p4v) = 
 	if vacio(p4v) then
 		vacio
 	else
-		Ag( queTipoHay(dameUno(p4v), u), cuatroVecinos(p, u, sinUno(p4v))
+		Ag( queTipoHay(dameUno(p4v), tripla, u), cuatroVecinos(p, tripla, u, sinUno(p4v))
 	fi
 
-queTipoHay(p, u) = 
+queTipoHay(p, tripla, u) = 
 	if fila?(p) = alto?(u) or col?(p) = ancho?(u) then
 		FueraDeRango
 	else
 		if p \in obstaculos?(u) then
 			Obstaculo
-		elseif p \in damePosicionesAs(agentes?(u)) then
+		elseif p \in damePosicionesAs(prim(tripla)) then
 			Agente
-		elseif p \in damePosicionesH(hippies?(u)) then
+		elseif p \in damePosicionesH(seg(tripla)) then
 			Hippie
-		elseif p \in damePosicionesEst(estudiantes?(u)) then
+		elseif p \in damePosicionesEst(ter(tripla)) then
 			Estudiante
 		else
 			Vacio
@@ -246,8 +217,8 @@ moverEstudianteYChequearSituaciones(i, u) =
 		if not( prim(dameEstudiante(i, u)) \in dirLibres(dameEstudiantePos(i, estudiantes?(u)), u) ) then
 			<agentes?(u), hippies?(u), estudiantes?(u)>
 		else
-			<agentes?(u), hippies?(u), Ag(<i, 	fin(dameEstudiante(i, u)), 
-											mover(dameEstudiantePos(i, estudiantes?(u)), prim(dameEstudiante(i, u)))>, sacarEstudianteId(i, estudiantes?(u)))>
+			chequearSituacionShort( agregarEstudianteTripla( <i, fin(dameEstudiante(i, u)),	mover(dameEstudiantePos(i, estudiantes?(u)), prim(dameEstudiante(i, u)))>,
+			<agentes?(u), hippies?(u), sacarEstudianteId(i, estudiantes?(u))> ) )
 		fi
 	fi
 
@@ -368,11 +339,8 @@ moverAgenteYChequearSituacion(i, u) =
 		if vacio (posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)) then
 			<agentes?(u), hippies?(u), estudiantes?(u)>
 		else
-			<Ag(
-			<i, 
-			dameAgente(i, agentes?(u)), 
-			mover(dameAgentePos(i, agentes?(u)), dameUno(posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)))>,
-			sacarAgenteId(i, agentes?(u)) ), hippies?(u), estudiantes?(u)>
+			chequearSituacionShort( agregarAgenteTripla(<i, dameAgente(i, agentes?(u)), mover(dameAgentePos(i, agentes?(u)), dameUno(posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)))>,
+			<sacarAgenteId(i, agentes?(u)) , hippies?(u), estudiantes?(u)>) )
 		fi
 	fi
 
@@ -430,7 +398,8 @@ moverHippieYChequearSituacion(i, u) =
 	if vacio ( posibleMovH(dameHippiePos(i, u), u) ) then
 		<agentes?(u), hippies?(u), estudiantes?(u)>
 	else
-		<agentes?(u), Ag(<i, mover(dameHippiePos(i,u), dameUno(posibleMovH(dameHippiePos(i, u), u)))>, sacarHippieId(i, hippies?(u))), estudiantes?(u)>
+		chequearSituacionShort( agregarHippieTripla(<i, mover(dameHippiePos(i,u), dameUno(posibleMovH(dameHippiePos(i, u), u)))>,
+		<agentes?(u), sacarHippieId(i, hippies?(u)), estudiantes?(u)> ) )
 	fi
 
 posibleMovH (pos, u) = 
@@ -462,3 +431,82 @@ sacarHippieId(i, cH) =
 			Ag(dameUno(cH), sacarHippie(i, sinUno(cH)))
 		fi
 	fi 
+
+
+chequearSituacionShort(tripla, u) = chequearSituacion(tripla, tripla, u)
+
+chequearSituacion(<cAs, cH, cEst>, triplaInfo, u) =
+
+//la idea de la primera tripla es hacer recursion, es la que devuelvo modificada con los cambios entre hippie y estudiantes, viceversa, y capturas/sanciones de agentes. la idea de la segunda tripla es mantener toda la informacion relevante sobre el tablero con las fichas ya movidas por los "mover", porque sino al hacer la recursion pierdo los 4-vecinos de muchas fichas. (ej: la ultima ficha de la recursion no tiene nadie alrededor, nunca)
+
+	if vacio(cH) then
+		if vacio(cEst) then
+			<cAs, cH, cEst>
+		else
+			//En estudiante no se tiene que modificar lo que se pasa como triplaInfo, ya que no quiero efectos en cadena (un estudiante se convierte, y luego participa, ya como hippie, en la conversion de otro estudiante)
+
+			if {movRest, unAgente} \contenido 
+				queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+				if {dosHippies} \contenido 
+					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+					//sanciono al agente y agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
+
+					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
+				else
+					//sanciono al agente y hago recursion sobre el resto
+
+					agregarEstudianteTripla( dameUno(cEst),
+						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
+				fi
+			else
+				if {dosHippies} \contenido 
+					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+					// agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
+
+					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
+				else
+					//hago recursion sin cambiar nada
+
+					agregarEstudianteTripla( dameUno(cEst),
+						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
+				fi
+			fi
+		fi
+	else
+		//como despues de chequear los hippies tengo que chequear los estudiantes, no mando "triplaInfo" como segundo parametro, ya que me importa saber si el hippie que iba a convertir a un estudiante murio, o fue convertido a estudiante.
+
+		if {movRest, unAgente} \contenido 
+				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
+			//mato al hippie (no lo agrego a la recursion), le doy una captura a los agentes cercanos y hago recursion
+
+			chequearSituacion(<capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, <capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, u)
+		else
+			if {movRest, cuatroEstudiantes} \contenido 
+				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
+				//lo convierto en uno de los estudiantes que lo rodean, en este caso no me importa agregarlo a triplaInfo, porque no va a afectar a lo que le pase a los estudiantes que quedan adentro, pero si me interesa sacarlo de triplaInfo, porque no quiero que participe en convertir a un estudiante.
+
+				agregarEstudianteTripla( 
+				<dameHippieId(dameUno(cH)), dameUno(estudiantesAdyacentesPos(dameHippiePos(dameUno(cH)), cEst)), dameHippiePos(dameUno(cH))>,
+				chequearSituacion(<cAs, sinUno(cH), cEst >, <cAs, sinUno(cH), cEst>, u))
+			else
+				//no le pasa nada, hago recursion
+
+				agregarHippieTripla( dameUno(cH),
+						 chequearSituacion(<cAs, sinUno(cH), cEst >, triplaInfo, u) )
+			fi
+		fi
+	fi
+
+agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
+agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>
+agEstudianteTripla(e, <cAs, cH, cEst>) = <cAs, cH, Ag(e, cEst)>
+
+
+estudiantesAdyacentesPos(p, cEst) = 
+if dameEstudiantePos(dameUno(cEst)) \in posiciones4Vecinas(p) then
+	Ag(seg(dameUno(cEst)), estudiantesAdyacentesPos(p, sinUno(cEst)))
+else
+	estudiantesAdyacentesPos(p, sinUno(cEst))
+fi
