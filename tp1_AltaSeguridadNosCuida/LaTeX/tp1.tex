@@ -231,7 +231,23 @@ hippies?(u) $\igobs$  hippies?(u')
 	$\rangle$
 }{}
 
-\tadAxiomas[\paratodo{}{}]
+\tadAxiomas[
+\paratodo{conj(<id, as, pos>)}{cAs}
+\paratodo{conj(<id, pos>)}{cH}
+\paratodo{conj(<id, est, pos>)}{cEst}
+\paratodo{conj(dir)}{cDirs}
+\paratodo{nat}{al, an}
+\paratodo{conj(pos)}{cObs}
+\paratodo{uni}{u}
+\paratodo{id}{i}
+\paratodo{<id, est, pos>}{e}
+\paratodo{<id, as, pos>}{agente}
+\paratodo{<id, pos>}{h}
+\paratodo{pos}{p}
+\paratodo{conj(pos)}{p4v}
+\paratodo{<conj(<id, as, pos>), cH conj(<id, pos>), conj(<id, est, pos>)>}{tripla, triplaInfo}
+\paratodo{multiconj(tipoElem)}{mcT}
+]
 
 Observadores Basicos
 
@@ -415,24 +431,24 @@ Otras Operaciones
 	fi
 }
 
-\tadAxioma{sancionar(p, cAs)}{	
-	if ($p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno($cAs$) ) ) ) 
-		\\
-		then
-			Ag( 
-				$\langle$
-					$\Pi_{1}$($cAs$), 
-					darSancion( seg( dameUno($cAs$) ) ), 
-					$\Pi_{3}$( dameUno($cAs$) )
-				>, 
-				capturar( $p$, sinUno($cAs$) ) 
-			)
-		\\
-		else
-			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
-	\\
-	fi
-}
+%\tadAxioma{sancionar(p, cAs)}{	
+%	if ($p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno($cAs$) ) ) ) 
+%		\\
+%		then
+%			Ag( 
+%				$\langle$
+%					$\Pi_{1}$($cAs$), 
+%					darSancion( seg( dameUno($cAs$) ) ), 
+%					$\Pi_{3}$( dameUno($cAs$) )
+%				>, 
+%				capturar( $p$, sinUno($cAs$) ) 
+%			)
+%		\\
+%		else
+%			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
+%	\\
+%	fi
+%}
 
 \tadAxioma{queTipoHay(p, tripla, u)}{
 	if ( fila?($p$) = alto?($u$) $\lor$ \ col?($p$) = ancho?($u$) ) 
@@ -1177,16 +1193,16 @@ Otras Operaciones
 
 \tadAxioma{convertirHippieAEst(h, cEst)}{
 	$\langle$
-		dameHippieId($h$),
-		dameUno(estudiantesAdyacentesPos(dameHippiePos($h$), $cEst$)),
-		dameHippiePos($h$)
+		$\Pi_0$($h$),
+		dameUno(estudiantesAdyacentesPos($\Pi_1$($h$), $cEst$)),
+		$\Pi_1$($h$)
 	$\rangle$
 }
 
 \tadAxioma{convertirEstAHippie(e)}{
 	$\langle$
-		dameEstudianteId($e$),
-		dameEstudiantePos($e$)
+		$\Pi_0$($e$),
+		$\Pi_2$($e$)
 	$\rangle$
 }
 
