@@ -81,9 +81,9 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadOperacion{alto?}{uni}{nat}{}
 \tadOperacion{ancho?}{uni}{nat}{}
 \tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
-\tadOperacion{agentes?}{uni}{conj($\langle$id ,\ as,\ $pos \rangle$)}{}
-\tadOperacion{hippies?}{uni}{conj($\langle$id,\ pos$\rangle$)}{}
-\tadOperacion{estudiantes?}{uni}{conj($\langle$id,\ est,\  $pos \rangle$)}{}
+\tadOperacion{agentes?}{uni}{conj($\langle id ,\ as,\ pos \rangle$)}{}
+\tadOperacion{hippies?}{uni}{conj($\langle id,\ pos \rangle$)}{}
+\tadOperacion{estudiantes?}{uni}{conj($\langle id,\ est,\  pos \rangle$)}{}
 
 \tadGeneradores
 
@@ -91,7 +91,7 @@ TAD id ES Nat \
 TAD hip ES Id \
 TAD est ES Secu(Dir) \
 
-\tadOperacion{nuevaUni}{conj($\langle$ $as$, $pos$ $\rangle$), nat, nat, conj($pos$)}{uni}{}
+\tadOperacion{nuevaUni}{conj($\langle$ as ${,}$ \ pos $\rangle$), nat, nat, conj($pos$)}{uni}{}
 
 \tadOperacion{agregarE}{uni, id, est, pos}{uni}{}
 \tadOperacion{agregarH}{uni, hip, pos}{uni}{}
@@ -103,22 +103,22 @@ TAD est ES Secu(Dir) \
 
 \tadOtrasOperaciones
 
- \tadOperacion{capturar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
- \tadOperacion{sancionar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
- \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipo}{}
- \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipo)}{}
- \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
+ \tadOperacion{capturar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
+ \tadOperacion{sancionar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
+ \tadOperacion{queTipoHay}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$}{tipo}{}
+ \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni}{multiconj(tipo)}{}
+ \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
  \tadOperacion{queSituacion}{multiconj(tipo)}{conj(situ)}{}
- \tadOperacion{damePosicionesAs}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
+ \tadOperacion{damePosicionesAs}{conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
 
 %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
-\tadOperacion{damePosicionesEst}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
-\tadOperacion{damePosicionesH}{conj( $\langle$ id, pos $\rangle$)}{conj(pos)}{}
+\tadOperacion{damePosicionesEst}{conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
+\tadOperacion{damePosicionesH}{conj( $\langle$ id${,}$ \ pos $\rangle$)}{conj(pos)}{}
 
- \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{dameEstudiante}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$ )\ conjEst}{est}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{dameEstudiantePos}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$ )\ conjEst}{pos}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{sacarEstudianteId}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$)\ conjEst}{conj( $\langle$ i, est, pos $\rangle$}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs${,}$  cH${,}$  cEst $\rangle$}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameEstudiante}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )\ conjEst}{est}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameEstudiantePos}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )\ conjEst}{pos}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarEstudianteId}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$)\ conjEst}{conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
  \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
  \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
@@ -128,121 +128,121 @@ TAD est ES Secu(Dir) \
  \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
  \tadOperacion{moverAgenteYChequearSituacion}{id $is$, uni $u$ }{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{posibleMovAs}{As , pos, uni}{conj(dir)}{}
- \tadOperacion{dameAgente}{id\ $is$, conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$ }{as}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{dameAgentePos}{id\ $is$ ,conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$}{pos}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{sacarAgenteId}{id\ $is$, conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$}{conj( $\langle$ i, as, pos $\rangle$}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameAgente}{id\ $is$, conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$ }{as}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameAgentePos}{id\ $is$ ,conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$}{pos}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarAgenteId}{id\ $is$, conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$}{conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{moverHippieYChequearSituacion}{id\ $is$, uni, $u$}{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
- \tadOperacion{dameHippiePos}{id\ $is$, conj( $\langle$ i, pos $\rangle$) \ $conjHip$}{pos}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{sacarHippieId}{id\ $is$, conj( $\langle$ i, pos $\rangle$) \ $conjHip$}{conj( $\langle$ i, pos $\rangle$)}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$} 
+ \tadOperacion{dameHippiePos}{id\ $is$, conj( $\langle$ i${,}$ \ pos $\rangle$) \ $conjHip$}{pos}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarHippieId}{id\ $is$, conj( $\langle$ i${,}$ \ pos $\rangle$) \ $conjHip$}{conj( $\langle$ i${,}$  pos $\rangle$)}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$} 
 \tadOperacion{chequearSituacionShort}{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ ,
  	 uni
 }{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ ,
 }{}
  \tadOperacion{chequearSituacion}{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ , 
 	$\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ , 
  	 uni
  }{
  	 $\langle$ 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as, pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{}
  \tadOperacion{agAgenteTripla}{
- 	 $\langle$ i, as, pos $\rangle$ ,
+ 	 $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ ,
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{}
  \tadOperacion{agHippieTripla}{
- 	 $\langle$ i, pos $\rangle$ , 
+ 	 $\langle$ i${,}$ \ pos $\rangle$ , 
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{}
  \tadOperacion{agEstudianteTripla}{
- 	 $\langle$ i, est, pos $\rangle$ , 
+ 	 $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ , 
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{
  	 $\langle$ 
- 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, pos $\rangle$ ), 
- 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
+ 	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
  	 $\rangle$ 
  }{}
-\tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i, est, pos $\rangle$ )}{conj(est)}{}
-\tadOperacion{convertirHippieAEst}{$\langle$id, pos$\rangle$, conj($\langle$id, est, pos$\rangle$)}
-									{$\langle$id, est, pos$\rangle$}{}
-\tadOperacion{convertirEstAHippie}{$\langle$id, est, pos$\rangle$} {$\langle$id, pos$\rangle$}{}
+\tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )}{conj(est)}{}
+\tadOperacion{convertirHippieAEst}{$\langle$id${,}$ \ pos$\rangle$, conj($\langle$id${,}$ \ est${,}$ \ pos$\rangle$)}
+									{$\langle$id${,}$ \ est${,}$ \ pos$\rangle$}{}
+\tadOperacion{convertirEstAHippie}{$\langle$id${,}$ \ est${,}$ \ pos$\rangle$} {$\langle$id${,}$ \ pos$\rangle$}{}
 \tadOperacion{sacarHippieTripla}{
 	$\langle$
-		id, 
+		id${,}$ \ 
 		pos
 	$\rangle$, 
 	$\langle$
-		conj($\langle$i, as, pos$\rangle$), 
-		conj($\langle$i, pos$\rangle$), 
-		conj($\langle$i, est, pos$\rangle$)
+		conj($\langle$i${,}$ \ as${,}$ \ pos$\rangle$)${,}$ \ 
+		conj($\langle$i${,}$ \ pos$\rangle$)${,}$ \ 
+		conj($\langle$i${,}$ \ est${,}$ \ pos$\rangle$)
 	$\rangle$} 
 	{
 	$\langle$
-		conj($\langle$i, as, pos$\rangle$), 
-		conj($\langle$i, pos$\rangle$), 
-		conj($\langle$i, est, pos$\rangle$)
+		conj($\langle$i${,}$ \ as${,}$ \ pos$\rangle$)${,}$ \ 
+		conj($\langle$i${,}$ \ pos$\rangle$)${,}$ \ 
+		conj($\langle$i${,}$ \ est${,}$ \ pos$\rangle$)
 	$\rangle$
 }{}
 
 \tadOperacion{dondeEstaAgente}{id\ $is$, uni \ $u$}{pos}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
 \tadOperacion{dondeEstaHippie}{id\ $is$, uni \ $u$}{pos}{ $\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
 \tadOperacion{dondeEstaEstudiante}{id\ $is$, uni\ $u$}{pos}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$ }
-\tadOperacion{masVigilante}{uni}{$\langle$ id, as, pos $\rangle$}{}
-\tadOperacion{losMasVigilantes}{conj($\langle$ id, as, pos $\rangle$), nat}{conj($\langle$ id, as, pos $\rangle$)}{}
-\tadOperacion{losMasVigilantesShort}{conj($\langle$ id, as, pos $\rangle$)}{conj($\langle$ id, as, pos $\rangle$)}{}
-\tadOperacion{agenteConMenorPlaca}{conj($\langle$ id, as, pos $\rangle$), nat}{$\langle$ id, as, pos $\rangle$}{}
-\tadOperacion{agenteConMenorPlacaShort}{conj($\langle$ id, as, pos $\rangle$)}{$\langle$ id, as, pos $\rangle$}{}
+\tadOperacion{masVigilante}{uni}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
+\tadOperacion{losMasVigilantes}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
+\tadOperacion{losMasVigilantesShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
+\tadOperacion{agenteConMenorPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
+\tadOperacion{agenteConMenorPlacaShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
  
-\tadOperacion{maxCapturas}{conj($\langle$ id, as, pos $\rangle$)}{nat}{}
-\tadOperacion{minPlaca}{conj($\langle$ id, as, pos $\rangle$)}{nat}{}
+\tadOperacion{maxCapturas}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{nat}{}
+\tadOperacion{minPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{nat}{}
 \tadOperacion{cuantosHippies}{uni}{nat}{}
 \tadOperacion{cuantosEstudiantes}{uni}{nat}{}
 
