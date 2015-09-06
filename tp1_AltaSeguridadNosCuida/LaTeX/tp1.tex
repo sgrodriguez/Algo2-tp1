@@ -102,38 +102,95 @@ hippies?(u) $\igobs$  hippies?(u')
 
 \tadOtrasOperaciones
 
-\tadOperacion{capturar}{}{}{}
-\tadOperacion{sancionar(p, cAs)}{}{}{}
-\tadOperacion{queTipoHay(p, tripla, u)}{}{}{}
-\tadOperacion{cuatroVecinosShort(p, tripla, u)}{}{}{}
-\tadOperacion{cuatroVecinos(p, tripla, u, p4v)}{}{}{}
-\tadOperacion{queSituacion(mcT)}{}{}{}
-\tadOperacion{damePosicionesAs(ca)}{}{}{}
-\tadOperacion{moverEstudianteYChequearSituaciones(i, u)}{}{}{}
-\tadOperacion{dameEstudiante(i, cEst)}{}{}{}
-\tadOperacion{dameEstudiantePos(i, cEst)}{}{}{}
-\tadOperacion{sacarEstudianteId(i, cEst)}{}{}{}
-\tadOperacion{entradas?(an, al)}{}{}{}
-\tadOperacion{dirLibres(pos, u)}{}{}{}
-\tadOperacion{dirValidas(pos, an, al)}{}{}{}
-\tadOperacion{dirNoOcupadas( cDirs, pos, u )}{}{}{R: no(col?(pos) = 0 y (o) $\in$ cDirs) y no(fila?(pos) = 0 y (n) $\in$ cDirs)}
-\tadOperacion{posNoOcupadas(cPos, u)}{}{}{}
-\tadOperacion{moverAgenteYChequearSituacion(i, u)}{}{}{}
-\tadOperacion{posibleMovAs (agente, pos, u)}{}{}{}
-\tadOperacion{dameAgente(i, cAs)}{}{}{}
-\tadOperacion{dameAgentePos(i, cAs)}{}{}{}
-\tadOperacion{sacarAgenteId(i, cAs)}{}{}{}
-\tadOperacion{moverHippieYChequearSituacion(i, u)}{}{}{}
-\tadOperacion{posibleMovH (pos, u)}{}{}{}
-\tadOperacion{dameHippiePos(i, cH)}{}{}{}
-\tadOperacion{sacarHippieId(i, cH)}{}{}{}
+% \tadOperacion{capturar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
+% \tadOperacion{sancionar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
+% \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipoElem}{}
+% \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipoElem)}{}
+% \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipoElem)}{}
+% \tadOperacion{queSituacion}{multiconj(tipoElem)}{conj(structSituacionesRodeo)}{}
+% \tadOperacion{damePosicionesAs}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
+% \tadOperacion{moverEstudianteYChequearSituaciones}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+% \tadOperacion{dameEstudiante}{id, conj( $\langle$ i, est, pos $\rangle$ )}{est}{i $\in$ conj}
+% \tadOperacion{dameEstudiantePos}{id, conj( $\langle$ i, est, pos $\rangle$ )}{pos}{i $\in$ conj}
+% \tadOperacion{sacarEstudianteId}{id, conj( $\langle$ i, est, pos $\rangle$ )}{conj( $\langle$ i, est, pos $\rangle$}{}
+% \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
+% \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
+% \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
+% \tadOperacion{dirNoOcupadas}{conj(dir), pos, uni}{conj(dir)}{
+% 	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
+% }
+% \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
+% \tadOperacion{moverAgenteYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+% \tadOperacion{posibleMovAs}{As, pos, uni}{conj(dir)}{}
+% \tadOperacion{dameAgente}{conj( $\langle$ i, as, pos $\rangle$}{as}{i $\in$ conj}
+% \tadOperacion{dameAgentePos}{conj( $\langle$ i, as, pos $\rangle$}{pos}{i $\in$ conj}
+% \tadOperacion{sacarAgenteId}{conj( $\langle$ i, as, pos $\rangle$}{conj( $\langle$ i, as, pos $\rangle$}{}
+% \tadOperacion{moverHippieYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+% \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
+% \tadOperacion{dameHippiePos}{id, conj( $\langle$ i, pos $\rangle$}{pos}{i $\in$ conj}
+% \tadOperacion{sacarHippieId}{id, conj( $\langle$ i, pos $\rangle$}{conj( $\langle$ i, pos $\rangle$}{}
 \tadOperacion{chequearSituacionShort(tripla, u)}{}{}{}
-\tadOperacion{chequearSituacion(<cAs, cH, cEst>, triplaInfo, u)}{}{}{}
-\tadOperacion{agAgenteTripla(a, <cAs, cH, cEst>)}{}{}{}
-\tadOperacion{agHippieTripla(h, <cAs, cH, cEst>)}{}{}{}
-\tadOperacion{agEstudianteTripla(e, <cAs, cH, cEst>)}{}{}{}
-\tadOperacion{estudiantesAdyacentesPos(p, cEst)}{}{}{}
+% \tadOperacion{chequearSituacion)}{
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ , 
+% 	 uni
+% }{
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{}
+% \tadOperacion{agAgenteTripla}{
+% 	 $\langle$ i, as, pos $\rangle$ ,
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{}
+% \tadOperacion{agHippieTripla}{
+% 	 $\langle$ i, pos $\rangle$ , 
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{}
+% \tadOperacion{agEstudianteTripla}{
+% 	 $\langle$ i, est, pos $\rangle$ , 
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{
+% 	 $\langle$ 
+% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, pos $\rangle$ ), 
+% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+% 	 $\rangle$ 
+% }{}
+% \tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i, est, pos $\rangle$ )}{conj(est)}{}
 
+%CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
+\tadOperacion{damePosicionesEst}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
+\tadOperacion{damePosicionesH}{conj( $\langle$ id, pos $\rangle$)}{conj(pos)}{}
 
 \tadAxiomas[\paratodo{}{}]
 
