@@ -407,9 +407,9 @@
 % 		fi
 % 	fi
 
-convertirHippieAEst(h, cEst) = <dameHippieId(h), dameUno(estudiantesAdyacentesPos(dameHippiePos(h), cEst)), dameHippiePos(h)>
-convertirEstAHippie(e) = <dameEstudianteId(e), dameEstudiantePos(h)>
-sacarHippieTripla(h, <cAs, cH, cEst>) = <cAs, sacarHippieId(prim(h), cH), cEst>
+%convertirHippieAEst(h, cEst) = <dameHippieId(h), dameUno(estudiantesAdyacentesPos(dameHippiePos(h), cEst)), %dameHippiePos(h)>
+%convertirEstAHippie(e) = <dameEstudianteId(e), dameEstudiantePos(h)>
+%sacarHippieTripla(h, <cAs, cH, cEst>) = <cAs, sacarHippieId(prim(h), cH), cEst>
 
 % agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
 % agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>

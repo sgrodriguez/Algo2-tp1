@@ -102,127 +102,166 @@ hippies?(u) $\igobs$  hippies?(u')
 
 \tadOtrasOperaciones
 
-% \tadOperacion{capturar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
-% \tadOperacion{sancionar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
-% \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipoElem}{}
-% \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipoElem)}{}
-% \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipoElem)}{}
-% \tadOperacion{queSituacion}{multiconj(tipoElem)}{conj(structSituacionesRodeo)}{}
-% \tadOperacion{damePosicionesAs}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
-% \tadOperacion{moverEstudianteYChequearSituaciones}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
-% \tadOperacion{dameEstudiante}{id, conj( $\langle$ i, est, pos $\rangle$ )}{est}{i $\in$ conj}
-% \tadOperacion{dameEstudiantePos}{id, conj( $\langle$ i, est, pos $\rangle$ )}{pos}{i $\in$ conj}
-% \tadOperacion{sacarEstudianteId}{id, conj( $\langle$ i, est, pos $\rangle$ )}{conj( $\langle$ i, est, pos $\rangle$}{}
-% \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
-% \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
-% \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
-% \tadOperacion{dirNoOcupadas}{conj(dir), pos, uni}{conj(dir)}{
-% 	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
-% }
-% \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
-% \tadOperacion{moverAgenteYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
-% \tadOperacion{posibleMovAs}{As, pos, uni}{conj(dir)}{}
-% \tadOperacion{dameAgente}{conj( $\langle$ i, as, pos $\rangle$}{as}{i $\in$ conj}
-% \tadOperacion{dameAgentePos}{conj( $\langle$ i, as, pos $\rangle$}{pos}{i $\in$ conj}
-% \tadOperacion{sacarAgenteId}{conj( $\langle$ i, as, pos $\rangle$}{conj( $\langle$ i, as, pos $\rangle$}{}
-% \tadOperacion{moverHippieYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
-% \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
-% \tadOperacion{dameHippiePos}{id, conj( $\langle$ i, pos $\rangle$}{pos}{i $\in$ conj}
-% \tadOperacion{sacarHippieId}{id, conj( $\langle$ i, pos $\rangle$}{conj( $\langle$ i, pos $\rangle$}{}
-\tadOperacion{chequearSituacionShort(tripla, u)}{}{}{}
-% \tadOperacion{chequearSituacion)}{
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ , 
-% 	 uni
-% }{
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{}
-% \tadOperacion{agAgenteTripla}{
-% 	 $\langle$ i, as, pos $\rangle$ ,
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{}
-% \tadOperacion{agHippieTripla}{
-% 	 $\langle$ i, pos $\rangle$ , 
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{}
-% \tadOperacion{agEstudianteTripla}{
-% 	 $\langle$ i, est, pos $\rangle$ , 
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{
-% 	 $\langle$ 
-% 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, pos $\rangle$ ), 
-% 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
-% 	 $\rangle$ 
-% }{}
-% \tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i, est, pos $\rangle$ )}{conj(est)}{}
+ \tadOperacion{capturar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
+ \tadOperacion{sancionar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
+ \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipoElem}{}
+ \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipoElem)}{}
+ \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipoElem)}{}
+ \tadOperacion{queSituacion}{multiconj(tipoElem)}{conj(structSituacionesRodeo)}{}
+ \tadOperacion{damePosicionesAs}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
 
 %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
 \tadOperacion{damePosicionesEst}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
 \tadOperacion{damePosicionesH}{conj( $\langle$ id, pos $\rangle$)}{conj(pos)}{}
 
+ \tadOperacion{moverEstudianteYChequearSituaciones}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+ \tadOperacion{dameEstudiante}{id, conj( $\langle$ i, est, pos $\rangle$ )}{est}{i $\in$ conj}
+ \tadOperacion{dameEstudiantePos}{id, conj( $\langle$ i, est, pos $\rangle$ )}{pos}{i $\in$ conj}
+ \tadOperacion{sacarEstudianteId}{id, conj( $\langle$ i, est, pos $\rangle$ )}{conj( $\langle$ i, est, pos $\rangle$}{}
+ \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
+ \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
+ \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
+ \tadOperacion{dirNoOcupadas}{conj(dir), pos, uni}{conj(dir)}{
+ 	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
+ }
+ \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
+ \tadOperacion{moverAgenteYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+ \tadOperacion{posibleMovAs}{As, pos, uni}{conj(dir)}{}
+ \tadOperacion{dameAgente}{conj( $\langle$ i, as, pos $\rangle$}{as}{i $\in$ conj}
+ \tadOperacion{dameAgentePos}{conj( $\langle$ i, as, pos $\rangle$}{pos}{i $\in$ conj}
+ \tadOperacion{sacarAgenteId}{conj( $\langle$ i, as, pos $\rangle$}{conj( $\langle$ i, as, pos $\rangle$}{}
+ \tadOperacion{moverHippieYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+ \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
+ \tadOperacion{dameHippiePos}{id, conj( $\langle$ i, pos $\rangle$}{pos}{i $\in$ conj}
+ \tadOperacion{sacarHippieId}{id, conj( $\langle$ i, pos $\rangle$}{conj( $\langle$ i, pos $\rangle$}{}
+\tadOperacion{chequearSituacionShort)}{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ ,
+ 	 uni
+}{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ ,
+}{}
+ \tadOperacion{chequearSituacion)}{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ , 
+	$\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ , 
+ 	 uni
+ }{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{}
+ \tadOperacion{agAgenteTripla}{
+ 	 $\langle$ i, as, pos $\rangle$ ,
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{}
+ \tadOperacion{agHippieTripla}{
+ 	 $\langle$ i, pos $\rangle$ , 
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{}
+ \tadOperacion{agEstudianteTripla}{
+ 	 $\langle$ i, est, pos $\rangle$ , 
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{
+ 	 $\langle$ 
+ 	 	conj( $\langle$ i, as, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, pos $\rangle$ ), 
+ 	 	conj( $\langle$ i, est, pos $\rangle$ ) 
+ 	 $\rangle$ 
+ }{}
+\tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i, est, pos $\rangle$ )}{conj(est)}{}
+\tadOperacion{convertirHippieAEst}{$\langle$id, pos$\rangle$, conj($\langle$id, est, pos$\rangle$)}
+									{$\langle$id, est, pos$\rangle$}{}
+\tadOperacion{convertirEstAHippie}{$\langle$id, est, pos$\rangle$} {$\langle$id, pos$\rangle$}{}
+\tadOperacion{sacarHippieTripla}{
+	$\langle$
+		id, 
+		pos
+	$\rangle$, 
+	$\langle$
+		conj($\langle$i, as, pos$\rangle$), 
+		conj($\langle$i, pos$\rangle$), 
+		conj($\langle$i, est, pos$\rangle$)
+	$\rangle$} 
+	{
+	$\langle$
+		conj($\langle$i, as, pos$\rangle$), 
+		conj($\langle$i, pos$\rangle$), 
+		conj($\langle$i, est, pos$\rangle$)
+	$\rangle$
+}{}
+
 \tadAxiomas[\paratodo{}{}]
 
 Observadores Basicos
 
-\tadAxioma{alto? (nuevaUni(ca, al, an, cobs))}{al}
-\tadAxioma{alto? (agregarE(u, i, e, pos))}{alto?($u$)}
-\tadAxioma{alto? (agregarH(u, i, pos))}{alto?($u$)}
+\tadAxioma{alto? (nuevaUni(cAs, al, an, cObs))}{al}
+\tadAxioma{alto? (agregarE(u, i, e, p))}{alto?($u$)}
+\tadAxioma{alto? (agregarH(u, i, p))}{alto?($u$)}
 \tadAxioma{alto? (moverAs(u, i))}{alto?($u$)}
 \tadAxioma{alto? (moverH(u, i))}{alto?($u$)}
 \tadAxioma{alto? (moverE(u, i))}{alto?($u$)}
 
-\tadAxioma{ancho? (nuevaUni(ca, al, an, cobs))}{an}
-\tadAxioma{ancho? (agregarE(u, i, e, pos))}{ancho?($u$)}
-\tadAxioma{ancho? (agregarH(u, i, pos))}{ancho?($u$)}
+\tadAxioma{ancho? (nuevaUni(cAs, al, an, cObs))}{an}
+\tadAxioma{ancho? (agregarE(u, i, e, p))}{ancho?($u$)}
+\tadAxioma{ancho? (agregarH(u, i, p))}{ancho?($u$)}
 \tadAxioma{ancho? (moverAs(u, i))}{ancho?($u$)}
 \tadAxioma{ancho? (moverH(u, i))}{ancho?($u$)}
 \tadAxioma{ancho? (moverE(u, i))}{ancho?($u$)}
 
-\tadAxioma{obstaculos? (nuevaUni(ca, al, an, cobs))}{cobs}
-\tadAxioma{obstaculos? (agregarE(u, i, e, pos))}{obstaculos?($u$)}
-\tadAxioma{obstaculos? (agregarH(u, i, pos))}{obstaculos?($u$)}
+\tadAxioma{obstaculos? (nuevaUni(cAs, al, an, cObs))}{cObs}
+\tadAxioma{obstaculos? (agregarE(u, i, e, p))}{obstaculos?($u$)}
+\tadAxioma{obstaculos? (agregarH(u, i, p))}{obstaculos?($u$)}
 \tadAxioma{obstaculos? (moverAs(u, i))}{obstaculos?($u$)}
 \tadAxioma{obstaculos? (moverH(u, i))}{obstaculos?($u$)}
 \tadAxioma{obstaculos? (moverE(u, i))}{obstaculos?($u$)}
 
-\tadAxioma{agentes? (nuevaUni(ca, al, an, cobs))}{ca}
-\tadAxioma{agentes? (agregarE(uni, i, e, pos))}{
+\tadAxioma{agentes? (nuevaUni(cAs, al, an, cObs))}{cAs}
+\tadAxioma{agentes? (agregarE(uni, i, e, p))}{
 	$\Pi_{1}$(
 				chequearSituacionShort(
 					agregarEstudianteTripla(
-						$\langle$ $i$, $e$, $pos$ $\rangle$, 
+						$\langle$ $i$, $e$, $p$ $\rangle$, 
 						\\
 						$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 					)
@@ -233,7 +272,7 @@ Observadores Basicos
 	$\Pi_{1}$(
 		chequearSituacionShort(
 			agregarHippieTripla(
-				$\langle$ $i$, $pos$ $\rangle$, 
+				$\langle$ $i$, $p$ $\rangle$, 
 				\\
 				$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 			)
@@ -256,23 +295,23 @@ Observadores Basicos
 	)
 }
 
-\tadAxioma{hippies? (nuevaUni(ca, al, an, cobs))}{$\emptyset$}
-\tadAxioma{hippies? (agregarE(uni, i, e, pos))}{
+\tadAxioma{hippies? (nuevaUni(cAs, al, an, cObs))}{$\emptyset$}
+\tadAxioma{hippies? (agregarE(uni, i, e, p))}{
 	$\Pi_{2}$(
 		chequearSituacionShort(
 			agregarEstudianteTripla(
-				$\langle$ $i$, $e$, $pos$ $\rangle$, 
+				$\langle$ $i$, $e$, $p$ $\rangle$, 
 				\\
 				$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 			)
 		)
 	)
 }
-\tadAxioma{hippies? (agregarH(uni, i, pos))}{
+\tadAxioma{hippies? (agregarH(uni, i, p))}{
 	$\Pi_{2}$(
 		chequearSituacionShort(
 			agregarHippieTripla(
-				$\langle$ $i$, $pos$ $\rangle$, 
+				$\langle$ $i$, $p$ $\rangle$, 
 				\\
 				$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 			)
@@ -295,23 +334,23 @@ Observadores Basicos
 	)
 }
 
-\tadAxioma{estudiantes? (nuevaUni(ca, al, an, cobs))}{$\emptyset$}
-\tadAxioma{estudiantes? (agregarE(uni, i, e, pos))}{
+\tadAxioma{estudiantes? (nuevaUni(cAs, al, an, cObs))}{$\emptyset$}
+\tadAxioma{estudiantes? (agregarE(uni, i, e, p))}{
 	$\Pi_{3}$(
 		chequearSituacionShort(
 			agregarEstudianteTripla(
-				$\langle$ $i$, $e$, $pos$ $\rangle$, 
+				$\langle$ $i$, $e$, $p$ $\rangle$, 
 				\\
 				$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 			)
 		)
 	)
 }
-\tadAxioma{estudiantes? (agregarH(u, i, pos))}{
+\tadAxioma{estudiantes? (agregarH(u, i, p))}{
 	$\Pi_{3}$(
 		chequearSituacionShort(
 			agregarHippieTripla(
-				$\langle$ $i$, $pos$ $\rangle$, 
+				$\langle$ $i$, $p$ $\rangle$, 
 				\\
 				$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 			)
@@ -488,7 +527,7 @@ Otras Operaciones
 }
 
 \tadAxioma{damePosicionesEst(ce)}{
-	if vacio?(ce) 
+	if vacio?($ce$) 
 		\\
 		then
 			$\emptyset$
@@ -618,11 +657,11 @@ Otras Operaciones
 	fi
 }
 
-\tadAxioma{dirLibres(pos, u)}{
+\tadAxioma{dirLibres(p, u)}{
 	dirNoOcupadas( dirValidas( $pos$, ancho?($u$), alto?($u$) ), $pos$, $u$ )
 }
 
-\tadAxioma{dirValidas(pos, an, al)}{
+\tadAxioma{dirValidas(p, an, al)}{
 	\{n,s,e,o\}
 	 - (if col?($pos$) = 0 then \{o\} else $\emptyset$ fi)
 	 - (if col?($pos$) = $an$-1 then \{e\} else $\emptyset$ fi)
@@ -630,7 +669,7 @@ Otras Operaciones
 	 - (if fila?($pos$) = $al$-1 then \{s\} else $\emptyset$ fi)
 }
 
-\tadAxioma{dirNoOcupadas( cDirs, pos, u )}{
+\tadAxioma{dirNoOcupadas( cDirs, p, u )}{
 	if (vacio(cDirs)) 
 		\\
 		then
@@ -655,7 +694,7 @@ Otras Operaciones
 	fi
 }
 
-% Macro2 = mover( pos, dameUno(cDirs) )
+% Macro2 = mover( p, dameUno(cDirs) )
 
 \tadAxioma{posNoOcupadas(cPos, u)}{
 	if ( vacio?($cPos$) ) 
@@ -718,7 +757,7 @@ Otras Operaciones
 	fi
 }
 
-\tadAxioma{posibleMovAs (agente, pos, u)}{
+\tadAxioma{posibleMovAs (agente, p, u)}{
 	if ( inactivo?(agente) ) 
 		\\
 		then
@@ -819,7 +858,7 @@ Otras Operaciones
 	fi
 }
 
-\tadAxioma{posibleMovH (pos, u)}{
+\tadAxioma{posibleMovH (p, u)}{
 	\IF vacio?( estudiantes?($u$) ) 
 		THEN
 			$\emptyset$
@@ -1136,7 +1175,28 @@ Otras Operaciones
 % 	FI
 % }
 
+\tadAxioma{convertirHippieAEst(h, cEst)}{
+	$\langle$
+		dameHippieId($h$),
+		dameUno(estudiantesAdyacentesPos(dameHippiePos($h$), $cEst$)),
+		dameHippiePos($h$)
+	$\rangle$
+}
 
+\tadAxioma{convertirEstAHippie(e)}{
+	$\langle$
+		dameEstudianteId($e$),
+		dameEstudiantePos($e$)
+	$\rangle$dameEstudiantePos
+}
+
+\tadAxioma{sacarHippieTripla(h, $\langle$ cAs, cH, cEst $\rangle$)}{
+	$\langle$
+		$cAs$, 
+		sacarHippieId($\Pi_0$($h$), $cH$), 
+		$cEst$
+	$\rangle$
+}
 
 \end{tad}
 
