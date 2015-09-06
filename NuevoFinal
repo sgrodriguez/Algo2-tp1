@@ -389,7 +389,7 @@
 % 				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
 % 			//mato al hippie (no lo agrego a la recursion), le doy una captura a los agentes cercanos y hago recursion
 
-% 			chequearSituacion(<capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, <capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, u)
+% 			chequearSituacion(<capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, sacarHippieTripla(dameUno(cH), triplaInfo), u)
 % 		else
 % 			if {movRest, cuatroEstudiantes} \contenido 
 % 				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
@@ -397,7 +397,7 @@
 
 % 				agregarEstudianteTripla( 
 % 				convertirHippieAEst(dameUno(cH), cEst),
-% 				chequearSituacion(<cAs, sinUno(cH), cEst >, <cAs, sinUno(cH), cEst>, u))
+% 				chequearSituacion(<cAs, sinUno(cH), cEst >, sacarHippieTripla(dameUno(cH), triplaInfo), u))
 % 			else
 % 				//no le pasa nada, hago recursion
 
@@ -409,6 +409,7 @@
 
 convertirHippieAEst(h, cEst) = <dameHippieId(h), dameUno(estudiantesAdyacentesPos(dameHippiePos(h), cEst)), dameHippiePos(h)>
 convertirEstAHippie(e) = <dameEstudianteId(e), dameEstudiantePos(h)>
+sacarHippieTripla(h, <cAs, cH, cEst>) = <cAs, sacarHippieId(prim(h), cH), cEst>
 
 % agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
 % agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>

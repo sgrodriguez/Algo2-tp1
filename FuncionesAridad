@@ -85,3 +85,7 @@ dist(pos, pos) -> nat
 % 									<conj(<i, as, pos>), conj(<i, pos>), conj(<i, est, pos>)>
 
 estudiantesAdyacentesPos(p, conj(<i, est, pos>)) -> conj(est)
+
+convertirHippieAEst(<id, pos>, conj(<id, est, pos>)) -> <id, est, pos>
+convertirEstAHippie(<id, est, pos>) = <id, pos>
+sacarHippieTripla(<id, pos>, <conj(<i, as, pos>), conj(<i, pos>), conj(<i, est, pos>)>) = <conj(<i, as, pos>), conj(<i, pos>), conj(<i, est, pos>)>

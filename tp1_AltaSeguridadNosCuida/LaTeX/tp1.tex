@@ -884,15 +884,12 @@ Otras Operaciones
 				THEN 
 					 $\langle$ b$cAs$, $cH$, $cEst$ $\rangle$ 
 				ELSE
-					{\IF {movRest, unAgente} $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
+					{\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
 						THEN
-							{\IF {dosHippies} $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
+							{\IF dosHippies $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
 								THEN
 									agregarHippieTripla(  
-										$\langle$ 
-											dameEstudianteId(dameUno($cEst$)), 
-											dameEstudiantePos(dameUno($cEst$)) 
-										$\rangle$ ,
+										convertirEstudianteAHippie(dameUno($cEst$)) ,
 										chequearSituacion( 
 											$\langle$ 
 												sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$), 
@@ -918,13 +915,10 @@ Otras Operaciones
 								)
 							FI}
 						ELSE
-							{\IF {dosHippies} $\in$ queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno($cEst$)), triplaInfo, $u$) ) 
+							{\IF dosHippies $\in$ queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno($cEst$)), triplaInfo, $u$) ) 
 								THEN 
 									agregarHippieTripla( 
-										$\langle$ 
-											dameEstudianteId(dameUno($cEst$)), 
-											dameEstudiantePos(dameUno($cEst$)) 
-										$\rangle$ ,
+										convertirEstudianteAHippie(dameUno($cEst$)),
 										chequearSituacion( 
 											$\langle$ 
 												$cAs$, 
@@ -953,7 +947,7 @@ Otras Operaciones
 			FI}
 		ELSE
 
-			{\IF {movRest, unAgente} $\in$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
+			{\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
 				THEN 
 					chequearSituacion( 
 						$\langle$ 
@@ -961,33 +955,21 @@ Otras Operaciones
 							sinUno($cH$), 
 							$cEst$ 
 						$\rangle$, 
-						$\langle$ 
-							capturar(dameHippiePos(dameUno($cH$)), $cAs$), 
-							sinUno($cH$), 
-							$cEst$ 
-						$\rangle$, 
+						sacarHippieTripla(dameUno($cH$), triplaInfo), 
 						$u$
 					)
 				ELSE
-					{\IF {movRest, cuatroEstudiantes} $\in$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
+					{\IF {movRest, cuatroEstudiantes} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
 						THEN
 							agregarEstudianteTripla(
-								$\langle$ 
-									dameHippieId(dameUno($cH$)), 
-									dameUno(estudiantesAdyacentesPos(dameHippiePos(dameUno($cH$)), $cEst$)), 
-									dameHippiePos(dameUno($cH$)) 
-								$\rangle$, 
+								convertirHippieAEst(dameUno($cH$), $cEst$), 
 								chequearSituacion( 
 									$\langle$ 
 										$cAs$, 
 										sinUno($cH$), 
 										$cEst$  
 									$\rangle$, 
-									$\langle$ 
-										$cAs$, 
-										sinUno($cH$), 
-										$cEst$ 
-									$\rangle$, 
+									sacarHippieTripla(dameUno($cH$), triplaInfo), 
 									$u$
 								)
 							)
