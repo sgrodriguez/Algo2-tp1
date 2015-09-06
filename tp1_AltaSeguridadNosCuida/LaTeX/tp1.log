@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.8.29)  6 SEP 2015 19:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.8.29)  6 SEP 2015 19:51
 entering extended mode
 **C:/Users/santiago/Desktop/MLGalgo2/tp1_AltaSeguridadNosCuida/LaTeX/tp1.tex
 (C:/Users/santiago/Desktop/MLGalgo2/tp1_AltaSeguridadNosCuida/LaTeX/tp1.tex
@@ -419,15 +419,15 @@ LaTeX Font Info:    ... okay on input line 47.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(42.67912pt, 512.14963pt, 42.67912pt)
-* v-part:(T,H,B)=(99.58464pt, 702.78308pt, 42.67912pt)
+* h-part:(L,W,R)=(28.45274pt, 540.60239pt, 28.45274pt)
+* v-part:(T,H,B)=(85.35826pt, 731.23584pt, 28.45274pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=512.14963pt
-* \textheight=702.78308pt
-* \oddsidemargin=-29.59087pt
-* \evensidemargin=-29.59087pt
-* \topmargin=-9.68535pt
+* \textwidth=540.60239pt
+* \textheight=731.23584pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-23.91173pt
 * \headheight=13.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -512,32 +512,32 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (256.75885pt too wide) in paragraph at lines 151--151
+Overfull \hbox (228.30609pt too wide) in paragraph at lines 151--151
 []| [] 
  []
 
 
-Overfull \hbox (543.12866pt too wide) in paragraph at lines 170--170
+Overfull \hbox (514.6759pt too wide) in paragraph at lines 170--170
 []| [] 
  []
 
 
-Overfull \hbox (264.06839pt too wide) in paragraph at lines 184--184
+Overfull \hbox (235.61563pt too wide) in paragraph at lines 184--184
 []| [] 
  []
 
 
-Overfull \hbox (238.73932pt too wide) in paragraph at lines 198--198
+Overfull \hbox (210.28656pt too wide) in paragraph at lines 198--198
 []| [] 
  []
 
 
-Overfull \hbox (283.9802pt too wide) in paragraph at lines 212--212
+Overfull \hbox (255.52744pt too wide) in paragraph at lines 212--212
 []| [] 
  []
 
 
-Overfull \hbox (216.60583pt too wide) in paragraph at lines 233--233
+Overfull \hbox (188.15308pt too wide) in paragraph at lines 233--233
 []| [] 
  []
 
@@ -546,641 +546,160 @@ Underfull \hbox (badness 10000) in paragraph at lines 520--520
 
  []
 
-
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 631--631
-\T1/cmr/m/n/10 if $\OMS/cmsy/m/n/10 :$\T1/cmr/m/n/10 ( $\OT1/cmr/m/n/10 []$\T1
-/cmr/m/n/10 ( dameEstudiante($\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 , $\OML/cmm/m/i
-t/10 u$\T1/cmr/m/n/10 ) ) $\OMS/cmsy/m/n/10 2$ \T1/cmr/m/n/10 dir-Li-bres(
+\T1/cmr/m/n/10 else che-quear-Si-tua-cionS-hort( agre-ga-rEs-tu-dian-te-Tri-pla
+( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 , fin( dameEstudiante
+($\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) ), m
+o-ver(
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 631--631
-\T1/cmr/m/n/10 estudiantes?($\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) ), $\OT1/cmr/m
-/n/10 []$\T1/cmr/m/n/10 ( dameEstudiante($\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 , 
-$\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) ) )
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 631--631
-$\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 , $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 agente
-s?($\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ), hippies?($\OML/cmm/m/it/10 u$\T1/cmr/m
-/n/10 ), sa-ca-rEs-tu-dian-te-Id( $\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 ,
- []
-
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 831--831
-\T1/cmr/m/n/10 else dir-Li-bres( $\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , $\OML/cmm
-/m/it/10 u$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 \$ \T1/cmr/m/n/10 di-rec-cio-ne-s
-Op-ti-mas( da-meUno(
- []
-
-
-Underfull \hbox (badness 2744) in paragraph at lines 893--893
-\T1/cmr/m/n/10 else che-quear-Si-tua-cionS-hort( agre-gar-Hip-pie-Tri-pla( $\OM
-S/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 , mo-ver(
- []
-
-
-Underfull \hbox (badness 1430) in paragraph at lines 893--893
-\T1/cmr/m/n/10 dameHippiePos($\OML/cmm/m/it/10 i$\T1/cmr/m/n/10 ,$\OML/cmm/m/it
-/10 u$\T1/cmr/m/n/10 ), da-meUno( po-si-ble-MovH( dameHippiePos($\OML/cmm/m/it/
-10 i$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 1755) in paragraph at lines 893--893
-$\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) ) ) 
-$\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 , $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 agente
-s?($\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ), sa-car-Hip-pieId( $\OML/cmm/m/it/10 i$
-\T1/cmr/m/n/10 , hippies?($\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) ),
+[6]
+Underfull \hbox (badness 2368) in paragraph at lines 831--831
+\T1/cmr/m/n/10 if ( dir-Li-bres(agente, $\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) $\
+OMS/cmsy/m/n/10 \$ \T1/cmr/m/n/10 di-rec-cio-ne-sOp-ti-mas( da-meUno( cPos-Mas-
+Cer-ca-naS-hort( $\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , pos-NoO-cu-pa-das(
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 950--950
-[]\T1/cmr/m/n/10 Ag( $\OT1/cmr/m/n/10 []$\T1/cmr/m/n/10 ( dameUno($\OML/cmm/m/
-it/10 cEst$\T1/cmr/m/n/10 ) ), estudiantesAdyacentesPos($\OML/cmm/m/it/10 p$\T1
-/cmr/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 907--907
+[]\T1/cmr/m/n/10 dirLibres($\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , $\OML/cmm/m/it/
+10 u$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 \$ \T1/cmr/m/n/10 di-rec-cio-ne-sOp-ti-
+mas( da-meUno( cPos-Mas-Cer-ca-naS-hort( $\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , d
+a-me-Po-si-cio-ne-sEst(
  []
 
 
-Overfull \hbox (70.45091pt too wide) in paragraph at lines 953--953
+Underfull \hbox (badness 4582) in paragraph at lines 907--907
+[]\T1/cmr/m/n/10 dirLibres($\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , $\OML/cmm/m/it/
+10 u$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 \$ \T1/cmr/m/n/10 di-rec-cio-ne-sOp-ti-
+mas( da-meUno( cPos-Mas-Cer-ca-naS-hort( $\OML/cmm/m/it/10 p$\T1/cmr/m/n/10 , d
+a-me-Po-si-cio-ne-sEst(
+ []
+
+
+Underfull \hbox (badness 3803) in paragraph at lines 907--907
+[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dirLibres($\OML/cmm/m/it/10 p$\T1/cmr/m/n/1
+0 , $\OML/cmm/m/it/10 u$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 \$ \T1/cmr/m/n/10 di
+-rec-cio-ne-sOp-ti-mas( da-meUno( cPos-Mas-Cer-ca-naS-hort( $\OML/cmm/m/it/10 p
+$\T1/cmr/m/n/10 , da-me-Po-si-cio-ne-sEst(
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 953--953
+[]\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarHippieTripla( convertirEstudianteAHippie(dameUno($\OML/
-cmm/m/it/10 cEst$\T1/cmr/m/n/10 ))
+cmm/m/it/10 cEst$\T1/cmr/m/n/10 )), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$
+ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ), che-
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
-Overfull \hbox (73.22801pt too wide) in paragraph at lines 953--953
+Underfull \hbox (badness 4279) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarHippieTripla( convertirEstudianteAHippie(dameUno($\OML/
-cmm/m/it/10 cEst$\T1/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 1028) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cA
-s$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 , sinUno($\OML/cmm/m/it/
-10 cEst$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
+cmm/m/it/10 cEst$\T1/cmr/m/n/10 )), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$
+ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ), che-
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
-Underfull \hbox (badness 5802) in paragraph at lines 953--953
-\T1/cmr/m/n/10 quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cAs$\T
-1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 , sinUno($\OML/cmm/m/it/10 c
-Est$\T1/cmr/m/n/10 ) $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
+Underfull \hbox (badness 4279) in paragraph at lines 953--953
+[]\T1/cmr/m/n/10 agregarHippieTripla( convertirEstudianteAHippie(dameUno($\OML/
+cmm/m/it/10 cEst$\T1/cmr/m/n/10 )), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$
+ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 953--953
-\T1/cmr/m/n/10 , che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san
--cio-nar( da-meEs-
- []
-
-
-Underfull \hbox (badness 4217) in paragraph at lines 953--953
-\T1/cmr/m/n/10 tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ) 
-), $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-,
+Underfull \hbox (badness 3291) in paragraph at lines 953--953
+[]\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
+[]\T1/cmr/m/n/10 chequearSituacion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 captura
+r(dameHippiePos(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 )), $\OML/cmm/m/it/
+10 cAs$\T1/cmr/m/n/10 ), sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cm
+m/m/it/10 cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dos-Hip-pies $\OMS/cmsy/m/n/10 2$ \T1/cmr/m
-/n/10 que-Si-tua-cion(
- []
-
-
-Overfull \hbox (32.29356pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cuatroVecinosShort(dameEstudiantePos(dameUno($\OML/cmm/m/it/10 c
-Est$\T1/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 953--953
-\T1/cmr/m/n/10 , che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san
--cio-nar( da-meEs-
- []
-
-
-Underfull \hbox (badness 4217) in paragraph at lines 953--953
-\T1/cmr/m/n/10 tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ) 
-), $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (5.50978pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
+[]\T1/cmr/m/n/10 agregarEstudianteTripla( convertirHippieAEst(dameUno($\OML/cmm
+/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-quea
+r-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-c
-io-nar( da-meEs-
+Underfull \hbox (badness 4279) in paragraph at lines 953--953
+[]\T1/cmr/m/n/10 agregarHippieTripla( convertirEstudianteAHippie(dameUno($\OML/
+cmm/m/it/10 cEst$\T1/cmr/m/n/10 )), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$
+ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 5908) in paragraph at lines 953--953
-\T1/cmr/m/n/10 hort( da-meEs-tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1
-/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (8.28688pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
+Underfull \hbox (badness 3291) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dos-Hip-pies $\OMS/cmsy/m/n/10 2$ \T1/cmr/m
-/n/10 que-Si-tua-cion(
- []
-
-
-Overfull \hbox (46.51993pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cuatroVecinosShort(dameEstudiantePos(dameUno($\OML/cmm/m/it/10 c
-Est$\T1/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 4967) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirHippieAEst(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-
- []
-
-
-Underfull \hbox (badness 5802) in paragraph at lines 953--953
-\T1/cmr/m/n/10 quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cAs$\T
-1/cmr/m/n/10 , sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 
-cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 2035) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla( dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/
-10 ), che-quear-Si-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 chequearSituacion( $\OMS/cmsy/m/n/10 h$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 capturar(dameHippiePos(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/
-10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-$\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ), sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n
-/10 ), $\OML/cmm/m/it/10 cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 sacarHippieTripla(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ),
- tri-plaIn-fo),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirHippieAEst(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 mo-vRest, cua-troEs-tu-dian-tes $\OMS/cmsy/
-m/n/10 $ \T1/cmr/m/n/10 que-Si-tua-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cion( cua-tro-Ve-ci-nosS-hort( da-meHip-pie-Pos(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 953--953
-\T1/cmr/m/n/10 , che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san
--cio-nar( da-meEs-
- []
-
-
-Underfull \hbox (badness 4217) in paragraph at lines 953--953
-\T1/cmr/m/n/10 tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ) 
-), $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (5.50978pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
+Underfull \hbox (badness 3291) in paragraph at lines 953--953
 []\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 2556) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-c
-io-nar( da-meEs-
- []
-
-
-Underfull \hbox (badness 5908) in paragraph at lines 953--953
-\T1/cmr/m/n/10 hort( da-meEs-tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1
-/cmr/m/n/10 )),
+r/m/n/10 ), che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-
+nar( da-meEs-tu-dian-te-Pos(
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (8.28688pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
+[]\T1/cmr/m/n/10 agregarEstudianteTripla( convertirHippieAEst(dameUno($\OML/cmm
+/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-quea
+r-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
+[]\T1/cmr/m/n/10 chequearSituacion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 captura
+r(dameHippiePos(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 )), $\OML/cmm/m/it/
+10 cAs$\T1/cmr/m/n/10 ), sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cm
+m/m/it/10 cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dos-Hip-pies $\OMS/cmsy/m/n/10 2$ \T1/cmr/m
-/n/10 que-Si-tua-cion(
+Underfull \hbox (badness 4168) in paragraph at lines 953--953
+[]\T1/cmr/m/n/10 agregarEstudianteTripla( convertirHippieAEst(dameUno($\OML/cmm
+/m/it/10 cH$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-quea
+r-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ,
  []
 
-
-Overfull \hbox (46.51993pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cuatroVecinosShort(dameEstudiantePos(dameUno($\OML/cmm/m/it/10 c
-Est$\T1/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (5.50978pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 2556) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-c
-io-nar( da-meEs-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (8.28688pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla( dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (19.73615pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 ))
- []
-
-
-Underfull \hbox (badness 1939) in paragraph at lines 953--953
-\T1/cmr/m/n/10 , che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san
--cio-nar( da-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 meEs-tu-dian-te-Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/
-10 ) ),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-quear-Si-tu
-a-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cion( $\OMS/cmsy/m/n/10 h$ \T1/cmr/m/n/10 san-cio-nar( da-meEs-t
-u-dian-te-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 Pos( dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ) ), $\OML/cm
-m/m/it/10 cAs$\T1/cmr/m/n/10 ), $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dos-Hip-pies $\OMS/cmsy/m/n/10 2$ \T1/cmr/m
-/n/10 que-Si-tua-cion( cua-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 tro-Ve-ci-nosS-hort( da-meEs-tu-dian-te-Pos(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla(
- []
-
-
-Overfull \hbox (22.51324pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirEstudianteAHippie(dameUno($\OML/cmm/m/it/10 cEst$\T1/cm
-r/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cA
-s$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 dameUno($\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ), che-quear-Si-tu
-a-cion(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 dos-Hip-pies $\OMS/cmsy/m/n/10 2$ \T1/cmr/m
-/n/10 que-Si-tua-cion(
- []
-
-
-Overfull \hbox (60.74629pt too wide) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cuatroVecinosShort(dameEstudiantePos(dameUno($\OML/cmm/m/it/10 c
-Est$\T1/cmr/m/n/10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 mo-vRest, unA-gen-te $\OMS/cmsy/m/n/10 $ \
-T1/cmr/m/n/10 que-Si-tua-cion(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cua-tro-Ve-ci-nosS-hort( da-meEs-tu-dian-te-Pos(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirHippieAEst(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 chequearSituacion( $\OMS/cmsy/m/n/10 h$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 capturar(dameHippiePos(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/
-10 )),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-$\OML/cmm/m/it/10 cAs$\T1/cmr/m/n/10 ), sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n
-/10 ), $\OML/cmm/m/it/10 cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 sacarHippieTripla(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ),
- tri-plaIn-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarEstudianteTripla(
- []
-
-
-Underfull \hbox (badness 2150) in paragraph at lines 953--953
-\T1/cmr/m/n/10 convertirHippieAEst(dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 
-), $\OML/cmm/m/it/10 cEst$\T1/cmr/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 che-quear-Si-tua-cion( $\OMS/cmsy/m/n/10 h$ $\OML/cmm/m/it/10 cA
-s$\T1/cmr/m/n/10 , sinUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 6461) in paragraph at lines 953--953
-$\OML/cmm/m/it/10 cEst$ $\OMS/cmsy/m/n/10 i$\T1/cmr/m/n/10 , sacarHippieTripla(
-dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/10 ),
- []
-
-
-Underfull \hbox (badness 6157) in paragraph at lines 953--953
-[]\T1/cmr/m/n/10 agregarHippieTripla( dameUno($\OML/cmm/m/it/10 cH$\T1/cmr/m/n/
-10 ), che-
- []
-
-
-Underfull \hbox (badness 2035) in paragraph at lines 953--953
-[]\T1/cmr/bx/n/10 if \T1/cmr/m/n/10 mo-vRest, cua-troEs-tu-dian-tes $\OMS/cmsy/
-m/n/10 $ \T1/cmr/m/n/10 que-Si-tua-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 953--953
-\T1/cmr/m/n/10 cion( cua-tro-Ve-ci-nosS-hort( da-meHip-pie-Pos(
- []
-
-[8]
-Overfull \vbox (22.42807pt too high) has occurred while \output is active []
-
-
-[9]
-Underfull \hbox (badness 3158) in paragraph at lines 1189--1189
-\T1/cmr/m/n/10 hip-pie-sA-tra-pa-dos(a') $\OMS/cmsy/m/n/10 ^$ \T1/cmr/m/n/10 nu
-m-San-cio-nes(a) $\OT1/cmr/m/n/10 =[]$ \T1/cmr/m/n/10 num-San-cio-
- []
-
-
-Underfull \hbox (badness 3158) in paragraph at lines 1189--1189
-\T1/cmr/m/n/10 hip-pie-sA-tra-pa-dos(a') $\OMS/cmsy/m/n/10 ^$ \T1/cmr/m/n/10 nu
-m-San-cio-nes(a) $\OT1/cmr/m/n/10 =[]$ \T1/cmr/m/n/10 num-San-cio-
- []
-
-[10] [11] [12]
+[8] [9] [10] [11] [12]
 Overfull \hbox (17.50003pt too wide) in paragraph at lines 1351--1351
 $[]$ 
  []
@@ -1190,25 +709,30 @@ Overfull \hbox (17.50003pt too wide) in paragraph at lines 1378--1378
 $[]$ 
  []
 
-[13] 
+[13]
+Overfull \hbox (14.72229pt too wide) in paragraph at lines 1405--1405
+$[]$ 
+ []
+
+
 AED: lastpage setting LastPage
 [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1393.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1393.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1422.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1422.
 
 (C:\Users\santiago\Desktop\MLGalgo2\tp1_AltaSeguridadNosCuida\LaTeX\tp1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1393.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1393.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1422.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1422.
 
 Package rerunfilecheck Info: File `tp1.out' has not changed.
-(rerunfilecheck)             Checksum: 71E595C94BFDBB877AC26AD482A3708B;250.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1393.
+(rerunfilecheck)             Checksum: 2B04412C814230049B4E579BCD3983BD;298.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1422.
  ) 
 Here is how much of TeX's memory you used:
- 7833 strings out of 493921
- 110002 string characters out of 3147273
- 225791 words of memory out of 3000000
- 10972 multiletter control sequences out of 15000+200000
+ 7835 strings out of 493921
+ 110022 string characters out of 3147273
+ 226391 words of memory out of 3000000
+ 10973 multiletter control sequences out of 15000+200000
  20017 words of font info for 64 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  34i,16n,57p,2182b,449s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1228,9 +752,9 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on tp1.pdf (14 pages, 189925 bytes).
+Output written on tp1.pdf (14 pages, 196344 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 419 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

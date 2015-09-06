@@ -4,3 +4,4 @@
 \contentsline {section}{\numberline {3}TAD \textsc {Posicion}}{11}{section.3}
 \contentsline {section}{\numberline {4}TAD \textsc {Direccion}}{13}{section.4}
 \contentsline {section}{\numberline {5}TAD \textsc {SituacionesRodeo}}{13}{section.5}
+\contentsline {section}{\numberline {6}TAD \textsc {TipoElem}}{14}{section.6}

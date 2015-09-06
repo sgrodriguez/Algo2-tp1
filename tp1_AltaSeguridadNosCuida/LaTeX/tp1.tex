@@ -1,5 +1,5 @@
 \documentclass[8pt, a4paper]{article}
-\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[paper=a4paper, left=1cm, right=1cm, bottom=1cm, top=3cm]{geometry}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -1385,6 +1385,35 @@ $-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)}
 \tadOperacion{unAgente}{}{situ}{}
 \tadOperacion{dosHippies }{}{situ}{}
 \tadOperacion{cuatroEstudiantes}{}{situ}{}
+
+\tadOtrasOperaciones
+
+\end{tad}
+
+\section{TAD \tadNombre{TipoElem}}
+
+
+\begin{tad}{\tadNombre{TipoElem}}
+
+\tadGeneros{tipo}
+
+
+\tadExporta{tipo, Generadores}
+
+\tadUsa{}
+
+\tadIgualdadObservacionalSimple{Vacio $\igobs$ Vacio \ $\land$ \ Obstaculo $\igobs$ Obstaculo $\land$ \ Agente $\igobs$ Agente $\land$ \ Hippie $\igobs$ Hippie $\land$ \ Estudiante $\igobs$ Estudiante$ \land$ \ FueraDeRango $\igobs$ FueraDeRango \ // y son diferentes de manera cruzada }
+
+\tadObservadores
+
+\tadGeneradores
+
+\tadOperacion{Vacio}{}{tipo}{}
+\tadOperacion{Obstaculo}{}{tipo}{}
+\tadOperacion{Agente}{}{tipo}{}
+\tadOperacion{Hippie}{}{tipo}{}
+\tadOperacion{Estudiante}{}{tipo}{}
+\tadOperacion{FueraDeRango}{}{tipo}{}
 
 \tadOtrasOperaciones
 
