@@ -81,14 +81,15 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadOperacion{alto?}{uni}{nat}{}
 \tadOperacion{ancho?}{uni}{nat}{}
 \tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
-\tadOperacion{agentes?}{uni}{conj($\langle as$, $pos \rangle$)}{}
-\tadOperacion{hippies?}{uni}{conj($pos$)}{}
-\tadOperacion{estudiantes?}{uni}{conj($\langle est$, $pos \rangle$)}{}
+\tadOperacion{agentes?}{uni}{conj($\langle$id ,\ as,\ $pos \rangle$)}{}
+\tadOperacion{hippies?}{uni}{conj($\langle$id,\ pos$\rangle$)}{}
+\tadOperacion{estudiantes?}{uni}{conj($\langle$id,\ est,\  $pos \rangle$)}{}
 
 \tadGeneradores
 
-//id es nat
-//hip es id
+TAD id ES Nat \
+TAD hip ES Id \
+TAD est ES Secu(Dir) \
 
 \tadOperacion{nuevaUni}{conj($\langle$ $as$, $pos$ $\rangle$), nat, nat, conj($pos$)}{uni}{}
 
@@ -104,20 +105,20 @@ hippies?(u) $\igobs$  hippies?(u')
 
  \tadOperacion{capturar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
  \tadOperacion{sancionar}{pos, conj( $\langle$ id, agente, pos $\rangle$)}{conj( $\langle$ agente, pos $\rangle$)}{}
- \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipoElem}{}
- \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipoElem)}{}
- \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipoElem)}{}
- \tadOperacion{queSituacion}{multiconj(tipoElem)}{conj(structSituacionesRodeo)}{}
+ \tadOperacion{queTipoHay}{pos, $\langle$ cAs, cH, cEst $\rangle$}{tipo}{}
+ \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni}{multiconj(tipo)}{}
+ \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs, cH, cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
+ \tadOperacion{queSituacion}{multiconj(tipo)}{conj(situ)}{}
  \tadOperacion{damePosicionesAs}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
 
 %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
 \tadOperacion{damePosicionesEst}{conj( $\langle$ id, agente, pos $\rangle$)}{conj(pos)}{}
 \tadOperacion{damePosicionesH}{conj( $\langle$ id, pos $\rangle$)}{conj(pos)}{}
 
- \tadOperacion{moverEstudianteYChequearSituaciones}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
- \tadOperacion{dameEstudiante}{id, conj( $\langle$ i, est, pos $\rangle$ )}{est}{i $\in$ conj}
- \tadOperacion{dameEstudiantePos}{id, conj( $\langle$ i, est, pos $\rangle$ )}{pos}{i $\in$ conj}
- \tadOperacion{sacarEstudianteId}{id, conj( $\langle$ i, est, pos $\rangle$ )}{conj( $\langle$ i, est, pos $\rangle$}{}
+ \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameEstudiante}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$ )\ conjEst}{est}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameEstudiantePos}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$ )\ conjEst}{pos}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarEstudianteId}{id\ $is$, conj( $\langle$ i, est, pos $\rangle$)\ conjEst}{conj( $\langle$ i, est, pos $\rangle$}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
  \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
  \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
@@ -125,16 +126,16 @@ hippies?(u) $\igobs$  hippies?(u')
  	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
  }
  \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
- \tadOperacion{moverAgenteYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
- \tadOperacion{posibleMovAs}{As, pos, uni}{conj(dir)}{}
- \tadOperacion{dameAgente}{conj( $\langle$ i, as, pos $\rangle$}{as}{i $\in$ conj}
- \tadOperacion{dameAgentePos}{conj( $\langle$ i, as, pos $\rangle$}{pos}{i $\in$ conj}
- \tadOperacion{sacarAgenteId}{conj( $\langle$ i, as, pos $\rangle$}{conj( $\langle$ i, as, pos $\rangle$}{}
- \tadOperacion{moverHippieYChequearSituacion}{id, uni}{$\langle$ cAs, cH, cEst $\rangle$}{}
+ \tadOperacion{moverAgenteYChequearSituacion}{id $is$, uni $u$ }{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{posibleMovAs}{As , pos, uni}{conj(dir)}{}
+ \tadOperacion{dameAgente}{id\ $is$, conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$ }{as}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{dameAgentePos}{id\ $is$ ,conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$}{pos}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarAgenteId}{id\ $is$, conj( $\langle$ i, as, pos $\rangle$)\ $conjAs$}{conj( $\langle$ i, as, pos $\rangle$}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{moverHippieYChequearSituacion}{id\ $is$, uni, $u$}{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
- \tadOperacion{dameHippiePos}{id, conj( $\langle$ i, pos $\rangle$}{pos}{i $\in$ conj}
- \tadOperacion{sacarHippieId}{id, conj( $\langle$ i, pos $\rangle$}{conj( $\langle$ i, pos $\rangle$}{}
-\tadOperacion{chequearSituacionShort)}{
+ \tadOperacion{dameHippiePos}{id\ $is$, conj( $\langle$ i, pos $\rangle$) \ $conjHip$}{pos}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{sacarHippieId}{id\ $is$, conj( $\langle$ i, pos $\rangle$) \ $conjHip$}{conj( $\langle$ i, pos $\rangle$)}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$} 
+\tadOperacion{chequearSituacionShort}{
  	 $\langle$ 
  	 	conj( $\langle$ i, as, pos $\rangle$ ), 
  	 	conj( $\langle$ i, pos $\rangle$ ), 
@@ -148,7 +149,7 @@ hippies?(u) $\igobs$  hippies?(u')
  	 	conj( $\langle$ i, est, pos $\rangle$ ) 
  	 $\rangle$ ,
 }{}
- \tadOperacion{chequearSituacion)}{
+ \tadOperacion{chequearSituacion}{
  	 $\langle$ 
  	 	conj( $\langle$ i, as, pos $\rangle$ ), 
  	 	conj( $\langle$ i, pos $\rangle$ ), 
@@ -231,12 +232,29 @@ hippies?(u) $\igobs$  hippies?(u')
 	$\rangle$
 }{}
 
+\tadOperacion{dondeEstaAgente}{id\ $is$, uni \ $u$}{pos}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+\tadOperacion{dondeEstaHippie}{id\ $is$, uni \ $u$}{pos}{ $\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+\tadOperacion{dondeEstaEstudiante}{id\ $is$, uni\ $u$}{pos}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$ }
+\tadOperacion{masVigilante}{uni}{$\langle$ id, as, pos $\rangle$}{}
+\tadOperacion{losMasVigilantes}{conj($\langle$ id, as, pos $\rangle$), nat}{conj($\langle$ id, as, pos $\rangle$)}{}
+\tadOperacion{losMasVigilantesShort}{conj($\langle$ id, as, pos $\rangle$)}{conj($\langle$ id, as, pos $\rangle$)}{}
+\tadOperacion{agenteConMenorPlaca}{conj($\langle$ id, as, pos $\rangle$), nat}{$\langle$ id, as, pos $\rangle$}{}
+\tadOperacion{agenteConMenorPlacaShort}{conj($\langle$ id, as, pos $\rangle$)}{$\langle$ id, as, pos $\rangle$}{}
+ 
+\tadOperacion{maxCapturas}{conj($\langle$ id, as, pos $\rangle$)}{nat}{}
+\tadOperacion{minPlaca}{conj($\langle$ id, as, pos $\rangle$)}{nat}{}
+\tadOperacion{cuantosHippies}{uni}{nat}{}
+\tadOperacion{cuantosEstudiantes}{uni}{nat}{}
+
+
+
+
 \tadAxiomas[
 \paratodo{conj(<id, as, pos>)}{cAs}
 \paratodo{conj(<id, pos>)}{cH}
 \paratodo{conj(<id, est, pos>)}{cEst}
 \paratodo{conj(dir)}{cDirs}
-\paratodo{nat}{al, an}
+\paratodo{nat}{al, an,maxC,minN}
 \paratodo{conj(pos)}{cObs}
 \paratodo{uni}{u}
 \paratodo{id}{i}
@@ -246,7 +264,7 @@ hippies?(u) $\igobs$  hippies?(u')
 \paratodo{pos}{p}
 \paratodo{conj(pos)}{p4v}
 \paratodo{<conj(<id, as, pos>), cH conj(<id, pos>), conj(<id, est, pos>)>}{tripla, triplaInfo}
-\paratodo{multiconj(tipoElem)}{mcT}
+\paratodo{multiconj(tipo)}{mcT}
 ]
 
 Observadores Basicos
@@ -932,119 +950,7 @@ Otras Operaciones
 }
 
 
-\tadAxioma{chequearSituacion( $\langle$ cAs, cH, cEst $\rangle$ , triplaInfo, u)}{
-	\IF vacio?($cH$) 
-		THEN
-			{\IF vacio?($cEst$) 
-				THEN 
-					 $\langle$ $cAs$, $cH$, $cEst$ $\rangle$ 
-				ELSE
-					{\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
-						THEN
-							{\IF dosHippies $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) ) 
-								THEN
-									agregarHippieTripla(  
-										convertirEstudianteAHippie(dameUno($cEst$)) ,
-										chequearSituacion( 
-											$\langle$ 
-												sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$), 
-												$cH$, 
-												sinUno($cEst$)  
-											$\rangle$, 
-											triplaInfo, 
-											$u$
-									) 
-								)
-								ELSE
-									agregarEstudianteTripla( 
-										dameUno($cEst$),
-										chequearSituacion( 
-											$\langle$ 
-												sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$), 
-												$cH$, 
-												sinUno($cEst$)  
-											$\rangle$ , 
-											triplaInfo, 
-											$u$
-										) 
-								)
-							FI}
-						ELSE
-							{\IF dosHippies $\in$ queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno($cEst$)), triplaInfo, $u$) ) 
-								THEN 
-									agregarHippieTripla( 
-										convertirEstudianteAHippie(dameUno($cEst$)),
-										chequearSituacion( 
-											$\langle$ 
-												$cAs$, 
-												$cH$, 
-												sinUno($cEst$)  
-											$\rangle$, 
-											triplaInfo, 
-											$u$
-										) 
-									)
-								ELSE 
-									agregarEstudianteTripla( 
-										dameUno($cEst$), 
-										chequearSituacion( 
-											$\langle$ 
-												$cAs$, 
-												$cH$, 
-												sinUno($cEst$)
-											$\rangle$, 
-											triplaInfo, 
-											$u$
-										) 
-									)
-							FI}
-					FI}
-			FI}
-		ELSE
-
-			{\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
-				THEN 
-					chequearSituacion( 
-						$\langle$ 
-							capturar(dameHippiePos(dameUno($cH$)), $cAs$), 
-							sinUno($cH$), 
-							$cEst$ 
-						$\rangle$, 
-						sacarHippieTripla(dameUno($cH$), triplaInfo), 
-						$u$
-					)
-				ELSE
-					{\IF {movRest, cuatroEstudiantes} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) ) 
-						THEN
-							agregarEstudianteTripla(
-								convertirHippieAEst(dameUno($cH$), $cEst$), 
-								chequearSituacion( 
-									$\langle$ 
-										$cAs$, 
-										sinUno($cH$), 
-										$cEst$  
-									$\rangle$, 
-									sacarHippieTripla(dameUno($cH$), triplaInfo), 
-									$u$
-								)
-							)
-						ELSE
-							agregarHippieTripla( 
-								dameUno($cH$), 
-								chequearSituacion( 
-									$\langle$ 
-										$cAs$, 
-										sinUno($cH$), 
-										$cEst$  
-									$\rangle$, 
-								triplaInfo, 
-								$u$) 
-							)
-					FI}
-			FI}
-	FI
-}
-
+\tadAxioma{chequearSituacion( $\langle$ cAs, cH, cEst $\rangle$ , triplaInfo, u)}{ \IF vacio?($cH$)  THEN {\IF vacio?($cEst$)  THEN   $\langle$ $cAs$, $cH$, $cEst$ $\rangle$  ELSE {\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) )  THEN {\IF dosHippies $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) )  THEN agregarHippieTripla(   convertirEstudianteAHippie(dameUno($cEst$)) , chequearSituacion(  $\langle$  sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$),  $cH$,  sinUno($cEst$)   $\rangle$,  triplaInfo,  $u$ )  ) ELSE agregarEstudianteTripla(  dameUno($cEst$), chequearSituacion(  $\langle$  sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$),  $cH$,  sinUno($cEst$)   $\rangle$ ,  triplaInfo,  $u$ )  ) FI} ELSE {\IF dosHippies $\in$ queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno($cEst$)), triplaInfo, $u$) )  THEN  agregarHippieTripla(  convertirEstudianteAHippie(dameUno($cEst$)), chequearSituacion(  $\langle$  $cAs$,  $cH$,  sinUno($cEst$)   $\rangle$,  triplaInfo,  $u$ )  ) ELSE  agregarEstudianteTripla(  dameUno($cEst$),  chequearSituacion(  $\langle$  $cAs$,  $cH$,  sinUno($cEst$) $\rangle$,  triplaInfo,  $u$ )  ) FI} FI} FI} ELSE  {\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) )  THEN  chequearSituacion(  $\langle$  capturar(dameHippiePos(dameUno($cH$)), $cAs$),  sinUno($cH$),  $cEst$  $\rangle$,  sacarHippieTripla(dameUno($cH$), triplaInfo),  $u$ ) ELSE {\IF {movRest, cuatroEstudiantes} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) )  THEN agregarEstudianteTripla( convertirHippieAEst(dameUno($cH$), $cEst$),  chequearSituacion(  $\langle$  $cAs$,  sinUno($cH$),  $cEst$   $\rangle$,  sacarHippieTripla(dameUno($cH$), triplaInfo),  $u$ ) ) ELSE agregarHippieTripla(  dameUno($cH$),  chequearSituacion(  $\langle$  $cAs$,  sinUno($cH$),  $cEst$   $\rangle$,  triplaInfo,  $u$)  ) FI} FI} FI} 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LOS COMENTARIOS DENTRO DE LOS IFS ROMPEN TODO, POR ESO LO DEJO COPIADO ACA Y TOOOOODO COMENTADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \tadAxioma{chequearSituacion( $\langle$ cAs, cH, cEst $\rangle$ , triplaInfo, u)}{ 
@@ -1193,26 +1099,75 @@ Otras Operaciones
 
 \tadAxioma{convertirHippieAEst(h, cEst)}{
 	$\langle$
-		$\Pi_0$($h$),
+		$\Pi_{0}$($h$),
 		dameUno(estudiantesAdyacentesPos($\Pi_1$($h$), $cEst$)),
-		$\Pi_1$($h$)
+		$\Pi_{1}$($h$)
 	$\rangle$
 }
 
 \tadAxioma{convertirEstAHippie(e)}{
 	$\langle$
-		$\Pi_0$($e$),
-		$\Pi_2$($e$)
+		$\Pi_{0}$($e$),
+		$\Pi_{2}$($e$)
 	$\rangle$
 }
 
 \tadAxioma{sacarHippieTripla(h, $\langle$ cAs, cH, cEst $\rangle$)}{
 	$\langle$
 		$cAs$, 
-		sacarHippieId($\Pi_0$($h$), $cH$), 
+		sacarHippieId($\Pi_{0}$($h$), $cH$), 
 		$cEst$
 	$\rangle$
 }
+
+\tadAxioma{dondeEstaAgente(i, u)}{dameAgentePos($i$, agentes?($u$))}
+\tadAxioma{dondeEstaHippie(i, u)}{dameHippiePos($i$, hippies?($u$))}
+\tadAxioma{dondeEstaEstudiante(i, u)}{dameEstudiantePos($i$, estudiantes?($u$))}
+\tadAxioma{masVigilante(u)}{agenteConMenorPlacaShort(losMasVigilantesShort(agentes?(u)))}
+\tadAxioma{losMasVigilantes(cAs, maxC)}{
+        \IF vacio?($cAs$) THEN
+              { $ \emptyset$}
+        ELSE
+                {\IF hippiesCapturados($\Pi_{1}$(dameUno($cAs$))) = maxC THEN
+                                        {Ag(dameUno($cAs$), losMasVigilantes(sinUno($cAs$), maxC))}
+                                ELSE
+                                       { losMasVigilantes(sinUno($cAs$), maxC)}
+                                FI}
+        FI
+}
+\tadAxioma{losMasVigilantesShort(cAs)}{losMasVigilantes(cAs, maxCapturas(cAs))}
+ 
+\tadAxioma{agenteConMenorPlaca(cAs, minN)}{
+        \IF vacio?($cAs$) THEN
+               { $\emptyset$}
+        ELSE
+                {\IF numPlaca($\Pi_{1}$(dameUno($cAs$))) = minN THEN
+                                       { Ag(dameUno($cAs$), agenteConMenorPlaca(sinUno($cAs$), minN))}
+                                ELSE
+                                        {agenteConMenorPlaca(sinUno($cAs$), minN)}
+                                FI
+                        }FI
+}
+\tadAxioma{agenteConMenorPlacaShort(cAs)}{agenteConMenorPlaca(cAs, minPlaca(cAs))}
+ 
+\tadAxioma{maxCapturas(cAs)}{
+        \IF vacio?($cAs$) THEN
+                0
+        ELSE
+                max(hippiesCapturados($\Pi_{1}$(dameUno($cAs$))), maxCapturas(sinUno($cAs$)))
+        FI
+}
+\tadAxioma{minPlaca(cAs)}{
+        \IF vacio?($cAs$) THEN
+                0
+        ELSE
+                min(numPlaca($\Pi_{1}$(dameUno($cAs$))), minPlaca(sinUno($cAs$)))
+        FI
+}
+
+\tadAxioma{cuantosHippies(u)}{\# hippies?(u)}
+\tadAxioma{cuantosEstudiantes(u)}{\# estudiantes?(u)}
+
 
 \end{tad}
 
@@ -1227,12 +1182,16 @@ Otras Operaciones
 \tadExporta{as, Generadores, Observadores Basicos, inactivo?}
 \tadUsa{\tadNombre{Nat, Bool}}
 
-\tadIgualdadObservacional{a}{a'}{as}{}
+\tadIgualdadObservacional{a}{a'}{as}{
+	numPlaca(a) $\igobs$ numPlaca(a') $\land$
+	hippiesAtrapados(a) $\igobs$ hippiesAtrapados(a') $\land$
+	numSanciones(a) $\igobs$ numSanciones(a')
+}
 
 \tadObservadores
 
 \tadOperacion{numPlaca}{as}{nat}{}
-\tadOperacion{hippiesAtrapados}{as}{nat}{}
+\tadOperacion{hippiesCapturados}{as}{nat}{}
 \tadOperacion{numSanciones}{as}{nat}{}
 
 \tadGeneradores
@@ -1245,7 +1204,10 @@ Otras Operaciones
 
 \tadOperacion{inactivo?}{as}{bool}{}
 
-\tadAxiomas[\paratodo{}{}]
+\tadAxiomas[
+\paratodo{nat}{n}
+\paratodo{as}{a}
+]
 
 Observadores Basicos
 
@@ -1253,9 +1215,9 @@ Observadores Basicos
 \tadAxioma{numPlaca(darCaptura(a))}{numPlaca(a)}
 \tadAxioma{numPlaca(darSancion(a))}{numPlaca(a)}
 
-\tadAxioma{hippiesAtrapados(nuevoAs(n))}{0}
-\tadAxioma{hippiesAtrapados(darCaptura(a))}{$1 +$ hippiesAtrapados(a)}
-\tadAxioma{hippiesAtrapados(darSancion(a))}{hippiesAtrapados(a)}
+\tadAxioma{hippiesCapturados(nuevoAs(n))}{0}
+\tadAxioma{hippiesCapturados(darCaptura(a))}{$1 +$ hippiesCapturados(a)}
+\tadAxioma{hippiesCapturados(darSancion(a))}{hippiesCapturados(a)}
 
 \tadAxioma{numSanciones(nuevoAs(n))}{0}
 \tadAxioma{numSanciones(darCaptura(a))}{numSanciones(a)}
@@ -1274,35 +1236,158 @@ Otras Operaciones
 % TAD est es conj(dir)                %
 % % % % % % % % % % % % % % % % % % % % 
 
-%%%%%%%%%%%%%%%
-% TAD AGENTES %
-%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% TAD POSICION %
+%%%%%%%%%%%%%%%%
 
-\section{TAD \tadNombre{Tablero}}
 
-\begin{tad}{\tadNombre{Tablero}}
-\tadGeneros{tab}
-\tadExporta{tab, Generadores, Observadores Basicos}
-\tadUsa{\tadNombre{Nat, Pos, Bool, Conj($\alpha$)}}
+\section{TAD \tadNombre{Posicion}}
 
-\tadIgualdadObservacional{t}{t'}{tab}{}
+
+\begin{tad}{\tadNombre{Posicion}}
+
+\tadGeneros{pos}
+
+
+\tadExporta{pos, Generadores, Observadores Basicos,Otras Operaciones}
+
+\tadUsa{\tadNombre{Nat ,Bool, Conjunto($\alpha$), Dir}}
+
+\tadIgualdadObservacional{p}{p'}{pos}{fila?(p) $\igobs$ fila(p') $\land$ col?(p) $\igobs$ col(p') }
+%%%%%%%%%%%%%%%%
+% OBSERVADORES %
+%%%%%%%%%%%%%%%%
 
 \tadObservadores
 
-\tadOperacion{alto?}{tab}{nat}{}
-\tadOperacion{ancho?}{tab}{nat}{}
-\tadOperacion{ocupadas?}{tab}{conj($pos$)}{}
+\tadOperacion{fila?}{pos}{nat}{}
+\tadOperacion{col?}{pos}{nat}{}
+
+%%%%%%%%%%%%%%%%
+%  GENERADORES %
+%%%%%%%%%%%%%%%%
 
 \tadGeneradores
 
-\tadOperacion{nuevoTablero}{nat\ $an$, nat\ $al$}{tab $t$}{}
-\tadOperacion{agregarFicha}{nat\ $id$, pos\ $p$}{tab $t$}{}
+\tadOperacion{nuevaPos}{nat\ $f$, nat\ $c$}{pos}{(f $\geq$ 0) $\land $(c $\geq$ 0)}
 
-\tadAxiomas[\paratodo{}{}]
+%%%%%%%%%%%%%%%%%%%%%
+% OTRAS OPERACIONES %
+%%%%%%%%%%%%%%%%%%%%%
 
-\tadAxioma{}{}
+\tadOtrasOperaciones
+
+
+\tadOperacion{direccionesOptimas}{pos ,\ pos}{conj(dir)}{}
+\tadOperacion{cPosMasCercana}{pos ,\ conj(pos),\ nat}{conj(pos))}{}
+\tadOperacion{cPosMasCercanaShort}{pos ,\ conj(pos)}{conj(pos))}{}
+\tadOperacion{menorDistancia}{pos ,\ conj(pos)\ $cPos$}{nat}{$\neg$ Vacia?(cPos)}
+\tadOperacion{dist}{pos ,\ pos}{nat}{}
+\tadOperacion{posiciones4Vecinas}{pos}{conj(pos)}{}
+\tadOperacion{mover}{pos \ $p$ ,\ dir}{pos}{$\neg$(col?(p) = 0 \ $\land$ \ (o) = dir) \ $\land$ \ $\neg$(fila?(p) = 0 \ $\land$ \ (n) = dir)}
+
+%%%%%%%%%%%%%%%%
+%    AXIOMAS   %
+%%%%%%%%%%%%%%%%
+
+\tadAxiomas[\paratodo{pos}{p,p'}\ $\land$ \ \paratodo{nat}{f,c,menorDist} \paratodo{dir}{d}]
+\tadAxioma{fila?(nuevaPos(f,c))}{f}
+
+\tadAxioma{col?(nuevaPos(f,c))}{c}
+
+
+
+
+\tadAxioma{direccionesOptimas(p,\ p')}{ \{n,s,e,o\} $-$ (\IF fila?(p) <= fila?(p') THEN \{n\} ELSE $\emptyset$ FI) \\ 
+$-$ (\IF fila?(p) >= fila?(p') THEN \{s\} ELSE $\emptyset$ FI) \\
+$-$ (\IF col?(p) <= col?(p') THEN \{o\} ELSE $\emptyset$ FI) \\
+$-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)} 
+
+
+\tadAxioma{PosMasCercanaShort(p,\ cPos)}{cPosMasCercana(p,\ cPos,\ menorDistancia(p,cPos))}
+
+
+ \tadAxioma{cPosMasCercana(p,\ cPos,\ menorDist)}{\IF vacio?(cPos) THEN {$\emptyset$} ELSE {\IF dist(p, dameUno(cPos)) =  menorDist THEN {Ag(p, cPosMasCercana(p, sinUno(cPos), menorDist))} ELSE {cPosMasCercana(p, sinUno(cPos), menorDist)}  FI}  FI}
+
+\tadAxioma{menorDistancia(p,\ cPos)}{ \IF $\neg$ vacia?(cpos) THEN min(dist(p, dameUno(cPos)), menorDistancia(p, sinUno(cpos))) ELSE dist(p, dameUno(cPos)) FI}
+
+\tadAxioma{dist(p,p')}{(max(fila?(p), fila?(p')) - min(fila?(p), fila?(p')) + (max(col?(p), col?(p')) - min(col?(p), col?(p'))}
+
+\tadAxioma{mover(p,\ d)}{
+\IF (d = n ) 
+	THEN  {nuevaPos(fila?(p)-1, col?(p))}	ELSE {\IF (d=s) THEN {nuevaPos(fila?(p)+1, col?(p))} ELSE {\IF ( dir = o ) THEN {nuevaPos(fila?(p), col?(p)-1)} ELSE {nuevaPos(fila?(p), col?(p)+1)} FI} FI} FI}
+
+
+\tadAxioma{posiciones4Vecinas(p)}{
+	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
+		THEN 
+			{$\lbrace$ nuevaPos(1,0), nuevaPos(0,1)$\rbrace $}
+		ELSE 
+			{\IF fila?(p) = 0 
+			 				THEN 
+			 					{$\lbrace$ nuevaPos(0, col?(p)-1), nuevaPos(0, col?(p)+1), pos(1, col?(p))$\rbrace$} 
+			 									ELSE 
+			 					{\IF col?(p) = 0 
+			 					 			 						THEN 
+			 					 			 							{$\lbrace$ nuevaPos(fila?(p)-1, 0), nuevaPos(fila?(p)+1, 0), nuevaPos(fila?(p), 1)$\rbrace $}
+			 					 			 						ELSE 
+			 					 			 						{$\lbrace$ nuevaPos(fila?(p), col?(p)-1), nuevaPos(fila?(p), col?(p)+1),\\ nuevaPos(fila?(p)+1, col?(p)), nuevaPos(fila?(p)-1, col?(p)) $\rbrace$} FI} FI} FI		}
+
 
 \end{tad}
 
+\section{TAD \tadNombre{Direccion}}
+
+
+\begin{tad}{\tadNombre{Direccion}}
+
+\tadGeneros{dir}
+
+
+\tadExporta{dir, Generadores}
+
+\tadUsa{}
+
+\tadIgualdadObservacionalSimple{n $\igobs$ n $\land$ s $\igobs$ s $\land$ e $\igobs$ e $\land$ o $\igobs$ o $\land$ $\neg$(s $\igobs$ n) $\land$ $\neg$(s $\igobs$ o) $\land$ $\neg$(s $\igobs$ e) $\land$ $\neg$(n $\igobs$ s) $\land$ $\neg$(n $\igobs$ e) $\land$ $\neg$(n $\igobs$ o) $\land$ $\neg$(e $\igobs$ s) $\land$ $\neg$(e $\igobs$ n) $\land$ $\neg$(e $\igobs$ o) $\land$ $\neg$(o $\igobs$ s) $\land$ \\ $\neg$(o $\igobs$ n) $\land$ $\neg$(o $\igobs$ e) }
+
+\tadObservadores
+
+\tadGeneradores
+
+\tadOperacion{n}{}{dir}{}
+\tadOperacion{s}{}{dir}{}
+\tadOperacion{e}{}{dir}{}
+\tadOperacion{o}{}{dir}{}
+
+\tadOtrasOperaciones
+
+\end{tad}
+
+\section{TAD \tadNombre{SituacionesRodeo}}
+
+
+\begin{tad}{\tadNombre{SituacionesRodeo}}
+
+\tadGeneros{situ}
+
+
+\tadExporta{situ, Generadores}
+
+\tadUsa{}
+
+\tadIgualdadObservacionalSimple{movRest $\igobs$ movRest $\land$ unAgente $\igobs$ unAgente $\land$ dosHippies $\igobs$ dosHippies $\land$ cuatroEstudiantes $\igobs$ cuatroEstudiantes $\land$ $\neg$(movRest $\igobs$ unAgente) $\land$ $\neg$(movRest $\igobs$ dosHippies) $\land$ $\neg$(movRest $\igobs$ cuatroEstudiantes) $\land$ $\neg$(unAgente $\igobs$ movRest) $\land$ $\neg$(unAgente $\igobs$ dosHippies) $\land$ $\neg$(unAgente $\igobs$ cuatroEstudiantes) $\land$ $\neg$(dosHippies $\igobs$ movRest) $\land$ $\neg$(dosHippies $\igobs$ unAgente) $\land$ $\neg$(dosHippies $\igobs$ cuatroEstudiantes) $\land$ $\neg$(cuatroEstudiantes $\igobs$ movRest) $\land$ $\neg$(cuatroEstudiantes $\igobs$ unAgente) $\land$ $\neg$(cuatroEstudiantes $\igobs$ dosHippies) }
+
+\tadObservadores
+
+\tadGeneradores
+
+\tadOperacion{movRest}{}{situ}{}
+\tadOperacion{unAgente}{}{situ}{}
+\tadOperacion{dosHippies }{}{situ}{}
+\tadOperacion{cuatroEstudiantes}{}{situ}{}
+
+\tadOtrasOperaciones
+
+\end{tad}
 
 \end{document}
