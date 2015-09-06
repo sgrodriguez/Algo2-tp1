@@ -410,9 +410,8 @@ Observadores Basicos
 Otras Operaciones
 
 \tadAxioma{capturar(p, cAs)}{
-	if ( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno( $cAs$ ) ) ) ) 
-		\\
-		then
+	\IF( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno( $cAs$ ) ) ) ) 
+		THEN
 			Ag( 
 				$\langle$ 
 					$\Pi_{1}$($cAs$), 
@@ -421,19 +420,16 @@ Otras Operaciones
 				$\rangle$, 
 				capturar( $p$, sinUno($cAs$) ) 
 			) 
-		\\
-		else
+		ELSE
 			Ag( dameUno($cAs$), 
 				capturar( $p$, sinUno($cAs$) ) 
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{sancionar(p, cAs)}{
-	if ( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno ( cAs ) ) ) ) 
-		\\
-		then
+	\IF( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno ( cAs ) ) ) ) 
+		THEN
 			Ag( 
 				$\langle$
 					$\Pi_{1}$($cAs$), 
@@ -442,17 +438,15 @@ Otras Operaciones
 				$\rangle$, 
 				capturar( $p$, sinUno($cAs$) ) 
 			)
-		\\
-		else
+		ELSE
 			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
-	\\
-	fi
+	FI
 }
 
 %\tadAxioma{sancionar(p, cAs)}{	
-%	if ($p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno($cAs$) ) ) ) 
+%	\IF($p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno($cAs$) ) ) ) 
 %		\\
-%		then
+%		THEN
 %			Ag( 
 %				$\langle$
 %					$\Pi_{1}$($cAs$), 
@@ -462,84 +456,54 @@ Otras Operaciones
 %				capturar( $p$, sinUno($cAs$) ) 
 %			)
 %		\\
-%		else
+%		ELSE
 %			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
 %	\\
-%	fi
+%	FI
 %}
 
 \tadAxioma{queTipoHay(p, tripla, u)}{
-	if ( fila?($p$) = alto?($u$) $\lor$ \ col?($p$) = ancho?($u$) ) 
-		\\
-		then 
+	\IF( fila?($p$) = alto?($u$) $\lor$ \ col?($p$) = ancho?($u$) ) 
+		THEN 
 			FueraDeRango
-		\\
-		else
-			\\
-			if ( $p$ $\in$ obstaculos?($u$) ) 
-				\\
-				then
+		ELSE
+			{\IF( $p$ $\in$ obstaculos?($u$) ) 
+				THEN
 					Obstaculo
-				\\	
-				else
-					\\
-
-					% QUE ES ESTA TRIPLAAAAA??????
-					
-					if ($p$ $\in$ damePosicionesAs( $\Pi_{1}$(tripla) ) ) 
-						\\
-						then
+				ELSE
+					{\IF($p$ $\in$ damePosicionesAs( $\Pi_{1}$(tripla) ) ) 
+						THEN
 							Agente
-						\\
-						else
-							\\
-							if ( $p$ $\in$ damePosicionesH( $\Pi_{2}$(tripla) ) ) 
-								\\
-								then
+						ELSE
+							{\IF( $p$ $\in$ damePosicionesH( $\Pi_{2}$(tripla) ) ) 
+								THEN
 									Hippie
-								\\
-								else
-									\\
-									if ( $p$ $\in$ damePosicionesEst( $\Pi_{3}$(tripla) ) )
-										\\
-										then
+								ELSE
+									{\IF( $p$ $\in$ damePosicionesEst( $\Pi_{3}$(tripla) ) )
+										THEN
 											Estudiante
-										\\
-										else
+										ELSE
 											$\emptyset$
-									\\
-									fi
-							\\
-							fi
-					\\
-					fi
-			\\				
-			fi
-	\\		
-	fi
+									FI}
+							FI}
+					FI}
+			FI}
+	FI
 }
 
 \tadAxioma{cuatroVecinosShort(p, tripla, u)}{
-	
-	% QUE ES ESTA TRIPLAAAAA??????
-	
 	cuatroVecinos( $p$, tripla, $u$, posiciones4Vecinas($p$) )
 }
 
-% QUE ES ESTA TRIPLAAAAA??????
-
 \tadAxioma{cuatroVecinos(p, tripla, u, p4v)}{
-	if ( vacio?($p4v$) ) 
-		\\
-		then
+	\IF( vacio?($p4v$) ) 
+		THEN
 			vacio
-		\\
-		else
+		ELSE
 			Ag( queTipoHay( dameUno($p4v$), tripla, $u$), 
 				cuatroVecinos( $p$, tripla, $u$, sinUno($p4v$)
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{queSituacion(mcT)}{
@@ -547,68 +511,54 @@ Otras Operaciones
 }
 
 \tadAxioma{damePosicionesAs(cAs)}{
-	if vacio?($cAs$) 
-		\\
-		then
+	\IF vacio?($cAs$) 
+		THEN
 			$\emptyset$
-		\\
-		else
+		ELSE
 			Ag( $\Pi_{2}$( dameUno($cAs$) ), 
 				damePosicionesAs( sinUno($cAs$) )
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{damePosicionesEst(cEst)}{
-	if vacio?($cEst$) 
-		\\
-		then
+	\IF vacio?($cEst$) 
+		THEN
 			$\emptyset$
-		\\
-		else
+		ELSE
 			Ag( $\Pi_{3}$( dameUno($cEst$) ), 
 				damePosicionesEst( sinUno($cEst$) )
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{damePosicionesH(cH)}{
-	if vacio?($cH$) 
-		\\
-		then
+	\IF vacio?($cH$) 
+		THEN
 			$\emptyset$
-		\\
-		else
+		ELSE
 			Ag( $\Pi_{2}$( dameUno($cH$) ), 
 				damePosicionesH( sinUno($cH$) )
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{moverEstudianteYChequearSituaciones(i, u)}{
-	if ( vacio?( dameEstudiante( $i$, estudiantes?($u$) ) ) ) 
-		\\
-		then
+	\IF( vacio?( dameEstudiante( $i$, estudiantes?($u$) ) ) ) 
+		THEN
 			$\langle$
 				agentes?($u$), 
 				hippies?($u$), 
 				estudiantes?($u$)
 			$\rangle$
-		\\
-		else
-			\\
-			if $\neg$( $\Pi_{1}$( dameEstudiante($i$, $u$) ) $\in$ dirLibres( dameEstudiantePos($i$, estudiantes?($u$) ), $u$ ) ) 
-				\\
-				then
+		ELSE
+			{\IF$\neg$( $\Pi_{1}$( dameEstudiante($i$, $u$) ) $\in$ dirLibres( dameEstudiantePos($i$, estudiantes?($u$) ), $u$ ) ) 
+				THEN
 					$\langle$
 						agentes?($u$), 
 						hippies?($u$), estudiantes?($u$)
 					$\rangle$
-				\\
-				else
+				ELSE
 					chequearSituacionShort( 
 						agregarEstudianteTripla( 
 							$\langle$
@@ -624,71 +574,53 @@ Otras Operaciones
 							$\rangle$ 
 						)
 					)
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 \tadAxioma{dameEstudiante(i, cEst)}{
-	if ( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
-		\\
-		then
+	\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
+		THEN
 			$\Pi_{2}$( dameUno($cEst$) )
-		\\
-		else
+		ELSE
 			dameEstudiante($i$, sinUno($cEst$) )
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{dameEstudiantePos(i, cEst)}{
-	if ( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
-		\\
-		then
+	\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
+		THEN
 			$\Pi_{3}$( dameUno($cEst$) )
-		\\
-		else
+		ELSE
 			dameEstudiantePos( $i$, sinUno($cEst$) )
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{sacarEstudianteId(i, cEst)}{
-	if ( vacio?($cEst$) )
-		\\
-		then
+	\IF( vacio?($cEst$) )
+		THEN
 			$\emptyset$
-		\\
-		else
-			\\
-			if ( $\Pi_{1}$( dameUno($cEst$) ) = $i$ )
-				\\
-				then
+		ELSE
+			{\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ )
+				THEN
 					sinUno($cEst$)
-				\\
-				else
+				ELSE
 					Ag( dameUno($cEst$), sacarEstudiante( $i$, sinUno($cEst$) ) )
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 \tadAxioma{entradas?(an, al)}{
-	if ( $an$ = 0 )
-		\\
-		then
+	\IF( $an$ = 0 )
+		THEN
 			$\emptyset$	
-		\\
-		else
+		ELSE
 			Ag( pos(0, $an$-1), 
 				Ag( pos($al$-1, $an$-1), 
 					entradas($an$-1,$al$) 
 				) 
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{dirLibres(p, u)}{
@@ -697,78 +629,59 @@ Otras Operaciones
 
 \tadAxioma{dirValidas(p, an, al)}{
 	\{n,s,e,o\}
-	 - (if col?($p$) = 0 then \{o\} else $\emptyset$ fi)
-	 - (if col?($p$) = $an$-1 then \{e\} else $\emptyset$ fi)
-	 - (if fila?($p$) = 0 then \{n\} else $\emptyset$ fi)
-	 - (if fila?($p$) = $al$-1 then \{s\} else $\emptyset$ fi)
+	 - (\IF col?($p$) = 0 THEN \{o\} ELSE $\emptyset$ FI)
+	 - (\IF col?($p$) = $an$-1 THEN \{e\} ELSE $\emptyset$ FI)
+	 - (\IF fila?($p$) = 0 THEN \{n\} ELSE $\emptyset$ FI)
+	 - (\IF fila?($p$) = $al$-1 THEN \{s\} ELSE $\emptyset$ FI)
 }
 
 \tadAxioma{dirNoOcupadas( cDirs, p, u )}{
-	if (vacio(cDirs)) 
-		\\
-		then
+	\IF(vacio(cDirs)) 
+		THEN
 			$\emptyset$
-		\\
-		else
-			\\
-			if 	(	mover( $p$, dameUno($cDirs$) ) $\in$ damePosicionesH( hippies?($u$) ) $\lor$ 
+		ELSE
+			{\IF	(	mover( $p$, dameUno($cDirs$) ) $\in$ damePosicionesH( hippies?($u$) ) $\lor$ 
 					mover( $p$, dameUno($cDirs$) ) $\in$ obstaculos?($u$) $\lor$ 
 					mover( $p$, dameUno($cDirs$) ) $\in$ damePosicionesAs( agentes?($u$) ) $\lor$ 
 					mover( $p$, dameUno($cDirs$) ) $\in$ damePosicionesEst( estudiantes?($u$) ) 
 				) 
-				\\
-				then\ 
+				THEN
 					dirNoOcupadas( sinUno($cDirs$), $p$, $u$)
-				\\
-				else
+				ELSE
 					Ag( dameUno($cDirs$), dirNoOcupadas( sinUno($cDirs$), $p$, $u$) )
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 % Macro2 = mover( p, dameUno(cDirs) )
 
 \tadAxioma{posNoOcupadas(cPos, u)}{
-	if ( vacio?($cPos$) ) 
-		\\
-		then
+	\IF( vacio?($cPos$) ) 
+		THEN
 			$\emptyset$
-		\\
-		else
-			\\
-			if $\neg$ dameUno($cPos$) $\in$ ( damePosicionesAs( agentes?($u$) ) $\cup$
+		ELSE
+			{\IF $\neg$ dameUno($cPos$) $\in$ ( damePosicionesAs( agentes?($u$) ) $\cup$
 											damePosicionesEst( estudiantes?($u$) ) $\cup$
 											damePosicionesH( hippies?($u$) ) $\cup$
 											obstaculos?($u$) 
-										) 
-				\\
-				then
+						) 
+				THEN
 					Ag( dameUno($cPos$), posNoOcupadas(sinUno($cPos$), $u$) )
-				\\
-				else
+				ELSE
 					posNoOcupadas(sinUno($cPos$), $u$)
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 \tadAxioma{moverAgenteYChequearSituacion(i, u)}{
-	if ( vacio?( hippies?($u$) ) $\land$ ( dameAgentePos( $i$, agentes?($u$) ) $\in$ entradas?( alto?($u$), ancho?($u$) ) ) ) $\lor$ inactivo?( dameAgente($i$, $u$) ) 
-		\\
-		then
+	\IF( vacio?( hippies?($u$) ) $\land$ ( dameAgentePos( $i$, agentes?($u$) ) $\in$ entradas?( alto?($u$), ancho?($u$) ) ) ) $\lor$ inactivo?( dameAgente($i$, $u$) ) 
+		THEN
 			$\rangle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\langle$
-		\\
-		else
-			\\
-			if vacio?( posibleMovAs( dameAgente( $i$, agentes?($u$) ), dameAgentePos( $i$, agentes?($u$) ), $u$ ) ) 
-				\\
-				then
+		ELSE
+			{\IF vacio?( posibleMovAs( dameAgente( $i$, agentes?($u$) ), dameAgentePos( $i$, agentes?($u$) ), $u$ ) ) 
+				THEN
 					$\rangle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\langle$
-				\\
-				else
+				ELSE
 					chequearSituacionShort( 
 						agregarAgenteTripla( 
 							$\rangle$ 
@@ -785,100 +698,71 @@ Otras Operaciones
 								) 
 							$\langle$,
 					$\rangle$ sacarAgenteId($i$, agentes?($u$)) , hippies?($u$), estudiantes?($u$) $\langle$) )
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 \tadAxioma{posibleMovAs (agente, p, u)}{
-	if ( inactivo?(agente) ) 
-		\\
-		then
+	\IF( inactivo?(agente) ) 
+		THEN
 			$\emptyset$
-		\\
-		else
-			\\
-			if ( vacio?( hippes?($u$) ) )
-				\\
-				then
-					\\
-					if ( dirLibres(agente, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, posNoOcupadas( entradas($an$, $al$), $u$) ) ) ) = $\emptyset$ )
-						\\
-						then
+		ELSE
+			{\IF( vacio?( hippes?($u$) ) )
+				THEN
+					{\IF( dirLibres(agente, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, posNoOcupadas( entradas($an$, $al$), $u$) ) ) ) = $\emptyset$ )
+						THEN
 							dirLibres( $p$, $u$)
-						\\
-						else
+						ELSE
 							dirLibres( $p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort($p$, posNoOcupadas( entradas($an$, $al$), $u$)) ))
-					\\
-					fi
-			\\
-			else
-				\\
-				if dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, hippies?($u$) ))) = $\emptyset$ 
-					\\
-					then
+					FI}
+			ELSE
+				{\IF dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, hippies?($u$) ))) = $\emptyset$ 
+					THEN
 						dirLibres($p$, $u$)
-					\\
-					else
+					ELSE
 						dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, hippies?($u$) )))
-				\\
-				fi
-			\\
-			fi
-	\\
-	fi
+				FI}
+			FI}
+	FI
 }
 
 \tadAxioma{dameAgente(i, cAs)}{
-	if ( $\Pi_{1}$( dameUno($cAs$)) = $i$ )
-		\\
-		then
+	\IF( $\Pi_{1}$( dameUno($cAs$)) = $i$ )
+		THEN
 			$\Pi_{2}$( dameUno($cAs$) )
-		\\
-		else
+		ELSE
 			dameAgente( $i$, sinUno($cAs$) )
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{dameAgentePos(i, cAs)}{
-	if ( $\Pi_{1}$(dameUno($cAs$)) = $i$ )
-		then
+	\IF( $\Pi_{1}$(dameUno($cAs$)) = $i$ )
+		THEN
 			$\Pi_{3}$( dameUno($cAs$) )
-		else
+		ELSE
 			dameAgente( $i$, sinUno($cAs$) )
-	fi
+	FI
 }
 
 \tadAxioma{sacarAgenteId(i, cAs)}{
-	if ( vacio?($cAs$) )
-		\\
-		then
+	\IF( vacio?($cAs$) )
+		THEN
 			$\emptyset$
-		\\
-		else
-			\\
-			if ( $\Pi_{1}$( dameUno($cAs$) ) = $i$ )
-				\\
-				then
+		ELSE
+			{\IF( $\Pi_{1}$( dameUno($cAs$) ) = $i$ )
+				THEN
 					sinUno($cAs$)
-				\\
-				else
+				ELSE
 					Ag( dameUno($cAs$), sacarAgente( $i$, sinUno($cAs$) ) )
-			\\
-			fi
-	\\
-	fi
+			FI}
+	FI
 }
 
 \tadAxioma{moverHippieYChequearSituacion(i, u)}{
-	if ( vacio?( posibleMovH( dameHippiePos($i$, $u$), $u$ ) ) )
-		\\
-		then
+	\IF( vacio?( posibleMovH( dameHippiePos($i$, $u$), $u$ ) ) )
+		THEN
 			$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
-		\\
-		else
+		ELSE
 			chequearSituacionShort( 
 				agregarHippieTripla( 
 					$\langle$ 
@@ -888,8 +772,7 @@ Otras Operaciones
 					$\langle$ agentes?($u$), sacarHippieId( $i$, hippies?($u$) ), estudiantes?($u$) $\rangle$
 			 	) 
 			)
-	\\
-	fi
+	FI
 }
 
 \tadAxioma{posibleMovH (p, u)}{
