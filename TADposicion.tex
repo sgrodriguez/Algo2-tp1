@@ -1,0 +1,99 @@
+%%%%%%%%%%%%%%%%
+% TAD POSICION %
+%%%%%%%%%%%%%%%%
+
+
+\section{TAD \tadNombre{Posicion}}
+
+
+\begin{tad}{\tadNombre{Posicion}}
+
+\tadGeneros{pos}
+
+
+\tadExporta{pos, Generadores, Observadores Basicos,Otras Operaciones}
+
+\tadUsa{\tadNombre{Nat ,Bool, Conjunto($\alpha$), Dir}}
+
+\tadIgualdadObservacional{p}{p'}{pos}{fila?(p) $\igobs$ fila(p') $\land$ col?(p) $\igobs$ col(p') }
+%%%%%%%%%%%%%%%%
+% OBSERVADORES %
+%%%%%%%%%%%%%%%%
+
+\tadObservadores
+
+\tadOperacion{fila?}{pos}{nat}{}
+\tadOperacion{col?}{pos}{nat}{}
+
+%%%%%%%%%%%%%%%%
+%  GENERADORES %
+%%%%%%%%%%%%%%%%
+
+\tadGeneradores
+
+\tadOperacion{nuevaPos}{nat\ $f$, nat\ $c$}{pos}{(f $\geq$ 0) $\land $(c $\geq$ 0)}
+
+%%%%%%%%%%%%%%%%%%%%%
+% OTRAS OPERACIONES %
+%%%%%%%%%%%%%%%%%%%%%
+
+\tadOtrasOperaciones
+
+
+\tadOperacion{direccionesOptimas}{pos ,\ pos}{conj(dir)}{}
+\tadOperacion{cPosMasCercana}{pos ,\ conj(pos),\ nat}{conj(pos))}{}
+\tadOperacion{cPosMasCercanaShort}{pos ,\ conj(pos)}{conj(pos))}{}
+\tadOperacion{menorDistancia}{pos ,\ conj(pos)\ $cPos$}{nat}{$\neg$ Vacia?(cPos)}
+\tadOperacion{dist}{pos ,\ pos}{nat}{}
+\tadOperacion{posiciones4Vecinas}{pos}{conj(pos)}{}
+\tadOperacion{mover}{pos \ $p$ ,\ dir}{pos}{$\neg$(col?(p) = 0 \ $\land$ \ (o) = dir) \ $\land$ \ $\neg$(fila?(p) = 0 \ $\land$ \ (n) = dir)}
+
+%%%%%%%%%%%%%%%%
+%    AXIOMAS   %
+%%%%%%%%%%%%%%%%
+
+\tadAxiomas[\paratodo{pos}{p,p'}\ $\land$ \ \paratodo{nat}{f,c,menorDist} \paratodo{dir}{d}]
+\tadAxioma{fila?(nuevaPos(f,c))}{f}
+
+\tadAxioma{col?(nuevaPos(f,c))}{c}
+
+
+
+
+\tadAxioma{direccionesOptimas(p,\ p')}{ \{n,s,e,o\} $-$ (\IF fila?(p) <= fila?(p') THEN \{n\} ELSE $\emptyset$ FI) \\ 
+$-$ (\IF fila?(p) >= fila?(p') THEN \{s\} ELSE $\emptyset$ FI) \\
+$-$ (\IF col?(p) <= col?(p') THEN \{o\} ELSE $\emptyset$ FI) \\
+$-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)} 
+
+
+\tadAxioma{PosMasCercanaShort(p,\ cPos)}{cPosMasCercana(p,\ cPos,\ menorDistancia(p,cPos))}
+
+
+ \tadAxioma{cPosMasCercana(p,\ cPos,\ menorDist)}{\IF vacio?(cPos) THEN {$\emptyset$} ELSE {\IF dist(p, dameUno(cPos)) =  menorDist THEN {Ag(p, cPosMasCercana(p, sinUno(cPos), menorDist))} ELSE {cPosMasCercana(p, sinUno(cPos), menorDist)}  FI}  FI}
+
+\tadAxioma{menorDistancia(p,\ cPos)}{ \IF $\neg$ vacia?(cpos) THEN min(dist(p, dameUno(cPos)), menorDistancia(p, sinUno(cpos))) ELSE dist(p, dameUno(cPos)) FI}
+
+\tadAxioma{dist(p,p')}{(max(fila?(p), fila?(p')) - min(fila?(p), fila?(p')) + (max(col?(p), col?(p')) - min(col?(p), col?(p'))}
+
+\tadAxioma{mover(p,\ d)}{
+\IF (d = n ) 
+	THEN  {nuevaPos(fila?(p)-1, col?(p))}	ELSE {\IF (d=s) THEN {nuevaPos(fila?(p)+1, col?(p))} ELSE {\IF ( dir = o ) THEN {nuevaPos(fila?(p), col?(p)-1)} ELSE {nuevaPos(fila?(p), col?(p)+1)} FI} FI} FI}
+
+
+\tadAxioma{posiciones4Vecinas(p)}{
+	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
+		THEN 
+			{$\lbrace$ nuevaPos(1,0), nuevaPos(0,1)$\rbrace $}
+		ELSE 
+			{\IF fila?(p) = 0 
+			 				THEN 
+			 					{$\lbrace$ nuevaPos(0, col?(p)-1), nuevaPos(0, col?(p)+1), pos(1, col?(p))$\rbrace$} 
+			 									ELSE 
+			 					{\IF col?(p) = 0 
+			 					 			 						THEN 
+			 					 			 							{$\lbrace$ nuevaPos(fila?(p)-1, 0), nuevaPos(fila?(p)+1, 0), nuevaPos(fila?(p), 1)$\rbrace $}
+			 					 			 						ELSE 
+			 					 			 						{$\lbrace$ nuevaPos(fila?(p), col?(p)-1), nuevaPos(fila?(p), col?(p)+1),\\ nuevaPos(fila?(p)+1, col?(p)), nuevaPos(fila?(p)-1, col?(p)) $\rbrace$} FI} FI} FI		}
+
+
+\end{tad}
