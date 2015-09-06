@@ -1,117 +1,423 @@
-Generadores
+% Generadores
 
-nuevaUni : conj(<As, pos>) x al x an x conj(pos)
+% nuevaUni : conj(<As, pos>) x al x an x conj(pos)
 
-agregarE : uni x id x est x pos -> uni
-agregarH : uni x hip x pos -> uni
+% agregarE : uni x id x est x pos -> uni
+% agregarH : uni x hip x pos -> uni
 
-moverAs : uni x id -> uni
-moverE : uni x id -> uni
-moverH : uni x id -> uni
+% moverAs : uni x id -> uni
+% moverE : uni x id -> uni
+% moverH : uni x id -> uni
 
-id es nat
-hip es id
+% id es nat
+% hip es id
 
-observadores basicos
+% observadores basicos
 
-alto?
-ancho?
-obstaculos?
+% alto?
+% ancho?
+% obstaculos?
 
-agentes? : uni -> conj ()
-hippies? : uni -> conj ()
-estudiantes? : uni -> conj ()
-
-
-axiomas
-
-alto? (nuevaUni(ca, al, an, cobs)) = al
-alto? (agregarE(u, i, e, pos)) = alto?(u)
-alto? (agregarH(u, i, pos)) = alto?(u)
-alto? (moverAs(u, i)) = alto?(u)
-alto? (moverE(u, i)) = alto?(u)
-alto? (moverH(u, i)) = alto?(u)
-
-ancho? (nuevaUni(ca, al, an, cobs)) = an
-ancho? (agregarE(u, i, e, pos)) = ancho?(u)
-ancho? (agregarH(u, i, pos)) = ancho?(u)
-ancho? (moverAs(u, i)) = ancho?(u)
-ancho? (moverE(u, i)) = ancho?(u)
-ancho? (moverH(u, i)) = ancho?(u)
-
-obstaculos? (nuevaUni(ca, al, an, cobs)) = cobs
-obstaculos? (agregarE(u, i, e, pos)) = obstaculos?(u)
-obstaculos? (agregarH(u, i, pos)) = obstaculos?(u)
-obstaculos? (moverAs(u, i)) = obstaculos?(u)
-obstaculos? (moverE(u, i)) = obstaculos?(u)
-obstaculos? (moverH(u, i)) = obstaculos?(u)
+% agentes? : uni -> conj ()
+% hippies? : uni -> conj ()
+% estudiantes? : uni -> conj ()
 
 
-agentes? (nuevaUni(ca, al, an, cobs)) = ca
+% axiomas
 
-agentes? (agregarE(uni, i, e, pos)) = 
-	prim(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+% alto? (nuevaUni(ca, al, an, cobs)) = al
+% alto? (agregarE(u, i, e, pos)) = alto?(u)
+% alto? (agregarH(u, i, pos)) = alto?(u)
+% alto? (moverAs(u, i)) = alto?(u)
+% alto? (moverE(u, i)) = alto?(u)
+% alto? (moverH(u, i)) = alto?(u)
 
-agentes? (agregarH(uni, i, pos)) = 
-	prim(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+% ancho? (nuevaUni(ca, al, an, cobs)) = an
+% ancho? (agregarE(u, i, e, pos)) = ancho?(u)
+% ancho? (agregarH(u, i, pos)) = ancho?(u)
+% ancho? (moverAs(u, i)) = ancho?(u)
+% ancho? (moverE(u, i)) = ancho?(u)
+% ancho? (moverH(u, i)) = ancho?(u)
 
-agentes? (moverAs(uni, i)) = prim(moverAgenteYSancionarYCapturar(i, uni))
+% obstaculos? (nuevaUni(ca, al, an, cobs)) = cobs
+% obstaculos? (agregarE(u, i, e, pos)) = obstaculos?(u)
+% obstaculos? (agregarH(u, i, pos)) = obstaculos?(u)
+% obstaculos? (moverAs(u, i)) = obstaculos?(u)
+% obstaculos? (moverE(u, i)) = obstaculos?(u)
+% obstaculos? (moverH(u, i)) = obstaculos?(u)
 
-agentes? (moverE(uni, i)) = prim(moverEstudiante(i,uni))
 
-agentes? (moverH(uni, i)) = prim(moverHippie(i,uni))
+% agentes? (nuevaUni(ca, al, an, cobs)) = ca
 
+% agentes? (agregarE(uni, i, e, pos)) = 
+% 	prim(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
+% agentes? (agregarH(uni, i, pos)) = 
+% 	prim(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
-hippies? (nuevaUni(ca, al, an, cobs)) = vacio
+% agentes? (moverAs(uni, i)) = prim(moverAgenteYSancionarYCapturar(i, uni))
 
-hippies? (agregarE(uni, i, e, pos)) = 
-	seg(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+% agentes? (moverE(uni, i)) = prim(moverEstudiante(i,uni))
 
-hippies? (agregarH(uni, i, pos)) = 
-	seg(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
-
-hippies? (moverAs(uni, i)) = seg(moverAgenteYSancionarYCapturar(i, uni))
-
-hippies? (moverE(uni, i)) = seg(moverEstudiante(i,uni))
-
-hippies? (moverH(uni, i)) = seg(moverHippie(i,uni))
+% agentes? (moverH(uni, i)) = prim(moverHippie(i,uni))
 
 
 
-estudiantes? (nuevaUni(ca, al, an, cobs)) = vacio
+% hippies? (nuevaUni(ca, al, an, cobs)) = vacio
 
-estudiantes? (agregarE(uni, i, e, pos)) = 
-	ter(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+% hippies? (agregarE(uni, i, e, pos)) = 
+% 	seg(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
-estudiantes? (agregarH(u, i, pos)) = 
-	ter(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+% hippies? (agregarH(uni, i, pos)) = 
+% 	seg(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
 
-estudiantes? (moverAs(uni, i)) = ter(moverAgenteYSancionarYCapturar(i, uni))
+% hippies? (moverAs(uni, i)) = seg(moverAgenteYSancionarYCapturar(i, uni))
 
-estudiantes? (moverE(uni, i)) = ter(moverEstudiante(i,uni))
+% hippies? (moverE(uni, i)) = seg(moverEstudiante(i,uni))
 
-estudiantes? (moverH(uni, i)) = ter(moverHippie(i,uni))
+% hippies? (moverH(uni, i)) = seg(moverHippie(i,uni))
 
 
+
+% estudiantes? (nuevaUni(ca, al, an, cobs)) = vacio
+
+% estudiantes? (agregarE(uni, i, e, pos)) = 
+% 	ter(chequearSituacionShort(agregarEstudianteTripla(<i, e, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+
+% estudiantes? (agregarH(u, i, pos)) = 
+% 	ter(chequearSituacionShort(agregarHippieTripla(<i, pos>, <agentes?(u), hippies?(u), esudiantes?(u)>)))
+
+% estudiantes? (moverAs(uni, i)) = ter(moverAgenteYSancionarYCapturar(i, uni))
+
+% estudiantes? (moverE(uni, i)) = ter(moverEstudiante(i,uni))
+
+% estudiantes? (moverH(uni, i)) = ter(moverHippie(i,uni))
 
 
 
 
 
-capturar(p, cAs) =
-	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
-		Ag( <prim(cAs), darCaptura(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
-	else
-		Ag( dameUno(cAs), capturar(p, sinUno(cAs)) )
-	fi
 
-sancionar(p, cAs) =
-	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
-		Ag( <prim(cAs), darSancion(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
-	else
-		Ag( dameUno(cAs), sancionar(p, sinUno(cAs)) )
-	fi
+
+% capturar(p, cAs) =
+% 	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
+% 		Ag( <prim(cAs), darCaptura(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
+% 	else
+% 		Ag( dameUno(cAs), capturar(p, sinUno(cAs)) )
+% 	fi
+
+% sancionar(p, cAs) =
+% 	if p \in posiciones4Vecinas( ter(dameUno(cAs)) ) then
+% 		Ag( <prim(cAs), darSancion(seg(dameUno(cAs))), ter(dameUno(cAs))>, capturar(p, sinUno(cAs)) )
+% 	else
+% 		Ag( dameUno(cAs), sancionar(p, sinUno(cAs)) )
+% 	fi
+% queTipoHay(p, tripla, u) = 
+% 	if fila?(p) = alto?(u) or col?(p) = ancho?(u) then
+% 		FueraDeRango
+% 	else
+% 		if p \in obstaculos?(u) then
+% 			Obstaculo
+% 		elseif p \in damePosicionesAs(prim(tripla)) then
+% 			Agente
+% 		elseif p \in damePosicionesH(seg(tripla)) then
+% 			Hippie
+% 		elseif p \in damePosicionesEst(ter(tripla)) then
+% 			Estudiante
+% 		else
+% 			Vacio
+% 		fi
+% 	fi
+% cuatroVecinosShort(p, tripla, u) = cuatroVecinos(p, tripla, u, posiciones4Vecinas(p))
+% cuatroVecinos(p, tripla, u, p4v) = 
+% 	if vacio(p4v) then
+% 		vacio
+% 	else
+% 		Ag( queTipoHay(dameUno(p4v), tripla, u), cuatroVecinos(p, tripla, u, sinUno(p4v))
+% 	fi
+
+% queSituacion(mcT) = 
+% 	MovRest?(mcT) U UnAgente?(mcT) U DosHippies?(mcT) U CuatroEstudiantes?(mcT)
+
+% damePosicionesAs(ca) = 
+% 	if vacio?(ca) then
+% 		vacio
+% 	else
+% 		Ag(seg(dameUno(ca)), damePosicionesAs(sinUno(ca)))
+% 	fi
+
+
+% damePosicionesEst(ce) = 
+% 	if vacio?(ce) then
+% 		vacio
+% 	else
+% 		Ag(ter(dameUno(ce)), damePosicionesEst(sinUno(ce)))
+% 	fi
+
+% damePosicionesH(ch) = 
+% 	if vacio?(ch) then
+% 		vacio
+% 	else
+% 		Ag(seg(dameUno(ch)), damePosicionesH(sinUno(ch)))
+% 	fi
+
+% moverEstudianteYChequearSituaciones(i, u) = 
+% 	if ( vacio(dameEstudiante(i, estudiantes?(u))) ) then
+% 		<agentes?(u), hippies?(u), estudiantes?(u)>
+% 	else
+% 		if not( prim(dameEstudiante(i, u)) \in dirLibres(dameEstudiantePos(i, estudiantes?(u)), u) ) then
+% 			<agentes?(u), hippies?(u), estudiantes?(u)>
+% 		else
+% 			chequearSituacionShort( agregarEstudianteTripla( <i, fin(dameEstudiante(i, u)),	mover(dameEstudiantePos(i, estudiantes?(u)), prim(dameEstudiante(i, u)))>,
+% 			<agentes?(u), hippies?(u), sacarEstudianteId(i, estudiantes?(u))> ) )
+% 		fi
+% 	fi
+
+% dameEstudiante(i, cEst) = 
+% 	if prim(dameUno(cEst)) = i then
+% 		seg(dameUno(cEst))
+% 	else
+% 		dameEstudiante(i, sinUno(cEst))
+% 	fi
+
+% dameEstudiantePos(i, cEst) = 
+% 	if prim(dameUno(cEst)) = i then
+% 		ter(dameUno(cEst))
+% 	else
+% 		dameEstudiantePos(i, sinUno(cEst))
+% 	fi
+
+
+% sacarEstudianteId(i, cEst) = 
+% 	if vacio(cEst) then
+% 		vacio
+% 	else
+% 		if prim(dameUno(cEst)) = i then
+% 			sinUno(cEst)
+% 		else
+% 			Ag(dameUno(cEst), sacarEstudiante(i, sinUno(cEst)))
+% 		fi
+% 	fi
+
+% entradas?(an, al) = 
+% 	if an = 0 then
+% 		vacio	
+% 	else
+% 		Ag( pos(0, an-1), Ag( pos(al-1, an-1), entradas(an-1,al) ) )
+% 	fi
+
+% dirLibres(pos, u) = dirNoOcupadas( dirValidas(pos, ancho?(u), alto?(u)), pos, u)
+
+
+% dirValidas(pos, an, al) = 
+% 	{n,s,e,o} - (if col?(pos) = 0 then {o} else vacio fi) - (if col?(pos) = an-1 then {e} else vacio fi) - (if fila?(pos) = 0 then {n} else vacio fi) - (if fila?(pos) = al-1 then {s} else vacio fi)
+
+% dirNoOcupadas( cDirs, pos, u ) = 								{R: no(col?(pos) = 0 y (o) pertenece cDirs) y no(fila?(pos) = 0 y (n) pertenece cDirs) }
+% 	if (vacio(cDirs)) then
+% 		vacio
+% 	else
+% 		if (	Macro2 pertenece damePosicionesH(hippies?(u))) or 
+% 				Macro2 pertenece obstaculos?(u) or 
+% 				Macro2 pertenece damePosicionesAs(agentes?(u)) or 
+% 				Macro2 pertenece damePosicionesEst(estudiantes?(u)) then
+% 			dirNoOcupadas( sinUno(cDirs), pos, u)
+% 		else
+% 			Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, u) )
+% 		fi
+% 	fi
+% Macro2 = mover( pos, dameUno(cDirs) )
+
+% posNoOcupadas(cPos, u) = 
+% 	if (vacio(cPos)) then
+% 		vacio
+% 	else
+% 		if not dameUno(cPos) pertenece ( damePosicionesAs(agentes?(u)) U
+% 										damePosicionesEst(estudiantes?(u)) U
+% 										damePosicionesH(hippies?(u)) U
+% 										obstaculos?(u) ) then
+% 			Ag( dameUno(cPos), posNoOcupadas(sinUno(cPos), u) )
+% 		else
+% 			posNoOcupadas(sinUno(cpos), u)
+% 		fi
+% 	fi
+% moverAgenteYChequearSituacion(i, u) = 
+% 	if (vacio?(hippies?(u)) y dameAgentePos(i, agentes?(u)) \in entradas?(alto?(u), ancho?(u))) or inactivo?(dameAgente(i,u)) then
+% 		<agentes?(u), hippies?(u), estudiantes?(u)>
+% 	else
+% 		if vacio (posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)) then
+% 			<agentes?(u), hippies?(u), estudiantes?(u)>
+% 		else
+% 			chequearSituacionShort( agregarAgenteTripla(<i, dameAgente(i, agentes?(u)), mover(dameAgentePos(i, agentes?(u)), dameUno(posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)))>,
+% 			<sacarAgenteId(i, agentes?(u)) , hippies?(u), estudiantes?(u)>) )
+% 		fi
+% 	fi
+
+% posibleMovAs (agente, pos, u) = 
+% 	if ( inactivo?(agente) ) then
+% 		vacio
+% 	else
+% 		if vacio?(hippes?(u)) then
+			
+% 			if dirLibres(agente, u) interseccion 
+% 			direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) )) = vacio then
+% 				dirLibres(pos, u)
+% 			else
+% 				dirLibres(pos, u) interseccion 
+% 				direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) ))
+% 			fi
+
+% 		else
+			
+% 			if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) ))) = vacio then
+% 				dirLibres(pos, u)
+% 			else
+% 				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) )))
+% 			fi
+% 		fi
+% 	fi
+
+% dameAgente(i, cAs) = 
+% 	if prim(dameUno(cAs)) = i then
+% 		seg(dameUno(cAs))
+% 	else
+% 		dameAgente(i, sinUno(cAs))
+% 	fi
+
+% dameAgentePos(i, cAs) = 
+% 	if prim(dameUno(cAs)) = i then
+% 		ter(dameUno(cAs))
+% 	else
+% 		dameAgentePos(i, sinUno(cAs))
+% 	fi
+
+
+% sacarAgenteId(i, cAs) = 
+% 	if vacio(cAs) then
+% 		vacio
+% 	else
+% 		if prim(dameUno(cAs)) = i then
+% 			sinUno(cAs)
+% 		else
+% 			Ag(dameUno(cAs), sacarAgente(i, sinUno(cAs)))
+% 		fi
+% 	fi
+
+% moverHippieYChequearSituacion(i, u) =
+% 	if vacio ( posibleMovH(dameHippiePos(i, u), u) ) then
+% 		<agentes?(u), hippies?(u), estudiantes?(u)>
+% 	else
+% 		chequearSituacionShort( agregarHippieTripla(<i, mover(dameHippiePos(i,u), dameUno(posibleMovH(dameHippiePos(i, u), u)))>,
+% 		<agentes?(u), sacarHippieId(i, hippies?(u)), estudiantes?(u)> ) )
+% 	fi
+
+% posibleMovH (pos, u) = 
+% 	if vacio?(estudiantes?(u)) then
+% 		vacio
+% 	else
+% 		if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) ))) = vacio then
+% 				dirLibres(pos, u)
+% 			else
+% 				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) )))
+% 			fi
+% 	fi
+
+% dameHippiePos(i, cH) = 
+% 	if prim(dameUno(cH)) = i then
+% 		seg(dameUno(cH))
+% 	else
+% 		dameHippiePos(i, sinUno(cH))
+% 	fi
+
+
+% sacarHippieId(i, cH) = 
+% 	if vacio(cH) then
+% 		vacio
+% 	else
+% 		if prim(dameUno(cH)) = i then
+% 			sinUno(cH)
+% 		else
+% 			Ag(dameUno(cH), sacarHippie(i, sinUno(cH)))
+% 		fi
+% 	fi 
+
+
+% chequearSituacionShort(tripla, u) = chequearSituacion(tripla, tripla, u)
+
+% chequearSituacion(<cAs, cH, cEst>, triplaInfo, u) =
+
+% //la idea de la primera tripla es hacer recursion, es la que devuelvo modificada con los cambios entre hippie y estudiantes, viceversa, y capturas/sanciones de agentes. la idea de la segunda tripla es mantener toda la informacion relevante sobre el tablero con las fichas ya movidas por los "mover", porque sino al hacer la recursion pierdo los 4-vecinos de muchas fichas. (ej: la ultima ficha de la recursion no tiene nadie alrededor, nunca)
+
+% 	if vacio(cH) then
+% 		if vacio(cEst) then
+% 			<cAs, cH, cEst>
+% 		else
+% 			//En estudiante no se tiene que modificar lo que se pasa como triplaInfo, ya que no quiero efectos en cadena (un estudiante se convierte, y luego participa, ya como hippie, en la conversion de otro estudiante)
+
+% 			if {movRest, unAgente} \contenido 
+% 				queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+% 				if {dosHippies} \contenido 
+% 					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+% 					//sanciono al agente y agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
+
+% 					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+% 						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
+% 				else
+% 					//sanciono al agente y hago recursion sobre el resto
+
+% 					agregarEstudianteTripla( dameUno(cEst),
+% 						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
+% 				fi
+% 			else
+% 				if {dosHippies} \contenido 
+% 					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
+% 					// agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
+
+% 					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+% 						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
+% 				else
+% 					//hago recursion sin cambiar nada
+
+% 					agregarEstudianteTripla( dameUno(cEst),
+% 						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
+% 				fi
+% 			fi
+% 		fi
+% 	else
+% 		//como despues de chequear los hippies tengo que chequear los estudiantes, no mando "triplaInfo" como segundo parametro, ya que me importa saber si el hippie que iba a convertir a un estudiante murio, o fue convertido a estudiante.
+
+% 		if {movRest, unAgente} \contenido 
+% 				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
+% 			//mato al hippie (no lo agrego a la recursion), le doy una captura a los agentes cercanos y hago recursion
+
+% 			chequearSituacion(<capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, <capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, u)
+% 		else
+% 			if {movRest, cuatroEstudiantes} \contenido 
+% 				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
+% 				//lo convierto en uno de los estudiantes que lo rodean, en este caso no me importa agregarlo a triplaInfo, porque no va a afectar a lo que le pase a los estudiantes que quedan adentro, pero si me interesa sacarlo de triplaInfo, porque no quiero que participe en convertir a un estudiante.
+
+% 				agregarEstudianteTripla( 
+% 				<dameHippieId(dameUno(cH)), dameUno(estudiantesAdyacentesPos(dameHippiePos(dameUno(cH)), cEst)), dameHippiePos(dameUno(cH))>,
+% 				chequearSituacion(<cAs, sinUno(cH), cEst >, <cAs, sinUno(cH), cEst>, u))
+% 			else
+% 				//no le pasa nada, hago recursion
+
+% 				agregarHippieTripla( dameUno(cH),
+% 						 chequearSituacion(<cAs, sinUno(cH), cEst >, triplaInfo, u) )
+% 			fi
+% 		fi
+% 	fi
+
+% agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
+% agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>
+% agEstudianteTripla(e, <cAs, cH, cEst>) = <cAs, cH, Ag(e, cEst)>
+
+
+% estudiantesAdyacentesPos(p, cEst) = 
+% if dameEstudiantePos(dameUno(cEst)) \in posiciones4Vecinas(p) then
+% 	Ag(seg(dameUno(cEst)), estudiantesAdyacentesPos(p, sinUno(cEst)))
+% else
+% 	estudiantesAdyacentesPos(p, sinUno(cEst))
+% fi
 
 posiciones4Vecinas(p) =
 	if fila?(p) = 0 Y col?(p) = 0 then
@@ -127,38 +433,12 @@ posiciones4Vecinas(p) =
 					pos(fila?(p), col?(p)+1), 
 					pos(fila?(p)+1, col?(p)), 
 					pos(fila?(p)-1, col?(p)) }
-			fi
+				fi
 		fi
 	fi
 
-cuatroVecinosShort(p, tripla, u) = cuatroVecinos(p, tripla, u, posiciones4Vecinas(p))
 
-cuatroVecinos(p, tripla, u, p4v) = 
-	if vacio(p4v) then
-		vacio
-	else
-		Ag( queTipoHay(dameUno(p4v), tripla, u), cuatroVecinos(p, tripla, u, sinUno(p4v))
-	fi
 
-queTipoHay(p, tripla, u) = 
-	if fila?(p) = alto?(u) or col?(p) = ancho?(u) then
-		FueraDeRango
-	else
-		if p \in obstaculos?(u) then
-			Obstaculo
-		elseif p \in damePosicionesAs(prim(tripla)) then
-			Agente
-		elseif p \in damePosicionesH(seg(tripla)) then
-			Hippie
-		elseif p \in damePosicionesEst(ter(tripla)) then
-			Estudiante
-		else
-			Vacio
-		fi
-	fi
-
-queSituacion(mcT) = 
-	MovRest?(mcT) U UnAgente?(mcT) U DosHippies?(mcT) U CuatroEstudiantes?(mcT)
 
 movRest?(mcT) = 
 	if #(Vacio, mcT) = 0 then
@@ -188,109 +468,8 @@ CuatroEstudiantes?(mcT) =
 		vacio
 	fi
 
-damePosicionesAs(ca) = 
-	if vacio?(ca) then
-		vacio
-	else
-		Ag(seg(dameUno(ca)), damePosicionesAs(sinUno(ca)))
-	fi
 
 
-damePosicionesEst(ce) = 
-	if vacio?(ce) then
-		vacio
-	else
-		Ag(ter(dameUno(ce)), damePosicionesEst(sinUno(ce)))
-	fi
-
-damePosicionesH(ch) = 
-	if vacio?(ch) then
-		vacio
-	else
-		Ag(seg(dameUno(ch)), damePosicionesH(sinUno(ch)))
-	fi
-
-moverEstudianteYChequearSituaciones(i, u) = 
-	if ( vacio(dameEstudiante(i, estudiantes?(u))) ) then
-		<agentes?(u), hippies?(u), estudiantes?(u)>
-	else
-		if not( prim(dameEstudiante(i, u)) \in dirLibres(dameEstudiantePos(i, estudiantes?(u)), u) ) then
-			<agentes?(u), hippies?(u), estudiantes?(u)>
-		else
-			chequearSituacionShort( agregarEstudianteTripla( <i, fin(dameEstudiante(i, u)),	mover(dameEstudiantePos(i, estudiantes?(u)), prim(dameEstudiante(i, u)))>,
-			<agentes?(u), hippies?(u), sacarEstudianteId(i, estudiantes?(u))> ) )
-		fi
-	fi
-
-dameEstudiante(i, cEst) = 
-	if prim(dameUno(cEst)) = i then
-		seg(dameUno(cEst))
-	else
-		dameEstudiante(i, sinUno(cEst))
-	fi
-
-dameEstudiantePos(i, cEst) = 
-	if prim(dameUno(cEst)) = i then
-		ter(dameUno(cEst))
-	else
-		dameEstudiantePos(i, sinUno(cEst))
-	fi
-
-
-sacarEstudianteId(i, cEst) = 
-	if vacio(cEst) then
-		vacio
-	else
-		if prim(dameUno(cEst)) = i then
-			sinUno(cEst)
-		else
-			Ag(dameUno(cEst), sacarEstudiante(i, sinUno(cEst)))
-		fi
-	fi
-
-entradas?(an, al) = 
-	if an = 0 then
-		vacio	
-	else
-		Ag( pos(0, an-1), Ag( pos(al-1, an-1), entradas(an-1,al) ) )
-	fi
-
-
-dirLibres(pos, u) = dirNoOcupadas( dirValidas(pos, ancho?(u), alto?(u)), pos, u)
-
-
-dirValidas(pos, an, al) = 
-	{n,s,e,o} - (if col?(pos) = 0 then {o} else vacio fi) - (if col?(pos) = an-1 then {e} else vacio fi) - (if fila?(pos) = 0 then {n} else vacio fi) - (if fila?(pos) = al-1 then {s} else vacio fi)
-
-
-dirNoOcupadas( cDirs, pos, u ) = 								{R: no(col?(pos) = 0 y (o) pertenece cDirs) y no(fila?(pos) = 0 y (n) pertenece cDirs) }
-	if (vacio(cDirs)) then
-		vacio
-	else
-		if (	Macro2 pertenece damePosicionesH(hippies?(u))) or 
-				Macro2 pertenece obstaculos?(u) or 
-				Macro2 pertenece damePosicionesAs(agentes?(u)) or 
-				Macro2 pertenece damePosicionesEst(estudiantes?(u)) then
-			dirNoOcupadas( sinUno(cDirs), pos, u)
-		else
-			Ag( dameUno(cDirs), dirNoOcupadas( sinUno(cDirs), pos, u) )
-		fi
-	fi
-Macro2 = mover( pos, dameUno(cDirs) )
-
-posNoOcupadas(cPos, u) = 
-	if (vacio(cPos)) then
-		vacio
-	else
-		if not dameUno(cPos) pertenece ( damePosicionesAs(agentes?(u)) U
-										damePosicionesEst(estudiantes?(u)) U
-										damePosicionesH(hippies?(u)) U
-										obstaculos?(u) ) then
-			Ag( dameUno(cPos), posNoOcupadas(sinUno(cPos), u) )
-		else
-			posNoOcupadas(sinUno(cpos), u)
-		fi
-	fi
 
 
 direccionesOptimas(pos1,pos2) = 
@@ -332,181 +511,7 @@ mover(pos, dir) = 															{R: no(col?(pos) = 0 y (o) = dir) y no(fila?(po
 		<fila?(pos), col?(pos)+1>
 	fi
 
-moverAgenteYChequearSituacion(i, u) = 
-	if (vacio?(hippies?(u)) y dameAgentePos(i, agentes?(u)) \in entradas?(alto?(u), ancho?(u))) or inactivo?(dameAgente(i,u)) then
-		<agentes?(u), hippies?(u), estudiantes?(u)>
-	else
-		if vacio (posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)) then
-			<agentes?(u), hippies?(u), estudiantes?(u)>
-		else
-			chequearSituacionShort( agregarAgenteTripla(<i, dameAgente(i, agentes?(u)), mover(dameAgentePos(i, agentes?(u)), dameUno(posibleMovAs(dameAgente(i, agentes?(u)), dameAgentePos(i, agentes?(u)), u)))>,
-			<sacarAgenteId(i, agentes?(u)) , hippies?(u), estudiantes?(u)>) )
-		fi
-	fi
-
-posibleMovAs (agente, pos, u) = 
-	if ( inactivo?(agente) ) then
-		vacio
-	else
-		if vacio?(hippes?(u)) then
-			
-			if dirLibres(agente, u) interseccion 
-			direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) )) = vacio then
-				dirLibres(pos, u)
-			else
-				dirLibres(pos, u) interseccion 
-				direccionesOptimas (dameUno( cPosMasCercanaShort(pos, posNoOcupadas(entradas(an, al), u)) ))
-			fi
-
-		else
-			
-			if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) ))) = vacio then
-				dirLibres(pos, u)
-			else
-				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, hippies?(u) )))
-			fi
-		fi
-	fi
-
-dameAgente(i, cAs) = 
-	if prim(dameUno(cAs)) = i then
-		seg(dameUno(cAs))
-	else
-		dameAgente(i, sinUno(cAs))
-	fi
-
-dameAgentePos(i, cAs) = 
-	if prim(dameUno(cAs)) = i then
-		ter(dameUno(cAs))
-	else
-		dameAgentePos(i, sinUno(cAs))
-	fi
 
 
-sacarAgenteId(i, cAs) = 
-	if vacio(cAs) then
-		vacio
-	else
-		if prim(dameUno(cAs)) = i then
-			sinUno(cAs)
-		else
-			Ag(dameUno(cAs), sacarAgente(i, sinUno(cAs)))
-		fi
-	fi
-
-moverHippieYChequearSituacion(i, u) =
-	if vacio ( posibleMovH(dameHippiePos(i, u), u) ) then
-		<agentes?(u), hippies?(u), estudiantes?(u)>
-	else
-		chequearSituacionShort( agregarHippieTripla(<i, mover(dameHippiePos(i,u), dameUno(posibleMovH(dameHippiePos(i, u), u)))>,
-		<agentes?(u), sacarHippieId(i, hippies?(u)), estudiantes?(u)> ) )
-	fi
-
-posibleMovH (pos, u) = 
-	if vacio?(estudiantes?(u)) then
-		vacio
-	else
-		if dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) ))) = vacio then
-				dirLibres(pos, u)
-			else
-				dirLibres(pos, u) interseccion direccionesOptimas (dameUno(cPosMasCercanaShort( pos, damePosicionesEst(estudiantes?(u)) )))
-			fi
-	fi
-
-dameHippiePos(i, cH) = 
-	if prim(dameUno(cH)) = i then
-		seg(dameUno(cH))
-	else
-		dameHippiePos(i, sinUno(cH))
-	fi
 
 
-sacarHippieId(i, cH) = 
-	if vacio(cH) then
-		vacio
-	else
-		if prim(dameUno(cH)) = i then
-			sinUno(cH)
-		else
-			Ag(dameUno(cH), sacarHippie(i, sinUno(cH)))
-		fi
-	fi 
-
-
-chequearSituacionShort(tripla, u) = chequearSituacion(tripla, tripla, u)
-
-chequearSituacion(<cAs, cH, cEst>, triplaInfo, u) =
-
-//la idea de la primera tripla es hacer recursion, es la que devuelvo modificada con los cambios entre hippie y estudiantes, viceversa, y capturas/sanciones de agentes. la idea de la segunda tripla es mantener toda la informacion relevante sobre el tablero con las fichas ya movidas por los "mover", porque sino al hacer la recursion pierdo los 4-vecinos de muchas fichas. (ej: la ultima ficha de la recursion no tiene nadie alrededor, nunca)
-
-	if vacio(cH) then
-		if vacio(cEst) then
-			<cAs, cH, cEst>
-		else
-			//En estudiante no se tiene que modificar lo que se pasa como triplaInfo, ya que no quiero efectos en cadena (un estudiante se convierte, y luego participa, ya como hippie, en la conversion de otro estudiante)
-
-			if {movRest, unAgente} \contenido 
-				queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
-				if {dosHippies} \contenido 
-					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
-					//sanciono al agente y agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
-
-					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
-						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
-				else
-					//sanciono al agente y hago recursion sobre el resto
-
-					agregarEstudianteTripla( dameUno(cEst),
-						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
-				fi
-			else
-				if {dosHippies} \contenido 
-					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
-					// agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
-
-					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
-						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
-				else
-					//hago recursion sin cambiar nada
-
-					agregarEstudianteTripla( dameUno(cEst),
-						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
-				fi
-			fi
-		fi
-	else
-		//como despues de chequear los hippies tengo que chequear los estudiantes, no mando "triplaInfo" como segundo parametro, ya que me importa saber si el hippie que iba a convertir a un estudiante murio, o fue convertido a estudiante.
-
-		if {movRest, unAgente} \contenido 
-				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
-			//mato al hippie (no lo agrego a la recursion), le doy una captura a los agentes cercanos y hago recursion
-
-			chequearSituacion(<capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, <capturar(dameHippiePos(dameUno(cH)), cAs), sinUno(cH), cEst>, u)
-		else
-			if {movRest, cuatroEstudiantes} \contenido 
-				queSituacion( cuatroVecinosShort(dameHippiePos(dameUno(cH)), triplaInfo, u) ) then
-				//lo convierto en uno de los estudiantes que lo rodean, en este caso no me importa agregarlo a triplaInfo, porque no va a afectar a lo que le pase a los estudiantes que quedan adentro, pero si me interesa sacarlo de triplaInfo, porque no quiero que participe en convertir a un estudiante.
-
-				agregarEstudianteTripla( 
-				<dameHippieId(dameUno(cH)), dameUno(estudiantesAdyacentesPos(dameHippiePos(dameUno(cH)), cEst)), dameHippiePos(dameUno(cH))>,
-				chequearSituacion(<cAs, sinUno(cH), cEst >, <cAs, sinUno(cH), cEst>, u))
-			else
-				//no le pasa nada, hago recursion
-
-				agregarHippieTripla( dameUno(cH),
-						 chequearSituacion(<cAs, sinUno(cH), cEst >, triplaInfo, u) )
-			fi
-		fi
-	fi
-
-agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
-agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>
-agEstudianteTripla(e, <cAs, cH, cEst>) = <cAs, cH, Ag(e, cEst)>
-
-
-estudiantesAdyacentesPos(p, cEst) = 
-if dameEstudiantePos(dameUno(cEst)) \in posiciones4Vecinas(p) then
-	Ag(seg(dameUno(cEst)), estudiantesAdyacentesPos(p, sinUno(cEst)))
-else
-	estudiantesAdyacentesPos(p, sinUno(cEst))
-fi
