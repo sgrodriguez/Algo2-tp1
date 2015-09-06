@@ -359,7 +359,7 @@
 % 					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
 % 					//sanciono al agente y agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
 
-% 					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+% 					agregarHippieTripla( convertirEstudianteAHippie(dameUno(cEst)),
 % 						 chequearSituacion(<sancionar(dameEstudiantePos(dameUno(cEst)), cAs), cH, sinUno(cEst) >, triplaInfo, u) )
 % 				else
 % 					//sanciono al agente y hago recursion sobre el resto
@@ -372,7 +372,7 @@
 % 					queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno(cEst)), triplaInfo, u) ) then
 % 					// agrego un hippie con el mismo ID en el lugar que estaba el Estudiante y hago recursion
 
-% 					agregarHippieTripla( <dameEstudianteId(dameUno(cEst)), dameEstudiantePos(dameUno(cEst))>,
+% 					agregarHippieTripla( convertirEstudianteAHippie(dameUno(cEst)),
 % 						 chequearSituacion(<cAs, cH, sinUno(cEst) >, triplaInfo, u) )
 % 				else
 % 					//hago recursion sin cambiar nada
@@ -396,7 +396,7 @@
 % 				//lo convierto en uno de los estudiantes que lo rodean, en este caso no me importa agregarlo a triplaInfo, porque no va a afectar a lo que le pase a los estudiantes que quedan adentro, pero si me interesa sacarlo de triplaInfo, porque no quiero que participe en convertir a un estudiante.
 
 % 				agregarEstudianteTripla( 
-% 				<dameHippieId(dameUno(cH)), dameUno(estudiantesAdyacentesPos(dameHippiePos(dameUno(cH)), cEst)), dameHippiePos(dameUno(cH))>,
+% 				convertirHippieAEst(dameUno(cH), cEst),
 % 				chequearSituacion(<cAs, sinUno(cH), cEst >, <cAs, sinUno(cH), cEst>, u))
 % 			else
 % 				//no le pasa nada, hago recursion
@@ -406,6 +406,9 @@
 % 			fi
 % 		fi
 % 	fi
+
+convertirHippieAEst(h, cEst) = <dameHippieId(h), dameUno(estudiantesAdyacentesPos(dameHippiePos(h), cEst)), dameHippiePos(h)>
+convertirEstAHippie(e) = <dameEstudianteId(e), dameEstudiantePos(h)>
 
 % agAgenteTripla(a, <cAs, cH, cEst>) = <Ag(a, cAs), cH, cEst>
 % agHippieTripla(h, <cAs, cH, cEst>) = <cAs, Ag(h, cH), cEst>
