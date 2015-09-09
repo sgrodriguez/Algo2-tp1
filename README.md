@@ -1,3 +1,2 @@
 # MLGalgo2
-Repo para tps de algo2 del mejor grupo de la clase jejeje xDXDXDXDDDD
-Commit KKKKKKhueheuheuhe HUAHAUHAUAHAUH
+Era muy molesto leer eso cada vez que entraba al repo.
