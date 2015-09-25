@@ -62,23 +62,21 @@
 
 TAD id ES Nat \
 TAD placa ES Nat \
-TAD hip ES Id \
 TAD est ES Secu(Dir) \
 
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
 \tadGeneros{uni}
-\tadExporta{uni, Generadores, Observadores Basicos}
-\tadUsa{\tadNombre{Nat, Conju($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$)}}
+\tadExporta{uni, Generadores, Observadores Basicos, masVigilante, cuantosHippies, cuantosEstudiantes}
+\tadUsa{\tadNombre{Nat, Conj($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$), Multiconj($\alpha$), id, placa, est, campus, direccion, \\ SituacionesRodeo, TipoElem}}
 
 \tadIgualdadObservacional{u}{u'}{uni}{
-alto?(u) $\igobs$  alto?(u') $\land$
-ancho?(u) $\igobs$  ancho?(u') $\land$ 
-obstaculos?(u) $\igobs$  obstaculos?(u') $\land$
-agentes?(u) $\igobs$  agentes?(u') $\land$
-estudiantes?(u) $\igobs$  estudiantes?(u') $\land$
-hippies?(u) $\igobs$  hippies?(u')
+campus?($u$) $\igobs$  campus?($u'$) $\land$ \\
+estudiantes?($u$) $\igobs$  estudiantes?($u'$) $\land$ \\
+hippies?($u$) $\igobs$  hippies?($u'$) $\land$ \\
+agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
+($\forall p: \text{placa}$) def?($p$, agentes?($u$)) $\impluego$ \\ (sanciones?($u, p$) $\igobs$ sanciones?($u', p$) $\land$ \\ capturas?($u, p$) $\igobs$ capturas?($u', p$))
 }
 \begin{scriptsize}
 \textit{Los Agentes son manejados como triplas que tienen al Id, al Agente en cuestion, y su posicion. Los estudiantes son triplas con Id, Estudiante y Posicion. Los Hippies son duplas de Id y Posicion.}
@@ -90,14 +88,16 @@ hippies?(u) $\igobs$  hippies?(u')
 
 \tadObservadores
 
-\tadOperacion{alto?}{uni}{nat}{}
-\tadOperacion{ancho?}{uni}{nat}{}
-\tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
+%\tadOperacion{alto?}{uni}{nat}{}
+%\tadOperacion{ancho?}{uni}{nat}{}
+%\tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
+\tadOperacion{campus?}{uni}{campus}{}
 \tadOperacion{agentes?}{uni}{dicc(placa, pos)}{}
 \tadOperacion{hippies?}{uni}{dicc(id, pos)}{}
 \tadOperacion{estudiantes?}{uni}{dicc(id, $\langle$ est, pos $\rangle$)}{}
 
 \tadOperacion{sanciones?}{uni \ u, placa \ p}{nat}{def?(p, agentes?(u))}
+\tadOperacion{capturas?}{uni \ u, placa \ p}{nat}{def?(p, agentes?(u))}
 
 \tadGeneradores
 
@@ -106,7 +106,7 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadOperacion{agregarH}{uni \ u, id \ i, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida(p, u)}
 
 \tadOperacion{moverAS}{uni \ u, placa \ p}{uni}{ (def?(p, agentes?(u))) $\yluego$ (sanciones?(p, u) $<$ 3)}
-\tadOperacion{moverHoE}{uni \ u, id \ i}{uni}{(def?(i, hippies?(u))) $\land$ (def?(i, estudiantes?(u)))}
+\tadOperacion{moverHoE}{uni \ u, id \ i}{uni}{(def?(i, hippies?(u))) $\lor$ (def?(i, estudiantes?(u)))}
 %\tadOperacion{moverE}{uni, id}{uni}{}
 
 %ANOTAR DESPUES QUE SI MODELAMOS LA SALIDA DE LOS ESTUDIANTES MEDIANTE "ESTUDIANTES?"
@@ -274,26 +274,33 @@ hippies?(u) $\igobs$  hippies?(u')
 
 Observadores Basicos
 
-\tadAxioma{alto? (nuevaUni(cAs, al, an, cObs))}{al\\}
-\tadAxioma{alto? (agregarE(u, i, e, p))}{alto?($u$)\\}
-\tadAxioma{alto? (agregarH(u, i, p))}{alto?($u$)\\}
-\tadAxioma{alto? (moverAs(u, i))}{alto?($u$)\\}
-\tadAxioma{alto? (moverH(u, i))}{alto?($u$)\\}
-\tadAxioma{alto? (moverE(u, i))}{alto?($u$)\\}
+% \tadAxioma{alto? (nuevaUni(cAs, al, an, cObs))}{al\\}
+% \tadAxioma{alto? (agregarE(u, i, e, p))}{alto?($u$)\\}
+% \tadAxioma{alto? (agregarH(u, i, p))}{alto?($u$)\\}
+% \tadAxioma{alto? (moverAs(u, i))}{alto?($u$)\\}
+% \tadAxioma{alto? (moverH(u, i))}{alto?($u$)\\}
+% \tadAxioma{alto? (moverE(u, i))}{alto?($u$)\\}
 
-\tadAxioma{ancho? (nuevaUni(cAs, al, an, cObs))}{an\\}
-\tadAxioma{ancho? (agregarE(u, i, e, p))}{ancho?($u$)\\}
-\tadAxioma{ancho? (agregarH(u, i, p))}{ancho?($u$)\\}
-\tadAxioma{ancho? (moverAs(u, i))}{ancho?($u$)\\}
-\tadAxioma{ancho? (moverH(u, i))}{ancho?($u$)\\}
-\tadAxioma{ancho? (moverE(u, i))}{ancho?($u$)\\}
+% \tadAxioma{ancho? (nuevaUni(cAs, al, an, cObs))}{an\\}
+% \tadAxioma{ancho? (agregarE(u, i, e, p))}{ancho?($u$)\\}
+% \tadAxioma{ancho? (agregarH(u, i, p))}{ancho?($u$)\\}
+% \tadAxioma{ancho? (moverAs(u, i))}{ancho?($u$)\\}
+% \tadAxioma{ancho? (moverH(u, i))}{ancho?($u$)\\}
+% \tadAxioma{ancho? (moverE(u, i))}{ancho?($u$)\\}
 
-\tadAxioma{obstaculos? (nuevaUni(cAs, al, an, cObs))}{cObs\\}
-\tadAxioma{obstaculos? (agregarE(u, i, e, p))}{obstaculos?($u$)\\}
-\tadAxioma{obstaculos? (agregarH(u, i, p))}{obstaculos?($u$)\\}
-\tadAxioma{obstaculos? (moverAs(u, i))}{obstaculos?($u$)\\}
-\tadAxioma{obstaculos? (moverH(u, i))}{obstaculos?($u$)\\}
-\tadAxioma{obstaculos? (moverE(u, i))}{obstaculos?($u$)\\}
+% \tadAxioma{obstaculos? (nuevaUni(cAs, al, an, cObs))}{cObs\\}
+% \tadAxioma{obstaculos? (agregarE(u, i, e, p))}{obstaculos?($u$)\\}
+% \tadAxioma{obstaculos? (agregarH(u, i, p))}{obstaculos?($u$)\\}
+% \tadAxioma{obstaculos? (moverAs(u, i))}{obstaculos?($u$)\\}
+% \tadAxioma{obstaculos? (moverH(u, i))}{obstaculos?($u$)\\}
+% \tadAxioma{obstaculos? (moverE(u, i))}{obstaculos?($u$)\\}
+
+\tadAxioma{campus? (nuevaUni($c, as$))}{$c$\\}
+\tadAxioma{campus? (agregarE($u, i, e, p$))}{campus?($u$)\\}
+\tadAxioma{campus? (agregarH($u, i, p$))}{campus?($u$)\\}
+\tadAxioma{campus? (moverAs($u, p$))}{campus?($u$)\\}
+\tadAxioma{campus? (moverHoE($u, i$))}{campus?($u$)\\}
+
 
 \tadAxioma{agentes? (nuevaUni(cAs, al, an, cObs))}{cAs\\}
 \tadAxioma{agentes? (agregarE(u, i, e, p))}{
