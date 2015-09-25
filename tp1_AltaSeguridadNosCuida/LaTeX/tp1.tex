@@ -60,6 +60,11 @@
 % TAD UNIVERSIDAD %
 %%%%%%%%%%%%%%%%%%%
 
+TAD id ES Nat \
+TAD placa ES Nat \
+TAD hip ES Id \
+TAD est ES Secu(Dir) \
+
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
@@ -88,25 +93,23 @@ hippies?(u) $\igobs$  hippies?(u')
 \tadOperacion{alto?}{uni}{nat}{}
 \tadOperacion{ancho?}{uni}{nat}{}
 \tadOperacion{obstaculos?}{uni}{conj($pos$)}{}
-\tadOperacion{agentes?}{uni}{conj($\langle id ,\ as,\ pos \rangle$)}{}
-\tadOperacion{hippies?}{uni}{conj($\langle id,\ pos \rangle$)}{}
-\tadOperacion{estudiantes?}{uni}{conj($\langle id,\ est,\  pos \rangle$)}{}
+\tadOperacion{agentes?}{uni}{dicc(placa, pos)}{}
+\tadOperacion{hippies?}{uni}{dicc(id, pos)}{}
+\tadOperacion{estudiantes?}{uni}{dicc(id, $\langle$ est, pos $\rangle$)}{}
+
+\tadOperacion{sanciones?}{uni \ u, placa \ p}{nat}{def?(p, agentes?(u))}
 
 \tadGeneradores
 
-TAD id ES Nat \
-TAD hip ES Id \
-TAD est ES Secu(Dir) \
+\tadOperacion{nuevaUni}{campus \ c, dicc(placa ${,}$ \ pos) \ as}{uni}{posicionesValidas(c, as)}
+\tadOperacion{agregarE}{uni \ u, id \ i, est \ e, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida(p, u)}
+\tadOperacion{agregarH}{uni \ u, id \ i, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida(p, u)}
 
-\tadOperacion{nuevaUni}{conj($\langle$ as ${,}$ \ pos $\rangle$), nat, nat, conj($pos$)}{uni}{}
+\tadOperacion{moverAS}{uni \ u, placa \ p}{uni}{ (def?(p, agentes?(u))) $\yluego$ (sanciones?(p, u) $<$ 3)}
+\tadOperacion{moverHoE}{uni \ u, id \ i}{uni}{(def?(i, hippies?(u))) $\land$ (def?(i, estudiantes?(u)))}
+%\tadOperacion{moverE}{uni, id}{uni}{}
 
-\tadOperacion{agregarE}{uni, id, est, pos}{uni}{}
-\tadOperacion{agregarH}{uni, hip, pos}{uni}{}
-
-\tadOperacion{moverAS}{uni, id}{uni}{}
-\tadOperacion{moverH}{uni, id}{uni}{}
-\tadOperacion{moverE}{uni, id}{uni}{}
-
+%ANOTAR DESPUES QUE SI MODELAMOS LA SALIDA DE LOS ESTUDIANTES MEDIANTE "ESTUDIANTES?"
 
 \tadOtrasOperaciones
 
