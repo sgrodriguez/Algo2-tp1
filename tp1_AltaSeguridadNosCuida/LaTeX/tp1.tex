@@ -60,16 +60,16 @@
 % TAD UNIVERSIDAD %
 %%%%%%%%%%%%%%%%%%%
 
-TAD id ES Nat \
-TAD placa ES Nat \
-TAD est ES Secu(Dir) \
+TAD ID es NAT, \
+TAD PLACA es NAT, \
+TAD EST es SECU(DIR) \
 
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
 \tadGeneros{uni}
 \tadExporta{uni, Generadores, Observadores Basicos, masVigilante, cuantosHippies, cuantosEstudiantes}
-\tadUsa{\tadNombre{Nat, Conj($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$), Multiconj($\alpha$), id, placa, est, campus, direccion, \\ SituacionesRodeo, TipoElem}}
+\tadUsa{\tadNombre{Nat, Conj($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$), Multiconj($\alpha$), id, placa, est, campus, direccion, \\ SituacionesRodeo, TipoElem, Diccionario(clave, significado)  <---- ? }}
 
 \tadIgualdadObservacional{u}{u'}{uni}{
 campus?($u$) $\igobs$  campus?($u'$) $\land$ \\
@@ -79,7 +79,7 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 ($\forall p: \text{placa}$) def?($p$, agentes?($u$)) $\impluego$ \\ (sanciones?($u, p$) $\igobs$ sanciones?($u', p$) $\land$ \\ capturas?($u, p$) $\igobs$ capturas?($u', p$))
 }
 \begin{scriptsize}
-\textit{Los Agentes son manejados como triplas que tienen al Id, al Agente en cuestion, y su posicion. Los estudiantes son triplas con Id, Estudiante y Posicion. Los Hippies son duplas de Id y Posicion.}
+\textit{¡¡¡¡¡¡¡¡¡¡¡¡Los Agentes son manejados como triplas que tienen al Id, al Agente en cuestion, y su posicion. Los estudiantes son triplas con Id, Estudiante y Posicion. Los Hippies son duplas de Id y Posicion.}
 \end{scriptsize}
 
 \begin{scriptsize}
@@ -105,6 +105,8 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \tadOperacion{agregarE}{uni \ u, id \ i, est \ e, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida(p, u)}
 \tadOperacion{agregarH}{uni \ u, id \ i, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida(p, u)}
 
+definir posicionesValidas y posValida (o cambiarle nombre)
+
 \tadOperacion{moverAS}{uni \ u, placa \ p}{uni}{ (def?(p, agentes?(u))) $\yluego$ (sanciones?(p, u) $<$ 3)}
 \tadOperacion{moverHoE}{uni \ u, id \ i}{uni}{(def?(i, hippies?(u))) $\lor$ (def?(i, estudiantes?(u)))}
 %\tadOperacion{moverE}{uni, id}{uni}{}
@@ -115,15 +117,15 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 
  \tadOperacion{capturar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
  \tadOperacion{sancionar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
- \tadOperacion{queTipoHay}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$}{tipo}{}
+ \tadOperacion{queTipoHay}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$}{tipo}{exista c en claves que cumpla que: (si está en claves de dAs entonces obtener de c en dAs da pos y si está en claves de dH entonces etc.) }
  \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni}{multiconj(tipo)}{}
  \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
  \tadOperacion{queSituacion}{multiconj(tipo)}{conj(situ)}{}
- \tadOperacion{damePosicionesAs}{conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
+ \tadOperacion{damePosicionesAs}{dicc(placa ${ , }$ pos)}{conj(pos)}{}
 
 %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
-\tadOperacion{damePosicionesEst}{conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
-\tadOperacion{damePosicionesH}{conj( $\langle$ id${,}$ \ pos $\rangle$)}{conj(pos)}{}
+\tadOperacion{damePosicionesEst}{dicc( id${,}$ \ $\langle$  agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
+\tadOperacion{damePosicionesH}{dicc( id${,}$ \ pos )}{conj(pos)}{}
 
  \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs${,}$  cH${,}$  cEst $\rangle$}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{dameEstudiante}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )\ conjEst}{est}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
@@ -295,14 +297,14 @@ Observadores Basicos
 % \tadAxioma{obstaculos? (moverH(u, i))}{obstaculos?($u$)\\}
 % \tadAxioma{obstaculos? (moverE(u, i))}{obstaculos?($u$)\\}
 
-\tadAxioma{campus? (nuevaUni($c, as$))}{$c$\\}
+\tadAxioma{campus? (nuevaUni($c, dAs$))}{$c$\\}
 \tadAxioma{campus? (agregarE($u, i, e, p$))}{campus?($u$)\\}
 \tadAxioma{campus? (agregarH($u, i, p$))}{campus?($u$)\\}
 \tadAxioma{campus? (moverAs($u, p$))}{campus?($u$)\\}
 \tadAxioma{campus? (moverHoE($u, i$))}{campus?($u$)\\}
 
 
-\tadAxioma{agentes? (nuevaUni(cAs, al, an, cObs))}{cAs\\}
+\tadAxioma{agentes? (nuevaUni(c, dAs))}{dAs\\}
 \tadAxioma{agentes? (agregarE(u, i, e, p))}{
 	$\Pi_{1}$(
 				chequearSituacionShort(
@@ -422,7 +424,7 @@ Observadores Basicos
 Otras Operaciones
 
 \tadAxioma{capturar(p, cAs)}{
-	\IF( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno( $cAs$ ) ) ) ) 
+	\IF( $p$ $\in$ posiciones4Vecinas( obtener( dameUno( claves(cAs) ) ) ) ) 
 		THEN
 			Ag( 
 				$\langle$ 
@@ -475,7 +477,7 @@ Otras Operaciones
 %}
 
 \tadAxioma{queTipoHay(p, tripla, u)}{
-	\IF( fila?($p$) = alto?($u$) $\lor$ \ col?($p$) = ancho?($u$) ) 
+	\IF( fila?($p$) $\geq$ alto?($u$) $\lor$ \ col?($p$) $\geq$ ancho?($u$) ) 
 		THEN 
 			FueraDeRango
 		ELSE
@@ -507,6 +509,21 @@ Otras Operaciones
 	cuatroVecinos( $p$, tripla, $u$, posiciones4Vecinas($p$) )
 \\}
 
+\tadAxioma{posiciones4Vecinas(p)}{
+	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
+		THEN 
+			{$\lbrace$ nuevaPos(1,0), nuevaPos(0,1)$\rbrace $}
+		ELSE 
+			{\IF fila?(p) = 0 
+			 				THEN 
+			 					{$\lbrace$ nuevaPos(0, col?(p)-1), nuevaPos(0, col?(p)+1), pos(1, col?(p))$\rbrace$} 
+			 									ELSE 
+			 					{\IF col?(p) = 0 
+			 					 			 						THEN 
+			 					 			 							{$\lbrace$ nuevaPos(fila?(p)-1, 0), nuevaPos(fila?(p)+1, 0), nuevaPos(fila?(p), 1)$\rbrace $}
+			 					 			 						ELSE 
+			 					 			 						{$\lbrace$ nuevaPos(fila?(p), col?(p)-1), nuevaPos(fila?(p), col?(p)+1),\\ nuevaPos(fila?(p)+1, col?(p)), nuevaPos(fila?(p)-1, col?(p)) $\rbrace$} FI} FI} FI		}
+
 \tadAxioma{cuatroVecinos(p, tripla, u, p4v)}{
 	\IF( vacio?($p4v$) ) 
 		THEN
@@ -522,13 +539,13 @@ Otras Operaciones
 	movRest?($mcT$) $\cup$ unAgente?($mcT$) $\cup$ dosHippies?($mcT$) $\cup$ cuatroEstudiantes?($mcT$)
 \\}
 
-\tadAxioma{damePosicionesAs(cAs)}{
-	\IF vacio?($cAs$) 
+\tadAxioma{damePosicionesAs(dAs)}{
+	\IF vacio = dAs 
 		THEN
 			$\emptyset$
 		ELSE
-			Ag( $\Pi_{2}$( dameUno($cAs$) ), 
-				damePosicionesAs( sinUno($cAs$) )
+			Ag( obtener( dameUno(claves(dAs)), dAs ), 
+				damePosicionesAs( borrar(dameUno(claves(dAs)), dAs) )
 			)
 	FI
 \\}
@@ -1069,20 +1086,7 @@ $-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)}
 	THEN  {nuevaPos(fila?(p)-1, col?(p))}	ELSE {\IF (d=s) THEN {nuevaPos(fila?(p)+1, col?(p))} ELSE {\IF ( dir = o ) THEN {nuevaPos(fila?(p), col?(p)-1)} ELSE {nuevaPos(fila?(p), col?(p)+1)} FI} FI} FI}
 
 
-\tadAxioma{posiciones4Vecinas(p)}{
-	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
-		THEN 
-			{$\lbrace$ nuevaPos(1,0), nuevaPos(0,1)$\rbrace $}
-		ELSE 
-			{\IF fila?(p) = 0 
-			 				THEN 
-			 					{$\lbrace$ nuevaPos(0, col?(p)-1), nuevaPos(0, col?(p)+1), pos(1, col?(p))$\rbrace$} 
-			 									ELSE 
-			 					{\IF col?(p) = 0 
-			 					 			 						THEN 
-			 					 			 							{$\lbrace$ nuevaPos(fila?(p)-1, 0), nuevaPos(fila?(p)+1, 0), nuevaPos(fila?(p), 1)$\rbrace $}
-			 					 			 						ELSE 
-			 					 			 						{$\lbrace$ nuevaPos(fila?(p), col?(p)-1), nuevaPos(fila?(p), col?(p)+1),\\ nuevaPos(fila?(p)+1, col?(p)), nuevaPos(fila?(p)-1, col?(p)) $\rbrace$} FI} FI} FI		}
+
 
 
 \end{tad}
