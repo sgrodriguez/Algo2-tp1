@@ -59,17 +59,18 @@
 %%%%%%%%%%%%%%%%%%%
 % TAD UNIVERSIDAD %
 %%%%%%%%%%%%%%%%%%%
+TAD \tadNombre{id} ES \tadNombre{Nat} \\
+TAD \tadNombre{placa} ES \tadNombre{Nat} \\
+TAD \tadNombre{est} ES \tadNombre{Secu(dir)} \\
+TAD \tadNombre{dir} ES Enum\{ n, s, e, o \}
 
-TAD ID es NAT, \
-TAD PLACA es NAT, \
-TAD EST es SECU(DIR) \
 
 \section{TAD \tadNombre{Universidad}}
 
 \begin{tad}{\tadNombre{Universidad}}
 \tadGeneros{uni}
 \tadExporta{uni, Generadores, Observadores Basicos, masVigilante, cuantosHippies, cuantosEstudiantes}
-\tadUsa{\tadNombre{Nat, Conj($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$), Multiconj($\alpha$), id, placa, est, campus, direccion, \\ SituacionesRodeo, TipoElem, Diccionario(clave, significado)}}
+\tadUsa{\tadNombre{Nat, Conj($\alpha$), Bool, Tupla($\alpha_1, \ldots, \alpha_n$), Multiconj($\alpha$), id, placa, est, campus, dir, \\ Diccionario(clave, significado)}}
 
 \tadIgualdadObservacional{u}{u'}{uni}{
 campus?($u$) $\igobs$  campus?($u'$) $\land$ \\
@@ -78,9 +79,6 @@ hippies?($u$) $\igobs$  hippies?($u'$) $\land$ \\
 agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 ($\forall p: \text{placa}$) def?($p$, agentes?($u$)) $\impluego$ \\ (sanciones?($u, p$) $\igobs$ sanciones?($u', p$) $\land$ \\ capturas?($u, p$) $\igobs$ capturas?($u', p$))
 }
-\begin{scriptsize}
-\textit{¡¡¡¡¡¡¡¡¡¡¡¡Los Agentes son manejados como triplas que tienen al Id, al Agente en cuestion, y su posicion. Los estudiantes son triplas con Id, Estudiante y Posicion. Los Hippies son duplas de Id y Posicion.}
-\end{scriptsize}
 
 \begin{scriptsize}
 \textit{Los Estudiantes son representados como una secuencia de direcciones en las cuales moverse. Si en algun momento su camino esta bloqueado, no se mueven, ya que consideramos que lo interesante se encuentra en el camino que debe recorrer.}
@@ -102,8 +100,8 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \tadGeneradores
 
 \tadOperacion{nuevaUni}{campus \ c, dicc(placa ${,}$ \ pos) \ as}{uni}{posicionesValidas(c, as)}
-\tadOperacion{agregarE}{uni \ u, id \ i, est \ e, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida?(p, campus?(u)) $\land$ entrada?(p, campus?(u)) $\yluego$ posicionNoOcupada(p, u)}
-\tadOperacion{agregarH}{uni \ u, id \ i, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ posValida?(p, campus?(u)) $\land$ entrada?(p, campus?(u)) $\yluego$ posicionNoOcupada(p, u)}
+\tadOperacion{agregarE}{uni \ u, id \ i, est \ e, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ \\ posValida?(p, campus?(u)) $\land$ entrada?(p, campus?(u)) $\yluego$ \\ posicionNoOcupada(p, u)}
+\tadOperacion{agregarH}{uni \ u, id \ i, pos \ p}{uni}{$\lnot$ (def?(i, hippies?(u))) $\land$ $\lnot$ (def?(i, estudiantes?(u))) $\land$ \\ posValida?(p, campus?(u)) $\land$ entrada?(p, campus?(u)) $\yluego$ \\ posicionNoOcupada(p, u)}
 
 %%%%%%%% definir posicionesValidas y posValida (o cambiarle nombre)
 
@@ -118,44 +116,59 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 
 \tadOperacion{moverAgente}{placa \ pl, uni \ u}{dicc(placa, pos)}{def?(pl, agentes?(u))}
 \tadOperacion{hayDosHippies?}{pos, dicc(id ${,}$ pos)}{bool}{}
-\tadOperacion{algunHippieEncerradoPorEstudiantes}{dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{bool}{}
-\tadOperacion{hippieEncerradoPorEstudiantes}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{id}{algunHippieEncerradoPorEstudiantes(dH, dE)}
-\tadOperacion{movRestringido?}{pos, campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{bool}{REVISAR}
+\tadOperacion{algunHippieEncerradoPorEstudiantes}{dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{bool}{}
+\tadOperacion{hippieEncerradoPorEstudiantes}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE}{id}{algunHippieEncerradoPorEstudiantes(dH, dE)}
+\tadOperacion{movRestringido?}{pos \ p, campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE}{bool}{posValida?(p, c)}
 \tadOperacion{hayUnAgenteAlrededor?}{pos, dicc(placa ${,}$ pos)}{bool}{}
-Lo ponemos asi para reutilizar la funcion, sino tendriamos que usar dos muy similares y no tendria sentido
-\tadOperacion{murioAlgunHippie?}{campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{bool}{REVISAR}
+%Lo ponemos asi para reutilizar la funcion, sino tendriamos que usar dos muy similares y no tendria sentido
+\tadOperacion{murioAlgunHippie?}{campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{bool}{}
 %REVISAR RESTRICCIONES A MOVRESTRINGIDO Y ALGUNOS OTROS
-\tadOperacion{hippieMuerto}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
-\tadOperacion{moverEstudiante}{id \ i, uni \ u}{dicc(id ${,}$ pos)}{def?(i, estudiantes?(u))}
-Tomamos que son debiles y no se mueven
-\tadOperacion{borrarTodosLosHippiesMuertos}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{dicc(id ${,}$ pos)}{}
-\tadOperacion{borrarTodosLosHippiesEncerradosPorEstudiantes}{dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{dicc(id ${,}$ pos)}{}
-\tadOperacion{conviertoAlgunEstudiante?}{dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{bool}{}
+\tadOperacion{hippieMuerto}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
+\tadOperacion{moverEstudiante}{id \ i, uni \ u}{dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{def?(i, estudiantes?(u))}
+\tadOperacion{borrarTodosLosHippiesMuertos}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE }{}{}
+\hfill dicc(id ${,}$ pos)
+\tadOperacion{borrarTodosLosHippiesEncerradosPorEstudiantes}{dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{dicc(id ${,}$ pos)}{}
+\tadOperacion{conviertoAlgunEstudiante?}{dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{bool}{}
 \tadOperacion{moverHippie}{id \ i, uni \ u}{dicc(id ${,}$ pos)}{def?(i, hippies?(u))}
-\tadOperacion{agregoEstudiantesConvertidos}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{dicc(id ${,}$ pos)}{conviertoAlgunEstudiante?(dH, dE)}
-\tadOperacion{estudianteConvertido}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{id}{conviertoAlgunEstudiante?(dH, dE)}
-\tadOperacion{borrarTodosEstudiantesConvertidos}{dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{dicc(id ${,}$ pos)}{}
-\tadOperacion{convertirTodosHippies}{dicc(id ${,}$ pos), dicc(id ${,}$ pos)}{dicc(id ${,}$ pos)}{}
+\tadOperacion{agregoEstudiantesConvertidos}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE}{dicc(id ${,}$ pos)}{conviertoAlgunEstudiante?(dH, dE)}
+\tadOperacion{estudianteConvertido}{dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$) \ dE}{id}{conviertoAlgunEstudiante?(dH, dE)}
+\tadOperacion{borrarTodosEstudiantesConvertidos}{dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{}
+\tadOperacion{convertirTodosHippies}{dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{dicc(id ${,}$ pos)}{}
+\begin{scriptsize}
+\textit{Para la tupla, asumimos que este hippie convertido toma la secuencia de direcciones de algun estudiante del campus.}
+\end{scriptsize}
 \tadOperacion{agentesAlrededor}{pos, dicc(placa ${,}$ pos)}{conj(placa)}{}
-\tadOperacion{algunEstudianteEncerradoPorAgente?}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{bool}{}
-\tadOperacion{agentesQueAtrapanEstudiantes}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{conj(placa)}{algunEstudianteEncerradoPorAgente?(c, dAs, dH, dE)}
-\tadOperacion{agentesQueAtrapanHippies}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{conj(placa)}{revisar}
+\tadOperacion{algunEstudianteEncerradoPorAgente?}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
+\hfill bool
+\tadOperacion{agentesQueAtrapanEstudiantes}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
+\hfill conj(placa) 
+
+\hfill \{algunEstudianteEncerradoPorAgente?(c, dAs, dH, dE)\}
+\tadOperacion{agentesQueAtrapanHippies}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{$\neg \emptyset$?(claves(dAs))}
 \tadOperacion{posibleMovAs}{placa, uni}{conj(dir)}{}
 \tadOperacion{dirLibres}{pos \ p, uni \ u}{conj(dir)}{posValida?(p, campus?(u))}
 \tadOperacion{posNoOcupadas}{conj(pos) \ cP, uni \ u}{conj(pos)}{($\forall$ p: pos) p $\in$ cP $\implies$ posValida?(p, u)}
 \tadOperacion{dirValidas}{pos \ p, campus \ c}{conj(pos)}{posValida?(p, c)}
 \tadOperacion{posicionesHippies}{dicc(id ${,}$ pos)}{conj(pos)}{}
 \tadOperacion{posicionesAgentes}{dicc(placa ${,}$ pos)}{conj(pos)}{}
-\tadOperacion{posicionesEstudiantes}{dicc(id ${,}$ pos)}{conj(pos)}{}
+\tadOperacion{posicionesEstudiantes}{dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$)}{conj(pos)}{}
 \tadOperacion{posicionNoOcupada}{pos \ p, uni \ u}{bool}{posValida?(p, campus?(u))}
-\tadOperacion{posVecinasValidas}{pos \ p, campus \ c}{conj(pos)}{REVISAR posValida(p, c)}
-\tadOperacion{posicionesValidas}{conj(pos) \ cp, campus \ c}{conj(pos)}{REVISAR ($\forall$ p: pos) p $\in$ cP $\implies$ posValida?(p, u)}
-\tadOperacion{murioAlgunHippieAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{bool}{}
-\tadOperacion{hippieMuertoAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
+\tadOperacion{posVecinasValidas}{pos \ p, campus \ c}{conj(pos)}{posValida(p, c)}
+\tadOperacion{posicionesValidas}{conj(pos) \ cp, campus \ c}{conj(pos)}{($\forall$ p: pos) p $\in$ cP $\implies$ posValida?(p, u)}
+\tadOperacion{murioAlgunHippieAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
+\hfill bool
+\tadOperacion{hippieMuertoAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
 \tadOperacion{posibleMovHippie}{id \ i, uni \ u}{conj(dir)}{def?(i, hippies?(u))}
-\tadOperacion{aEEPAaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{bool}{}
-\tadOperacion{aQAEaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{conj(placa)}{}
-\tadOperacion{aQAHaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ pos) \ dE}{conj(placa)}{}
+\tadOperacion{aEEPAaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{bool}{}
+\tadOperacion{aQAEaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{}
+\tadOperacion{aQAHaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{}
+
+\tadOperacion{cuantosHippies?}{uni}{nat}{}
+\tadOperacion{cuantosEstudiantes?}{uni}{nat}{}
+\tadOperacion{masVigilante?}{uni \ u}{placa}{$\neg \emptyset$?(claves(agentes?(u)))}
+\tadOperacion{losMasVigilantes}{conj(placa), uni, nat}{conj(placa)}{}
+\tadOperacion{maxCapturas}{conj(placa), uni}{nat}{}
+\tadOperacion{menorPlaca}{conj(placa) \ cPl}{nat}{$\neg \emptyset$?(cPl)}
 
 %  \tadOperacion{capturar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
 %  \tadOperacion{sancionar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
@@ -655,15 +668,15 @@ Observadores Basicos
 \\ \\}
 
 \tadAxioma{posibleMovHippie ($i, u$)}{
-	\IF vacio?( estudiantes?($u$) ) 
+	\IF vacio?( claves(estudiantes?($u$)) ) 
 		THEN
 			$\emptyset$
 		ELSE
-			{\IF  $\emptyset$? (dirLibres(obtener($i$, hippies($u$)), $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( obtener($i$, hippies($u$)), posicionesEstudiantes( estudiantes?($u$) ) ) ) ))
+			{\IF  $\emptyset$? (dirLibres(obtener($i$, hippies?($u$)), $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( obtener($i$, hippies?($u$)), posicionesEstudiantes( estudiantes?($u$) ) ) ) ))
 				THEN
-					dirLibres(obtener($i$, hippies($u$)), $u$)
+					dirLibres(obtener($i$, hippies?($u$)), $u$)
 				ELSE
-					dirLibres(obtener($i$, hippies($u$)), $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( obtener($i$, hippies($u$)), posicionesEstudiantes( estudiantes?($u$) ) ) ) )
+					dirLibres(obtener($i$, hippies?($u$)), $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( obtener($i$, hippies?($u$)), posicionesEstudiantes( estudiantes?($u$) ) ) ) )
 				FI}
 	FI
 \\ \\}
@@ -712,7 +725,7 @@ Observadores Basicos
 	\IF {$\emptyset$?(claves($dH$))}
 		THEN {$\emptyset$}
 		ELSE {
-			Ag ( obtener( dameUno(claves($dH$)), $dH$ ), posicionesHippies( borrar(dameUno(claves($dH$))) ) )
+			Ag ( obtener( dameUno(claves($dH$)), $dH$ ), posicionesHippies( borrar(dameUno(claves($dH$)), $dH$) ) )
 		}
 	FI
 \\ \\}
@@ -721,7 +734,7 @@ Observadores Basicos
 	\IF {$\emptyset$?(claves($dAs$))}
 		THEN {$\emptyset$}
 		ELSE {
-			Ag ( obtener( dameUno(claves($dAs$)), $dAs$ ), posicionesAgentes( borrar(dameUno(claves($dAs$))) ) )
+			Ag ( obtener( dameUno(claves($dAs$)), $dAs$ ), posicionesAgentes( borrar(dameUno(claves($dAs$)), $dH$) ) )
 		}
 	FI
 \\ \\}
@@ -730,7 +743,7 @@ Observadores Basicos
 	\IF {$\emptyset$?(claves($dEs$))}
 		THEN {$\emptyset$}
 		ELSE {
-			Ag ( obtener( dameUno(claves($dEs$)), $dEs$ ), posicionesEstudiantes( borrar(dameUno(claves($dEs$))) ) )
+			Ag ( $\Pi_{2}$(obtener( dameUno(claves($dEs$)), $dEs$ )), posicionesEstudiantes( borrar(dameUno(claves($dEs$)), $dH$) ) )
 		}
 	FI
 \\ \\}
@@ -813,9 +826,9 @@ Observadores Basicos
 \\ \\}
 
 \tadAxioma{hippieMuertoAux($rec, c, dAs, dH, dE$)}{
-	\IF {movRestringido?(obtener(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$) $\land$ hayUnAgenteAlrededor?(obtener(dameUno(claves($rec$)), $rec$), $dAs$) }
+	\IF {movRestringido?(obtener(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$) $\land$ \\ hayUnAgenteAlrededor?(obtener(dameUno(claves($rec$)), $rec$), $dAs$) }
 		THEN {dameUno(claves($rec$))}
-		ELSE {hippieMuertoAux( borrar(dameUno(claves($rec$)), $rec$) $, c, dAs, dH, dE$)}
+		ELSE {hippieMuertoAux( borrar(dAsmeUno(claves($rec$)), $rec$) $, c, dAs, dH, dE$)}
 	FI
 \\ \\}
 
@@ -875,7 +888,10 @@ Observadores Basicos
 \tadAxioma{convertirTodosHippies($dH, dE$)}{
 	\IF {algunHippieEncerradoPorEstudiantes($dH, dE$)}
 		THEN {
-			definir( hippieEncerradoPorEstudiantes($dH, dE$), $\langle $ $\Pi_{1}$(obtener(dameUno(claves($dE$)), $dE$)), obtener(hippieEncerradoPorEstudiantes($dH, dE$), $dH$) $ \rangle$, convertirTodosHippies(borrar(hippieEncerradoPorEstudiantes($dH, dE$), $dH$), $dE$) )
+			definir( hippieEncerradoPorEstudiantes($dH, dE$), 
+			$\langle $ $\Pi_{1}$(obtener(dameUno(claves($dE$)), $dE$)), \\ 
+			obtener(hippieEncerradoPorEstudiantes($dH, dE$), $dH$) $ \rangle$, \\
+			convertirTodosHippies(borrar(hippieEncerradoPorEstudiantes($dH, dE$), $dH$), $dE$) )
 		}
 		ELSE {$dE$}
 	FI
@@ -937,587 +953,53 @@ Observadores Basicos
 		ELSE {
 			\IF {movRestringido(obtener(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$) $\land$ hayUnAgenteAlrededor?(obtener(dameUno(claves($rec$)), $rec$), $dAs$)}
 				THEN {
-					agentesAlrededor(obtener(dameUno(claves($rec$)), $rec$), $dAs$) $\cup$ aQAEaux(borrar(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$)
+					agentesAlrededor(obtener(dameUno(claves($rec$)), $rec$), $dAs$) $\cup$ aQAHaux(borrar(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$)
 				}
-				ELSE {aQAEaux(borrar(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$)}
+				ELSE {aQAHaux(borrar(dameUno(claves($rec$)), $rec$), $c, dAs, dH, dE$)}
 			FI
 		}
 	FI
 \\ \\}
 
 
+\tadAxioma{cuantosHippies?($u$)}{
+	$\#$(claves(hippies?($u$)))
+\\ \\}
 
+\tadAxioma{cuantosEstudiantes?($u$)}{
+	$\#$(claves(estudiantes?($u$)))
+\\ \\}
 
+\tadAxioma{masVigilante?($u$)}{
+	menorPlaca( \ losMasVigilantes(claves(agentes?($u$)), $u$, maxCapturas(claves(agentes?($u$)), $u$)) \ )
+\\ \\}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Otras Operaciones
-
-\tadAxioma{capturar(p, cAs)}{
-	\IF( $p$ $\in$ posiciones4Vecinas( obtener( dameUno( claves(cAs) ) ) ) ) 
-		THEN
-			Ag( 
-				$\langle$ 
-					$\Pi_{1}$($cAs$), 
-					darCaptura( seg( dameUno($cAs$) ) ), 
-					$\Pi_{3}$( dameUno($cAs$) ) 
-				$\rangle$, 
-				capturar( $p$, sinUno($cAs$) ) 
-			) 
-		ELSE
-			Ag( dameUno($cAs$), 
-				capturar( $p$, sinUno($cAs$) ) 
-			)
-	FI
-\\}
-
-\tadAxioma{sancionar(p, cAs)}{
-	\IF( $p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno ( cAs ) ) ) ) 
-		THEN
-			Ag( 
-				$\langle$
-					$\Pi_{1}$($cAs$), 
-					darSancion( seg( dameUno($cAs$) ) ), 
-					$\Pi_{3}$( dameUno($cAs$) )
-				$\rangle$, 
-				capturar( $p$, sinUno($cAs$) ) 
-			)
-		ELSE
-			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
-	FI
-\\}
-
-%\tadAxioma{sancionar(p, cAs)}{	
-%	\IF($p$ $\in$ posiciones4Vecinas( $\Pi_{3}$( dameUno($cAs$) ) ) ) 
-%		\\
-%		THEN
-%			Ag( 
-%				$\langle$
-%					$\Pi_{1}$($cAs$), 
-%					darSancion( seg( dameUno($cAs$) ) ), 
-%					$\Pi_{3}$( dameUno($cAs$) )
-%				>, 
-%				capturar( $p$, sinUno($cAs$) ) 
-%			)
-%		\\
-%		ELSE
-%			Ag( dameUno($cAs$), sancionar( $p$, sinUno($cAs$) ) )
-%	\\
-%	FI
-%}
-
-\tadAxioma{queTipoHay(p, tripla, u)}{
-	\IF( fila?($p$) $\geq$ alto?($u$) $\lor$ \ col?($p$) $\geq$ ancho?($u$) ) 
-		THEN 
-			FueraDeRango
-		ELSE
-			{\IF( $p$ $\in$ obstaculos?($u$) ) 
-				THEN
-					Obstaculo
-				ELSE
-					{\IF($p$ $\in$ damePosicionesAs( $\Pi_{1}$(tripla) ) ) 
-						THEN
-							Agente
-						ELSE
-							{\IF( $p$ $\in$ damePosicionesH( $\Pi_{2}$(tripla) ) ) 
-								THEN
-									Hippie
-								ELSE
-									{\IF( $p$ $\in$ damePosicionesEst( $\Pi_{3}$(tripla) ) )
-										THEN
-											Estudiante
-										ELSE
-											$\emptyset$
-									FI}
-							FI}
-					FI}
+\tadAxioma{losMasVigilantes($cPl, u, mC$)}{
+	\IF {$\emptyset$?($cPl$)}
+		THEN {$\emptyset$}
+		ELSE {
+			\IF {capturas?(dameUno($cPl$), $u$) = $mC$}
+				THEN {Ag($cPl$, losMasVigilantes(sinUno($cPl$), $u$))}
+				ELSE {losMasVigilantes(sinUno($cPl$), $u$)}
 			FI}
 	FI
-\\}
+\\ \\}
 
-\tadAxioma{cuatroVecinosShort(p, tripla, u)}{
-	cuatroVecinos( $p$, tripla, $u$, posiciones4Vecinas($p$) )
-\\}
-
-\tadAxioma{posiciones4Vecinas(p)}{
-	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
-		THEN 
-			{$\lbrace$ nuevaPos(1,0), nuevaPos(0,1)$\rbrace $}
-		ELSE 
-			{\IF fila?(p) = 0 
-			 				THEN 
-			 					{$\lbrace$ nuevaPos(0, col?(p)-1), nuevaPos(0, col?(p)+1), pos(1, col?(p))$\rbrace$} 
-			 									ELSE 
-			 					{\IF col?(p) = 0 
-			 					 			 						THEN 
-			 					 			 							{$\lbrace$ nuevaPos(fila?(p)-1, 0), nuevaPos(fila?(p)+1, 0), nuevaPos(fila?(p), 1)$\rbrace $}
-			 					 			 						ELSE 
-			 					 			 						{$\lbrace$ nuevaPos(fila?(p), col?(p)-1), nuevaPos(fila?(p), col?(p)+1),\\ nuevaPos(fila?(p)+1, col?(p)), nuevaPos(fila?(p)-1, col?(p)) $\rbrace$} FI} FI} FI		}
-
-\tadAxioma{cuatroVecinos(p, tripla, u, p4v)}{
-	\IF( vacio?($p4v$) ) 
-		THEN
-			vacio
-		ELSE
-			Ag( queTipoHay( dameUno($p4v$), tripla, $u$), 
-				cuatroVecinos( $p$, tripla, $u$, sinUno($p4v$)
-			)
+\tadAxioma{maxCapturas($cPl, u$)}{
+	\IF {$\emptyset$?($cPl$)}
+		THEN {0}
+		ELSE {max\{ capturas?(dameUno($cPl$), $u$), maxCapturas(sinUno($cPl$), $u$) \}}
 	FI
-\\}
+\\ \\}
 
-\tadAxioma{queSituacion(mcT)}{
-	movRest?($mcT$) $\cup$ unAgente?($mcT$) $\cup$ dosHippies?($mcT$) $\cup$ cuatroEstudiantes?($mcT$)
-\\}
-
-\tadAxioma{damePosicionesAs(dAs)}{
-	\IF vacio = dAs 
-		THEN
-			$\emptyset$
-		ELSE
-			Ag( obtener( dameUno(claves(dAs)), dAs ), 
-				damePosicionesAs( borrar(dameUno(claves(dAs)), dAs) )
-			)
+\tadAxioma{menorPlaca($cPl$)}{
+	\IF {$\emptyset$?(sinUno($cPl$))}
+		THEN {dameUno($cPl$)}
+		ELSE {min \{ dameUno($cPl$), menorPlaca(sinUno($cPl$)) \}}
 	FI
-\\}
-
-\tadAxioma{damePosicionesEst(cEst)}{
-	\IF vacio?($cEst$) 
-		THEN
-			$\emptyset$
-		ELSE
-			Ag( $\Pi_{3}$( dameUno($cEst$) ), 
-				damePosicionesEst( sinUno($cEst$) )
-			)
-	FI
-\\}
-
-\tadAxioma{damePosicionesH(cH)}{
-	\IF vacio?($cH$) 
-		THEN
-			$\emptyset$
-		ELSE
-			Ag( $\Pi_{2}$( dameUno($cH$) ), 
-				damePosicionesH( sinUno($cH$) )
-			)
-	FI
-\\}
-
-\tadAxioma{moverEstudianteYChequearSituaciones(i, u)}{
-	\IF( vacio?( dameEstudiante( $i$, estudiantes?($u$) ) ) ) 
-		THEN
-			$\langle$
-				agentes?($u$), 
-				hippies?($u$), 
-				estudiantes?($u$)
-			$\rangle$
-		ELSE
-			{\IF$\neg$( $\Pi_{1}$( dameEstudiante($i$, $u$) ) $\in$ dirLibres( dameEstudiantePos($i$, estudiantes?($u$) ), $u$ ) ) 
-				THEN
-					$\langle$
-						agentes?($u$), 
-						hippies?($u$), estudiantes?($u$)
-					$\rangle$
-				ELSE
-					chequearSituacionShort( 
-						agregarEstudianteTripla( 
-							$\langle$
-								$i$, 
-								fin( dameEstudiante($i$, $u$) ),	
-								mover( dameEstudiantePos($i$, estudiantes?($u$) ), 
-								$\Pi_{1}$( dameEstudiante($i$, $u$) ) )
-							$\rangle$, 
-							$\langle$
-								agentes?($u$), 
-								hippies?($u$), 
-								sacarEstudianteId( $i$, estudiantes?($u$) )
-							$\rangle$ 
-						)
-					)
-			FI}
-	FI
-\\}
-
-\tadAxioma{dameEstudiante(i, cEst)}{
-	\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
-		THEN
-			$\Pi_{2}$( dameUno($cEst$) )
-		ELSE
-			dameEstudiante($i$, sinUno($cEst$) )
-	FI
-\\}
-
-\tadAxioma{dameEstudiantePos(i, cEst)}{
-	\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ ) 
-		THEN
-			$\Pi_{3}$( dameUno($cEst$) )
-		ELSE
-			dameEstudiantePos( $i$, sinUno($cEst$) )
-	FI
-\\}
-
-\tadAxioma{sacarEstudianteId(i, cEst)}{
-	\IF( vacio?($cEst$) )
-		THEN
-			$\emptyset$
-		ELSE
-			{\IF( $\Pi_{1}$( dameUno($cEst$) ) = $i$ )
-				THEN
-					sinUno($cEst$)
-				ELSE
-					Ag( dameUno($cEst$), sacarEstudiante( $i$, sinUno($cEst$) ) )
-			FI}
-	FI
-\\}
-
-\tadAxioma{entradas?(an, al)}{
-	\IF( $an$ = 0 )
-		THEN
-			$\emptyset$	
-		ELSE
-			Ag( pos(0, $an$-1), 
-				Ag( pos($al$-1, $an$-1), 
-					entradas($an$-1,$al$) 
-				) 
-			)
-	FI
-\\}
-
-
-
-\tadAxioma{moverAgenteYChequearSituacion(i, u)}{
-	\IF( vacio?( hippies?($u$) ) $\land$ ( dameAgentePos( $i$, agentes?($u$) ) $\in$ entradas?( alto?($u$), ancho?($u$) ) ) ) $\lor$ inactivo?( dameAgente($i$, $u$) ) 
-		THEN
-			$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
-		ELSE
-			{\IF vacio?( posibleMovAs( dameAgente( $i$, agentes?($u$) ), dameAgentePos( $i$, agentes?($u$) ), $u$ ) ) 
-				THEN
-					$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
-				ELSE
-					chequearSituacionShort( 
-						agregarAgenteTripla( 
-							$\langle$ 
-								$i$, 
-								dameAgente( $i$, agentes?($u$) ), 
-								mover(	dameAgentePos($i$, agentes?($u$) ), 
-										dameUno(
-											posibleMovAs(	
-												dameAgente( $i$, agentes?($u$) ), 
-												dameAgentePos( $i$, agentes?($u$) ), 
-												$u$ 
-											)
-										)
-								) 
-							$\rangle$,
-					$\langle$ sacarAgenteId($i$, agentes?($u$)) , hippies?($u$), estudiantes?($u$) $\rangle$) )
-			FI}
-	FI
-\\}
-
-\tadAxioma{posibleMovAs (agente, p, u)}{
-	\IF( inactivo?(agente) ) 
-		THEN
-			$\emptyset$
-		ELSE
-			{\IF( vacio?( hippes?($u$) ) )
-				THEN
-					{\IF( dirLibres(agente, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, posNoOcupadas( entradas($an$, $al$), $u$) ) ) ) = $\emptyset$ )
-						THEN
-							dirLibres( $p$, $u$)
-						ELSE
-							dirLibres( $p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort($p$, posNoOcupadas( entradas($an$, $al$), $u$)) ))
-					FI}
-			ELSE
-				{\IF dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, hippies?($u$) ))) = $\emptyset$ 
-					THEN
-						dirLibres($p$, $u$)
-					ELSE
-						dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, hippies?($u$) )))
-				FI}
-			FI}
-	FI
-\\}
-
-\tadAxioma{dameAgente(i, cAs)}{
-	\IF( $\Pi_{1}$( dameUno($cAs$)) = $i$ )
-		THEN
-			$\Pi_{2}$( dameUno($cAs$) )
-		ELSE
-			dameAgente( $i$, sinUno($cAs$) )
-	FI
-\\}
-
-\tadAxioma{dameAgentePos(i, cAs)}{
-	\IF( $\Pi_{1}$(dameUno($cAs$)) = $i$ )
-		THEN
-			$\Pi_{3}$( dameUno($cAs$) )
-		ELSE
-			dameAgente( $i$, sinUno($cAs$) )
-	FI
-\\}
-
-\tadAxioma{sacarAgenteId(i, cAs)}{
-	\IF( vacio?($cAs$) )
-		THEN
-			$\emptyset$
-		ELSE
-			{\IF( $\Pi_{1}$( dameUno($cAs$) ) = $i$ )
-				THEN
-					sinUno($cAs$)
-				ELSE
-					Ag( dameUno($cAs$), sacarAgente( $i$, sinUno($cAs$) ) )
-			FI}
-	FI
-\\}
-
-\tadAxioma{moverHippieYChequearSituacion(i, u)}{
-	\IF( vacio?( posibleMovH( dameHippiePos($i$, $u$), $u$ ) ) )
-		THEN
-			$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
-		ELSE
-			chequearSituacionShort( 
-				agregarHippieTripla( 
-					$\langle$ 
-						$i$, 
-						mover( dameHippiePos($i$,$u$), dameUno( posibleMovH( dameHippiePos($i$, $u$), $u$) ) ) 
-					$\rangle$, 
-					$\langle$ agentes?($u$), sacarHippieId( $i$, hippies?($u$) ), estudiantes?($u$) $\rangle$
-			 	) 
-			)
-	FI
-\\}
-
-\tadAxioma{posibleMovH (p, u)}{
-	\IF vacio?( estudiantes?($u$) ) 
-		THEN
-			$\emptyset$
-		ELSE
-			{\IF  dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, damePosicionesEst( estudiantes?($u$) ) ) ) ) = $\emptyset$ 
-				THEN
-					dirLibres($p$, $u$)
-				ELSE
-					dirLibres($p$, $u$) $\cap$ direccionesOptimas( dameUno( cPosMasCercanaShort( $p$, damePosicionesEst( estudiantes?($u$) ) ) ) )
-				FI}
-	FI
-\\}
-
-\tadAxioma{dameHippiePos(i, cH)}{
-	\IF prim(dameUno($cH$)) = $i$
-		THEN seg(dameUno($cH$))
-		ELSE dameHippiePos($i$, sinUno($cH$))
-	FI
-\\}
-
-\tadAxioma{sacarHippieId(i, cH)}{
-	\IF vacio($cH$) 
-		THEN
-			$\emptyset$
-		ELSE
-			{\IF prim(dameUno($cH$)) = i 
-				THEN
-					sinUno($cH$)
-				ELSE
-					Ag(dameUno($cH$), sacarHippie($i$, sinUno($cH$)))
-			FI}
-	FI
-\\}
-
-
-\tadAxioma{chequearSituacionShort(tripla, u)}{
-	chequearSituacion( tripla, tripla, $u$)
-\\}
-
-\tadAxioma{agAgenteTripla(a,  $\langle$ cAs, cH, cEst $\rangle$ )}{ $\langle$ Ag($a$, $cAs$), $cH$, $cEst$ $\rangle$ \\}
-
-\tadAxioma{agHippieTripla(h,  $\langle$ cAs, cH, cEst $\rangle$ )}{ $\langle$ $cAs$, Ag($h$, $cH$), $cEst$ $\rangle$ \\}
-
-\tadAxioma{agEstudianteTripla(e,  $\langle$ cAs, cH, cEst $\rangle$ )}{ $\langle$ $cAs$, $cH$, Ag($e$, $cEst$) $\rangle$ \\}
-
-\tadAxioma{estudiantesAdyacentesPos(p, cEst)}{
-	\IF dameEstudiantePos( dameUno($cEst$) ) $\in$ posiciones4Vecinas($p$) 
-		THEN
-			Ag( $\Pi_{2}$( dameUno($cEst$) ), estudiantesAdyacentesPos($p$, sinUno($cEst$) ) )
-		ELSE
-			estudiantesAdyacentesPos($p$, sinUno($cEst$))
-	FI
-\\}
-
-
-\begin{footnotesize}
-\textit{Cuando chequeamos los cambios de situaciones al moverse un agente, hippie o estudiante, primero vemos que pasa con los Agentes segun sus 4-vecinos, luego con los Hippies, y por ultimo con los Estudiantes. Cada uno de estos conjuntos no siguen ningun orden particular.}
-\\
-\end{footnotesize}
-\tadAxioma{chequearSituacion( $\langle$ cAs, cH, cEst $\rangle$ , triplaInfo, u)}{ \IF vacio?($cH$)  THEN {\IF vacio?($cEst$)  THEN   $\langle$ $cAs$, $cH$, $cEst$ $\rangle$  ELSE {\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) )  THEN {\IF dosHippies $\in$ queSituacion( cuatroVecinosShort( dameEstudiantePos( dameUno($cEst$)), triplaInfo, $u$) )  THEN agregarHippieTripla(   convertirEstudianteAHippie(dameUno($cEst$)) , chequearSituacion(  $\langle$  sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$),  $cH$,  sinUno($cEst$)   $\rangle$,  triplaInfo,  $u$ )  ) ELSE agregarEstudianteTripla(  dameUno($cEst$), chequearSituacion(  $\langle$  sancionar( dameEstudiantePos( dameUno($cEst$) ), $cAs$),  $cH$,  sinUno($cEst$)   $\rangle$ ,  triplaInfo,  $u$ )  ) FI} ELSE {\IF dosHippies $\in$ queSituacion( cuatroVecinosShort(dameEstudiantePos(dameUno($cEst$)), triplaInfo, $u$) )  THEN  agregarHippieTripla(  convertirEstudianteAHippie(dameUno($cEst$)), chequearSituacion(  $\langle$  $cAs$,  $cH$,  sinUno($cEst$)   $\rangle$,  triplaInfo,  $u$ )  ) ELSE  agregarEstudianteTripla(  dameUno($cEst$),  chequearSituacion(  $\langle$  $cAs$,  $cH$,  sinUno($cEst$) $\rangle$,  triplaInfo,  $u$ )  ) FI} FI} FI} ELSE  {\IF {movRest, unAgente} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) )  THEN  chequearSituacion(  $\langle$  capturar(dameHippiePos(dameUno($cH$)), $cAs$),  sinUno($cH$),  $cEst$  $\rangle$,  sacarHippieTripla(dameUno($cH$), triplaInfo),  $u$ ) ELSE {\IF {movRest, cuatroEstudiantes} $\subseteq$ queSituacion( cuatroVecinosShort( dameHippiePos( dameUno($cH$) ), triplaInfo, $u$) )  THEN agregarEstudianteTripla( convertirHippieAEst(dameUno($cH$), $cEst$),  chequearSituacion(  $\langle$  $cAs$,  sinUno($cH$),  $cEst$   $\rangle$,  sacarHippieTripla(dameUno($cH$), triplaInfo),  $u$ ) ) ELSE agregarHippieTripla(  dameUno($cH$),  chequearSituacion(  $\langle$  $cAs$,  sinUno($cH$),  $cEst$   $\rangle$,  triplaInfo,  $u$)  ) FI} FI} FI\\} 
-
-
-\tadAxioma{convertirHippieAEst(h, cEst)}{
-	$\langle$
-		$\Pi_{0}$($h$),
-		dameUno(estudiantesAdyacentesPos($\Pi_1$($h$), $cEst$)),
-		$\Pi_{1}$($h$)
-	$\rangle$
-\\}
-
-\tadAxioma{convertirEstAHippie(e)}{
-	$\langle$
-		$\Pi_{0}$($e$),
-		$\Pi_{2}$($e$)
-	$\rangle$
-\\}
-
-\tadAxioma{sacarHippieTripla(h, $\langle$ cAs, cH, cEst $\rangle$)}{
-	$\langle$
-		$cAs$, 
-		sacarHippieId($\Pi_{0}$($h$), $cH$), 
-		$cEst$
-	$\rangle$
-\\}
-
-\tadAxioma{dondeEstaAgente(i, u)}{dameAgentePos($i$, agentes?($u$))\\}
-\tadAxioma{dondeEstaHippie(i, u)}{dameHippiePos($i$, hippies?($u$))\\}
-\tadAxioma{dondeEstaEstudiante(i, u)}{dameEstudiantePos($i$, estudiantes?($u$))\\}
-\tadAxioma{masVigilante(u)}{agenteConMenorPlacaShort(losMasVigilantesShort(agentes?(u)))\\}
-\tadAxioma{losMasVigilantes(cAs, maxC)}{
-        \IF vacio?($cAs$) THEN
-              { $ \emptyset$}
-        ELSE
-                {\IF hippiesCapturados($\Pi_{1}$(dameUno($cAs$))) = maxC THEN
-                                        {Ag(dameUno($cAs$), losMasVigilantes(sinUno($cAs$), maxC))}
-                                ELSE
-                                       { losMasVigilantes(sinUno($cAs$), maxC)}
-                                FI}
-        FI
-\\}
-\tadAxioma{losMasVigilantesShort(cAs)}{losMasVigilantes(cAs, maxCapturas(cAs))\\}
- 
-\tadAxioma{agenteConMenorPlaca(dAs, minN)}{
-        \IF vacio = dAs THEN
-               { $\emptyset$}
-        ELSE
-                {\IF dameUno(claves(cAs)) = minN THEN
-                                       { Ag(dameUno($cAs$), agenteConMenorPlaca(sinUno($cAs$), minN))}
-                                ELSE
-                                        {agenteConMenorPlaca(sinUno($cAs$), minN)}
-                                FI
-                        }FI
-\\}
-\tadAxioma{agenteConMenorPlacaShort(dAs)}{agenteConMenorPlaca(dAs, minPlaca(dAs))\\}
- 
-\tadAxioma{maxCapturas(cAs)}{
-        \IF vacio?($cAs$) THEN
-                0
-        ELSE
-                max(hippiesCapturados($\Pi_{1}$(dameUno($cAs$))), maxCapturas(sinUno($cAs$)))
-        FI
-\\}
-\tadAxioma{minPlaca(dAs)}{
-       \ minConj(claves($dAs$))
-\\}
-
-\tadAxioma{minConj(c)}{
-       \IF \# (c) = 1 THEN
-      		 dameUno(c)
-       ELSE
-       		min(dameUno(c), minConj(sinUno(c)))
-       FI
-\\}
-
-\tadAxioma{cuantosHippies(u)}{\# claves(hippies?(u))\\}
-\tadAxioma{cuantosEstudiantes(u)}{\# claves(estudiantes?(u))\\}
-
+\\ \\}
 
 \end{tad}
-
-%%%%%%%%%%%%%%%
-% TAD AGENTES %
-%%%%%%%%%%%%%%%
-
-\section{TAD \tadNombre{Agente}}
-
-\begin{tad}{\tadNombre{Agente}}
-\tadGeneros{as}
-\tadExporta{as, Generadores, Observadores Basicos, inactivo?}
-\tadUsa{\tadNombre{Nat, Bool}}
-
-\tadIgualdadObservacional{a}{a'}{as}{
-	numPlaca(a) $\igobs$ numPlaca(a') $\land$
-	hippiesAtrapados(a) $\igobs$ hippiesAtrapados(a') $\land$
-	numSanciones(a) $\igobs$ numSanciones(a')
-}
-
-\tadObservadores
-
-\tadOperacion{numPlaca}{as}{nat}{}
-\tadOperacion{hippiesCapturados}{as}{nat}{}
-\tadOperacion{numSanciones}{as}{nat}{}
-
-\tadGeneradores
-
-\tadOperacion{nuevoAs}{nat}{as}{}
-\tadOperacion{darCaptura}{as\ a}{as}{}
-\tadOperacion{darSancion}{as}{as}{}
-
-\tadOtrasOperaciones
-
-\tadOperacion{inactivo?}{as}{bool}{}
-
-\tadAxiomas[
-\paratodo{nat}{n}
-\paratodo{as}{a}
-]
-
-Observadores Basicos
-
-\tadAxioma{numPlaca(nuevoAs(n))}{n}
-\tadAxioma{numPlaca(darCaptura(a))}{numPlaca(a)}
-\tadAxioma{numPlaca(darSancion(a))}{numPlaca(a)}
-
-\tadAxioma{hippiesCapturados(nuevoAs(n))}{0}
-\tadAxioma{hippiesCapturados(darCaptura(a))}{$1 +$ hippiesCapturados(a)}
-\tadAxioma{hippiesCapturados(darSancion(a))}{hippiesCapturados(a)}
-
-\tadAxioma{numSanciones(nuevoAs(n))}{0}
-\tadAxioma{numSanciones(darCaptura(a))}{numSanciones(a)}
-\tadAxioma{numSanciones(darSancion(a))}{$1 +$ numSanciones(a)}
-
-Otras Operaciones
-
-\tadAxioma{inactivo?(a)}{\IF numSanciones(a) $>$ 3 THEN true ELSE false FI}
-
-\end{tad}
-
-% NICO DEFINI ESTOS GIL DE GOMA:% % % % 
-%                                     %
-% TAD dir es enum                     %
-% TAD pos es \langle nat, nat \rangle %
-% TAD est es conj(dir)                %
-% % % % % % % % % % % % % % % % % % % % 
 
 %%%%%%%%%%%%%%%%
 % TAD POSICION %
@@ -1606,87 +1088,30 @@ $-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)}
 
 \end{tad}
 
-\section{TAD \tadNombre{Direccion}}
+%\section{TAD \tadNombre{Direccion}}
+
+% \begin{tad}{\tadNombre{Direccion}}
+
+% \tadGeneros{dir}
 
 
-\begin{tad}{\tadNombre{Direccion}}
+% \tadExporta{dir, Generadores}
 
-\tadGeneros{dir}
+% \tadUsa{}
 
+% \tadIgualdadObservacionalSimple{n $\igobs$ n $\land$ s $\igobs$ s $\land$ e $\igobs$ e $\land$ o $\igobs$ o $\land$ $\neg$(s $\igobs$ n) $\land$ $\neg$(s $\igobs$ o) $\land$ $\neg$(s $\igobs$ e) $\land$ $\neg$(n $\igobs$ s) $\land$ $\neg$(n $\igobs$ e) $\land$ $\neg$(n $\igobs$ o) $\land$ $\neg$(e $\igobs$ s) $\land$ $\neg$(e $\igobs$ n) $\land$ $\neg$(e $\igobs$ o) $\land$ $\neg$(o $\igobs$ s) $\land$ \\ $\neg$(o $\igobs$ n) $\land$ $\neg$(o $\igobs$ e) }
 
-\tadExporta{dir, Generadores}
+% \tadObservadores
 
-\tadUsa{}
+% \tadGeneradores
 
-\tadIgualdadObservacionalSimple{n $\igobs$ n $\land$ s $\igobs$ s $\land$ e $\igobs$ e $\land$ o $\igobs$ o $\land$ $\neg$(s $\igobs$ n) $\land$ $\neg$(s $\igobs$ o) $\land$ $\neg$(s $\igobs$ e) $\land$ $\neg$(n $\igobs$ s) $\land$ $\neg$(n $\igobs$ e) $\land$ $\neg$(n $\igobs$ o) $\land$ $\neg$(e $\igobs$ s) $\land$ $\neg$(e $\igobs$ n) $\land$ $\neg$(e $\igobs$ o) $\land$ $\neg$(o $\igobs$ s) $\land$ \\ $\neg$(o $\igobs$ n) $\land$ $\neg$(o $\igobs$ e) }
+% \tadOperacion{n}{}{dir}{}
+% \tadOperacion{s}{}{dir}{}
+% \tadOperacion{e}{}{dir}{}
+% \tadOperacion{o}{}{dir}{}
 
-\tadObservadores
+% \tadOtrasOperaciones
 
-\tadGeneradores
-
-\tadOperacion{n}{}{dir}{}
-\tadOperacion{s}{}{dir}{}
-\tadOperacion{e}{}{dir}{}
-\tadOperacion{o}{}{dir}{}
-
-\tadOtrasOperaciones
-
-\end{tad}
-
-\section{TAD \tadNombre{SituacionesRodeo}}
-
-
-\begin{tad}{\tadNombre{SituacionesRodeo}}
-
-\tadGeneros{situ}
-
-
-\tadExporta{situ, Generadores}
-
-\tadUsa{}
-
-\tadIgualdadObservacionalSimple{movRest $\igobs$ movRest $\land$ unAgente $\igobs$ unAgente $\land$ dosHippies $\igobs$ dosHippies $\land$ cuatroEstudiantes $\igobs$ cuatroEstudiantes $\land$ $\neg$(movRest $\igobs$ unAgente) $\land$ $\neg$(movRest $\igobs$ dosHippies) $\land$ $\neg$(movRest $\igobs$ cuatroEstudiantes) $\land$ $\neg$(unAgente $\igobs$ movRest) $\land$ $\neg$(unAgente $\igobs$ dosHippies) $\land$ $\neg$(unAgente $\igobs$ cuatroEstudiantes) $\land$ $\neg$(dosHippies $\igobs$ movRest) $\land$ $\neg$(dosHippies $\igobs$ unAgente) $\land$ $\neg$(dosHippies $\igobs$ cuatroEstudiantes) $\land$ $\neg$(cuatroEstudiantes $\igobs$ movRest) $\land$ $\neg$(cuatroEstudiantes $\igobs$ unAgente) $\land$ $\neg$(cuatroEstudiantes $\igobs$ dosHippies) }
-
-\tadObservadores
-
-\tadGeneradores
-
-\tadOperacion{movRest}{}{situ}{}
-\tadOperacion{unAgente}{}{situ}{}
-\tadOperacion{dosHippies }{}{situ}{}
-\tadOperacion{cuatroEstudiantes}{}{situ}{}
-
-\tadOtrasOperaciones
-
-\end{tad}
-
-\section{TAD \tadNombre{TipoElem}}
-
-
-\begin{tad}{\tadNombre{TipoElem}}
-
-\tadGeneros{tipo}
-
-
-\tadExporta{tipo, Generadores}
-
-\tadUsa{}
-
-\tadIgualdadObservacionalSimple{Vacio $\igobs$ Vacio \ $\land$ \ Obstaculo $\igobs$ Obstaculo $\land$ \ Agente $\igobs$ Agente $\land$ \ Hippie $\igobs$ Hippie $\land$ \ Estudiante $\igobs$ Estudiante$ \land$ \ FueraDeRango $\igobs$ FueraDeRango \ // y son diferentes de manera cruzada }
-
-\tadObservadores
-
-\tadGeneradores
-
-\tadOperacion{Vacio}{}{tipo}{}
-\tadOperacion{Obstaculo}{}{tipo}{}
-\tadOperacion{Agente}{}{tipo}{}
-\tadOperacion{Hippie}{}{tipo}{}
-\tadOperacion{Estudiante}{}{tipo}{}
-\tadOperacion{FueraDeRango}{}{tipo}{}
-
-\tadOtrasOperaciones
-
-\end{tad}
+% \end{tad}
 
 \end{document}
