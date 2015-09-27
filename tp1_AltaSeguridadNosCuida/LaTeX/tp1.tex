@@ -387,8 +387,8 @@ Observadores Basicos
 \\}
 
 \tadAxioma{hippies? (agregarH(u, i, p))}{
-	\IF {murioAlgunHippie(campus?($u$), agentes($u$), definir($i, p,$ hippies?($u$)), estudiantes?($u$))} 
-		THEN {borrarTodosHippiesMuertos( campus?($u$), moverAgente($i, u$), definir($i$, $p$, hippies?($u$)), estudiantes?($u$) )} 
+	\IF {murioAlgunHippie(campus?($u$), agentes?($u$), definir($i, p,$ hippies?($u$)), estudiantes?($u$))} 
+		THEN {borrarTodosHippiesMuertos( campus?($u$), agentes?($u$), definir($i$, $p$, hippies?($u$)), estudiantes?($u$) )} 
 		ELSE {definir($i$, $p$, hippies?($u$))} 
 	FI
 \\}
@@ -482,9 +482,6 @@ Observadores Basicos
 		ELSE {estudiantes?($u$)} 
 	FI
 \\}
-
-\tadOperacion{sanciones?}{uni \ u, placa \ p}{nat}{def?(p, agentes?(u))}
-\tadOperacion{capturas?}{uni \ u, placa \ p}{nat}{def?(p, agentes?(u))}
 
 
 \tadAxioma{sanciones? ($pl$, nuevaUni($c, dAs$))}{0\\}
