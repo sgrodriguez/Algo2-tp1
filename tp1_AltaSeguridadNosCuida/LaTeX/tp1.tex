@@ -1111,4 +1111,50 @@ $-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)}
 
 % \end{tad}
 
+\section{TAD \tadNombre{Campus}}
+
+\begin{tad}{\tadNombre{Campus}}
+
+\tadGeneros{campus}
+
+\tadExporta{campus, Generadores, Observadores Basicos,posValida?}
+
+\tadUsa{\tadNombre{Nat ,Bool, Conjunto($\alpha$),Posicion}}
+
+\tadIgualdadObservacional{ca}{ca'}{campus}{ancho?(ca) = ancho?(ca') $\land$  alto?(ca) = alto?(ca') $\land$ \\ obstaculos?(ca) = obstaculos?(ca')}
+
+\tadObservadores
+
+\tadOperacion{alto?}{campus}{nat}{}
+\tadOperacion{ancho?}{campus}{nat}{}
+\tadOperacion{obstaculos?}{campus}{conj($pos$)}{}
+
+
+\tadGeneradores
+
+\tadOperacion{nuevoCampus}{nat\ al \ x\ nat\ al}{campus}{}
+\tadOperacion{agregarObs}{pos \ p \ x \ campus \ c}{campus}{enRango(p,c) $\land$  $\neg$(p $\in$ obstaculos?(c)) }
+
+
+\tadOtrasOperaciones
+\tadOperacion{enRango}{pos\ p \ x \ campus \ c}{bool}{}
+\tadOperacion{posValida?}{pos\ p \ x \ campus \ c}{bool}{}
+
+\tadAxiomas[\paratodo{campus}{c}\ $\land$ \ \paratodo{nat}{al,an} \paratodo{pos}{p}]
+
+\tadAxioma{ancho?(nuevoCampus(al,an))}{an}
+\tadAxioma{ancho?(agregarObs(p,c))}{ancho?(c)}
+
+\tadAxioma{alto?(nuevoCampus(al,an))}{al}
+\tadAxioma{alto?(agregarObs(p,c))}{alto?(c)}
+
+\tadAxioma{obstaculos?(nuevoCampus(al,an))}{$\emptyset$}
+\tadAxioma{obstaculos?(agregarObs(p,c))}{Ag(p,obstaculos?(c))}
+
+\tadAxioma{enRango(p,c)}{fila?(p) $\leq$ alto?(c) $\land$  col?(p) $\leq$ ancho?(c)}
+\tadAxioma{posValida?(p,c)}{fila?(p) $\leq$ alto?(c) $\land$  col?(p) $\leq$ ancho?(c) $\land$ $\neg$(p $\in$ obstaculos?(c)}
+
+\end{tad}
+
+
 \end{document}
