@@ -124,16 +124,16 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
  \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni}{multiconj(tipo)}{}
  \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
  \tadOperacion{queSituacion}{multiconj(tipo)}{conj(situ)}{}
- \tadOperacion{damePosicionesAs}{dicc(placa ${ , }$ pos)}{conj(pos)}{}
+ \tadOperacion{damePosicionesAs}{dicc(placa ${ , }$\ pos)}{conj(pos)}{}
 
 %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
 \tadOperacion{damePosicionesEst}{dicc( id${,}$ \ $\langle$  agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
 \tadOperacion{damePosicionesH}{dicc( id${,}$ \ pos )}{conj(pos)}{}
 
- \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs${,}$  cH${,}$  cEst $\rangle$}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{dameEstudiante}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )\ conjEst}{est}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{dameEstudiantePos}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )\ conjEst}{pos}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
- \tadOperacion{sacarEstudianteId}{id\ $is$, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$)\ conjEst}{conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$}{$\exists$ $t$ $\in$ $conjEst$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs${,}$  cH${,}$  cEst $\rangle$}{is $\in$ claves($estudiantes?(u)$)}
+ \tadOperacion{dameEstudiante}{id\ $is$, dicc(id ${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{est}{is $\in$ claves(dEs)}
+ \tadOperacion{dameEstudiantePos}{id\ $is$, dicc(id ${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{pos}{is $\in$ claves(dEs)}
+ \tadOperacion{sacarEstudianteId}{id\ $is$, dicc(id${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{dicc(id${,}$ $\langle$ est, pos $\rangle$)}{is $\in$ claves(dEs)}
  \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
  \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
  \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
@@ -141,7 +141,7 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
  	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
  }
  \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
- \tadOperacion{moverAgenteYChequearSituacion}{id $is$, uni $u$ }{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
+ \tadOperacion{moverAgenteYChequearSituacion}{id\ $is$, uni\ $u$ }{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{posibleMovAs}{As , pos, uni}{conj(dir)}{}
  \tadOperacion{dameAgente}{id\ $is$, conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$ }{as}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
  \tadOperacion{dameAgentePos}{id\ $is$ ,conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$}{pos}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
@@ -248,11 +248,12 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \tadOperacion{masVigilante}{uni}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
 \tadOperacion{losMasVigilantes}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
 \tadOperacion{losMasVigilantesShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
-\tadOperacion{agenteConMenorPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
+\tadOperacion{agenteConMenorPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{diria de requerir que el conjunto (que seria diccionario) no fuera vacio}
 \tadOperacion{agenteConMenorPlacaShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
  
 \tadOperacion{maxCapturas}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{nat}{}
-\tadOperacion{minPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{nat}{}
+\tadOperacion{minPlaca}{dicc(as ${,}$ \ pos)}{nat}{}
+\tadOperacion{minConj}{conj(nat)}{nat}{}
 \tadOperacion{cuantosHippies}{uni}{nat}{}
 \tadOperacion{cuantosEstudiantes}{uni}{nat}{}
 
@@ -876,15 +877,15 @@ Otras Operaciones
 \tadAxioma{moverAgenteYChequearSituacion(i, u)}{
 	\IF( vacio?( hippies?($u$) ) $\land$ ( dameAgentePos( $i$, agentes?($u$) ) $\in$ entradas?( alto?($u$), ancho?($u$) ) ) ) $\lor$ inactivo?( dameAgente($i$, $u$) ) 
 		THEN
-			$\rangle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\langle$
+			$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 		ELSE
 			{\IF vacio?( posibleMovAs( dameAgente( $i$, agentes?($u$) ), dameAgentePos( $i$, agentes?($u$) ), $u$ ) ) 
 				THEN
-					$\rangle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\langle$
+					$\langle$ agentes?($u$), hippies?($u$), estudiantes?($u$) $\rangle$
 				ELSE
 					chequearSituacionShort( 
 						agregarAgenteTripla( 
-							$\rangle$ 
+							$\langle$ 
 								$i$, 
 								dameAgente( $i$, agentes?($u$) ), 
 								mover(	dameAgentePos($i$, agentes?($u$) ), 
@@ -896,8 +897,8 @@ Otras Operaciones
 											)
 										)
 								) 
-							$\langle$,
-					$\rangle$ sacarAgenteId($i$, agentes?($u$)) , hippies?($u$), estudiantes?($u$) $\langle$) )
+							$\rangle$,
+					$\langle$ sacarAgenteId($i$, agentes?($u$)) , hippies?($u$), estudiantes?($u$) $\rangle$) )
 			FI}
 	FI
 \\}
@@ -1078,18 +1079,18 @@ Otras Operaciones
 \\}
 \tadAxioma{losMasVigilantesShort(cAs)}{losMasVigilantes(cAs, maxCapturas(cAs))\\}
  
-\tadAxioma{agenteConMenorPlaca(cAs, minN)}{
-        \IF vacio?($cAs$) THEN
+\tadAxioma{agenteConMenorPlaca(dAs, minN)}{
+        \IF vacio = dAs THEN
                { $\emptyset$}
         ELSE
-                {\IF numPlaca($\Pi_{1}$(dameUno($cAs$))) = minN THEN
+                {\IF dameUno(claves(cAs)) = minN THEN
                                        { Ag(dameUno($cAs$), agenteConMenorPlaca(sinUno($cAs$), minN))}
                                 ELSE
                                         {agenteConMenorPlaca(sinUno($cAs$), minN)}
                                 FI
                         }FI
 \\}
-\tadAxioma{agenteConMenorPlacaShort(cAs)}{agenteConMenorPlaca(cAs, minPlaca(cAs))\\}
+\tadAxioma{agenteConMenorPlacaShort(dAs)}{agenteConMenorPlaca(dAs, minPlaca(dAs))\\}
  
 \tadAxioma{maxCapturas(cAs)}{
         \IF vacio?($cAs$) THEN
@@ -1098,16 +1099,20 @@ Otras Operaciones
                 max(hippiesCapturados($\Pi_{1}$(dameUno($cAs$))), maxCapturas(sinUno($cAs$)))
         FI
 \\}
-\tadAxioma{minPlaca(cAs)}{
-        \IF vacio?($cAs$) THEN
-                0
-        ELSE
-                min(numPlaca($\Pi_{1}$(dameUno($cAs$))), minPlaca(sinUno($cAs$)))
-        FI
+\tadAxioma{minPlaca(dAs)}{
+       \ minConj(claves($dAs$))
 \\}
 
-\tadAxioma{cuantosHippies(u)}{\# hippies?(u)\\}
-\tadAxioma{cuantosEstudiantes(u)}{\# estudiantes?(u)\\}
+\tadAxioma{minConj(c)}{
+       \IF \# (c) = 1 THEN
+      		 dameUno(c)
+       ELSE
+       		min(dameUno(c), minConj(sinUno(c)))
+       FI
+\\}
+
+\tadAxioma{cuantosHippies(u)}{\# claves(hippies?(u))\\}
+\tadAxioma{cuantosEstudiantes(u)}{\# claves(estudiantes?(u))\\}
 
 
 \end{tad}
