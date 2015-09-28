@@ -1,5 +1,5 @@
 \documentclass[8pt, a4paper]{article}
-\usepackage[paper=a4paper, left=1cm, right=1cm, bottom=1cm, top=3cm]{geometry}
+\usepackage[paper=a4paper, left=1cm, right=1cm, bottom=2cm, top=3cm]{geometry}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -59,6 +59,7 @@
 %%%%%%%%%%%%%%%%%%%
 % TAD UNIVERSIDAD %
 %%%%%%%%%%%%%%%%%%%
+\ \\
 TAD \tadNombre{id} ES \tadNombre{Nat} \\
 TAD \tadNombre{placa} ES \tadNombre{Nat} \\
 TAD \tadNombre{est} ES \tadNombre{Secu(dir)} \\
@@ -138,13 +139,15 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \textit{Para la tupla, asumimos que este hippie convertido toma la secuencia de direcciones de algun estudiante del campus.}
 \end{scriptsize}
 \tadOperacion{agentesAlrededor}{pos, dicc(placa ${,}$ pos)}{conj(placa)}{}
-\tadOperacion{algunEstudianteEncerradoPorAgente?}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
-\hfill bool
+\tadOperacion{algunEstudianteEncerradoPorAgente?}{campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{bool}{}
 \tadOperacion{agentesQueAtrapanEstudiantes}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
 \hfill conj(placa) 
 
 \hfill \{algunEstudianteEncerradoPorAgente?(c, dAs, dH, dE)\}
-\tadOperacion{agentesQueAtrapanHippies}{campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{$\neg \emptyset$?(claves(dAs))}
+\tadOperacion{agentesQueAtrapanHippies}{campus, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{conj(placa)}{$\neg \emptyset$?(claves(dAs))}
+\begin{scriptsize}
+\textit{En funciones como la de arriba, tuvimos que sacar algunos nombres de parámetros para que nos entrara en el ancho. De todos modos, para mejorar la claridad, mantuvimos siempre la misma nomenclatura}
+\end{scriptsize}
 \tadOperacion{posibleMovAs}{placa, uni}{conj(dir)}{}
 \tadOperacion{dirLibres}{pos \ p, uni \ u}{conj(dir)}{posValida?(p, campus?(u))}
 \tadOperacion{posNoOcupadas}{conj(pos) \ cP, uni \ u}{conj(pos)}{($\forall$ p: pos) p $\in$ cP $\implies$ posValida?(p, u)}
@@ -155,13 +158,12 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \tadOperacion{posicionNoOcupada}{pos \ p, uni \ u}{bool}{posValida?(p, campus?(u))}
 \tadOperacion{posVecinasValidas}{pos \ p, campus \ c}{conj(pos)}{posValida(p, c)}
 \tadOperacion{posicionesValidas}{conj(pos) \ cp, campus \ c}{conj(pos)}{($\forall$ p: pos) p $\in$ cP $\implies$ posValida?(p, u)}
-\tadOperacion{murioAlgunHippieAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{}{}
-\hfill bool
-\tadOperacion{hippieMuertoAux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
+\tadOperacion{murioAlgunHippieAux}{dicc(id ${,}$ pos), campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{bool}{}
+\tadOperacion{hippieMuertoAux}{dicc(id ${,}$ pos), campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{id}{murioAlgunHippie?(c, dAs, dH, dE)}
 \tadOperacion{posibleMovHippie}{id \ i, uni \ u}{conj(dir)}{def?(i, hippies?(u))}
 \tadOperacion{aEEPAaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{bool}{}
-\tadOperacion{aQAEaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{}
-\tadOperacion{aQAHaux}{dicc(id ${,}$ pos), campus \ c, dicc(placa ${,}$ pos) \ dAs, dicc(id ${,}$ pos) \ dH, dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ ) \ dE}{conj(placa)}{}
+\tadOperacion{aQAEaux}{dicc(id ${,}$ pos), campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{conj(placa)}{}
+\tadOperacion{aQAHaux}{dicc(id ${,}$ pos), campus, dicc(placa ${,}$ pos), dicc(id ${,}$ pos), dicc(id ${,}$ $\langle$ est ${,}$ pos $\rangle$ )}{conj(placa)}{}
 
 \tadOperacion{cuantosHippies?}{uni}{nat}{}
 \tadOperacion{cuantosEstudiantes?}{uni}{nat}{}
@@ -169,191 +171,28 @@ agentes?($u$) $\igobs$  agentes?($u'$) $\yluego$ \\
 \tadOperacion{losMasVigilantes}{conj(placa), uni, nat}{conj(placa)}{}
 \tadOperacion{maxCapturas}{conj(placa), uni}{nat}{}
 \tadOperacion{menorPlaca}{conj(placa) \ cPl}{nat}{$\neg \emptyset$?(cPl)}
-
-%  \tadOperacion{capturar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
-%  \tadOperacion{sancionar}{pos, conj( $\langle$ id${,}$ \ agente${,}$ \ pos $\rangle$)}{conj( $\langle$ agente${,}$ pos $\rangle$)}{}
-%  \tadOperacion{queTipoHay}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$}{tipo}{}
-%  % exista c en claves que cumpla que: (si está en claves de dAs entonces obtener de c en dAs da pos y si está en claves de dH entonces etc.) 
-
-%  \tadOperacion{cuatroVecinosShort}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni}{multiconj(tipo)}{}
-%  \tadOperacion{cuatroVecinos}{pos, $\langle$ cAs${,}$ \ cH${,}$ \ cEst $\rangle$, uni, conj(pos)}{multiconj(tipo)}{}
-%  \tadOperacion{queSituacion}{multiconj(tipo)}{conj(situ)}{}
-%  \tadOperacion{damePosicionesAs}{dicc(placa ${ , }$\ pos)}{conj(pos)}{}
-
-% %CONFLICTOS (PROBABLEMENTE SEA SOLO LOS NOMBRES)
-% \tadOperacion{damePosicionesEst}{dicc( id${,}$ \ $\langle$  agente${,}$ \ pos $\rangle$)}{conj(pos)}{}
-% \tadOperacion{damePosicionesH}{dicc( id${,}$ \ pos )}{conj(pos)}{}
-
-%  \tadOperacion{moverEstudianteYChequearSituaciones}{id\ $is$,\ uni\ $u$}{$\langle$ cAs${,}$  cH${,}$  cEst $\rangle$}{is $\in$ claves($estudiantes?(u)$)}
-%  \tadOperacion{dameEstudiante}{id\ $is$, dicc(id ${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{est}{is $\in$ claves(dEs)}
-%  \tadOperacion{dameEstudiantePos}{id\ $is$, dicc(id ${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{pos}{is $\in$ claves(dEs)}
-%  \tadOperacion{sacarEstudianteId}{id\ $is$, dicc(id${,}$\ $\langle$ est, pos $\rangle$)\ dEs}{dicc(id${,}$ $\langle$ est, pos $\rangle$)}{is $\in$ claves(dEs)}
-%  \tadOperacion{entradas?}{nat, nat}{conj(pos)}{}
-%  \tadOperacion{dirLibres}{pos, uni}{conj(dir)}{}
-%  \tadOperacion{dirValidas}{pos, nat, nat}{conj(dir)}{}
-%  \tadOperacion{dirNoOcupadas}{conj(dir), pos, uni}{conj(dir)}{
-%  	$\neg$(col?(pos) = 0 $\land$ \{o\} $\in$ cDirs) $\land$ $\neg$(fila?(pos) = 0 y \{n\} $\in$ cDirs)
-%  }
-%  \tadOperacion{posNoOcupadas}{conj(pos), uni}{conj(pos)}{}
-%  \tadOperacion{moverAgenteYChequearSituacion}{id\ $is$, uni\ $u$ }{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{posibleMovAs}{As , pos, uni}{conj(dir)}{}
-%  \tadOperacion{dameAgente}{id\ $is$, conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$ }{as}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{dameAgentePos}{id\ $is$ ,conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$}{pos}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{sacarAgenteId}{id\ $is$, conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$)\ $conjAs$}{conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$}{$\exists$ $t$ $\in$ $conjAs$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{moverHippieYChequearSituacion}{id\ $is$, uni, $u$}{$\langle$ cAs, cH, cEst $\rangle$}{$\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{posibleMovH}{pos, uni}{conj(dir)}{}
-%  \tadOperacion{dameHippiePos}{id\ $is$, conj( $\langle$ i${,}$ \ pos $\rangle$) \ $conjHip$}{pos}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$}
-%  \tadOperacion{sacarHippieId}{id\ $is$, conj( $\langle$ i${,}$ \ pos $\rangle$) \ $conjHip$}{conj( $\langle$ i${,}$  pos $\rangle$)}{$\exists$ $t$ $\in$ $conjHip$ / $\Pi_{0}$($t$) $=$ $is$} 
-% \tadOperacion{chequearSituacionShort}{
-%  	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ ,
-%  	 uni
-% }{}{}
-%  	\hfill
-%  	$\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	$\rangle$
-% \tadOperacion{chequearSituacion}{
-%          MACRO1 ,
-%          MACRO1,
-%          uni
-% }{
-%         MACRO1
-% }{}
-% \hfill MACRO1 =
-%         $\langle$
-%                 conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \
-%                 conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \
-%                 conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )
-%         $\rangle$
-        
-%  \tadOperacion{agAgenteTripla}{
-%  	 $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ ,
-%  	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ 
-%  }{}{}
-%  \hfill
-%   	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ 
-%  \tadOperacion{agHippieTripla}{
-%  	 $\langle$ i${,}$ \ pos $\rangle$ , 
-%  	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ 
-%  }{}{}
-%  \hfill
-%  	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$
-%  \tadOperacion{agEstudianteTripla}{
-%  	 $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ , 
-%  	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ 
-%  }{}{}
-%  \hfill
-%   	 $\langle$ 
-%  	 	conj( $\langle$ i${,}$ \ as${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ pos $\rangle$ )${,}$ \ 
-%  	 	conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ ) 
-%  	 $\rangle$ 
- 	 
-% \tadOperacion{estudiantesAdyacentesPos}{pos, conj( $\langle$ i${,}$ \ est${,}$ \ pos $\rangle$ )}{conj(est)}{}
-% \tadOperacion{convertirHippieAEst}{$\langle$id${,}$ \ pos$\rangle$, conj($\langle$id${,}$ \ est${,}$ \ pos$\rangle$)}
-% 									{$\langle$id${,}$ \ est${,}$ \ pos$\rangle$}{}
-% \tadOperacion{convertirEstAHippie}{$\langle$id${,}$ \ est${,}$ \ pos$\rangle$} {$\langle$id${,}$ \ pos$\rangle$}{}
-% \tadOperacion{sacarHippieTripla}{
-% 	$\langle$
-% 		id${,}$ \ 
-% 		pos
-% 	$\rangle$, 
-% 	$\langle$
-% 		conj($\langle$i${,}$ \ as${,}$ \ pos$\rangle$)${,}$ \ 
-% 		conj($\langle$i${,}$ \ pos$\rangle$)${,}$ \ 
-% 		conj($\langle$i${,}$ \ est${,}$ \ pos$\rangle$)
-% 	$\rangle$} 
-% 	{}{}
-% \hfill
-% 	$\langle$
-% 		conj($\langle$i${,}$ \ as${,}$ \ pos$\rangle$)${,}$ \ 
-% 		conj($\langle$i${,}$ \ pos$\rangle$)${,}$ \ 
-% 		conj($\langle$i${,}$ \ est${,}$ \ pos$\rangle$)
-% 	$\rangle$
-% \tadOperacion{dondeEstaAgente}{id\ $is$, uni \ $u$}{pos}{$\exists$ $t$ $\in$ $agentes?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
-% \tadOperacion{dondeEstaHippie}{id\ $is$, uni \ $u$}{pos}{ $\exists$ $t$ $\in$ $hippies?(u)$ / $\Pi_{0}$($t$) $=$ $is$}
-% \tadOperacion{dondeEstaEstudiante}{id\ $is$, uni\ $u$}{pos}{$\exists$ $t$ $\in$ $estudiantes?(u)$ / $\Pi_{0}$($t$) $=$ $is$ }
-% \tadOperacion{masVigilante}{uni}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
-% \tadOperacion{losMasVigilantes}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
-% \tadOperacion{losMasVigilantesShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{}
-% \tadOperacion{agenteConMenorPlaca}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$), nat}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{diria de requerir que el conjunto (que seria diccionario) no fuera vacio}
-% \tadOperacion{agenteConMenorPlacaShort}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{$\langle$ id${,}$ \ as${,}$ \ pos $\rangle$}{}
- 
-% \tadOperacion{maxCapturas}{conj($\langle$ id${,}$ \ as${,}$ \ pos $\rangle$)}{nat}{}
-% \tadOperacion{minPlaca}{dicc(as ${,}$ \ pos)}{nat}{}
-% \tadOperacion{minConj}{conj(nat)}{nat}{}
-% \tadOperacion{cuantosHippies}{uni}{nat}{}
-% \tadOperacion{cuantosEstudiantes}{uni}{nat}{}
+\tadOperacion{saleDeCampus}{dir \ d, pos \ p, campus \ c }{bool}{posValida?(p, c)}
+\tadOperacion{entradaSuperior}{pos \ p}{bool}{}
+\tadOperacion{entradaInferior}{pos \ p, campus \ c }{bool}{posValida?(p, c)}
 
 
 
 
 \tadAxiomas[
-\paratodo{conj(<id, as, pos>)}{cAs}
-\paratodo{conj(<id, pos>)}{cH}
-\paratodo{conj(<id, est, pos>)}{cEst}
+\paratodo{campus}{c}
+\paratodo{dicc(placa,pos)}{dAs}
+\paratodo{dicc(id, pos)}{dH}
+\paratodo{dicc(id, <est, pos>)}{dE}
 \paratodo{conj(dir)}{cDirs}
-\paratodo{nat}{al, an,maxC,minN}
-\paratodo{conj(pos)}{cObs}
+\paratodo{nat}{mc}
+\paratodo{conj(pos)}{cPos, cP}
 \paratodo{uni}{u}
 \paratodo{id}{i}
-\paratodo{<id, est, pos>}{e}
-\paratodo{<id, as, pos>}{agente}
-\paratodo{<id, pos>}{h}
+\paratodo{placa}{pl}
 \paratodo{pos}{p}
-\paratodo{conj(pos)}{p4v}
-\paratodo{<conj(<id, as, pos>), cH conj(<id, pos>), conj(<id, est, pos>)>}{tripla, triplaInfo}
-\paratodo{multiconj(tipo)}{mcT}
 ]
 
 Observadores Basicos
-
-% \tadAxioma{alto? (nuevaUni(cAs, al, an, cObs))}{al\\}
-% \tadAxioma{alto? (agregarE(u, i, e, p))}{alto?($u$)\\}
-% \tadAxioma{alto? (agregarH(u, i, p))}{alto?($u$)\\}
-% \tadAxioma{alto? (moverAs(u, i))}{alto?($u$)\\}
-% \tadAxioma{alto? (moverH(u, i))}{alto?($u$)\\}
-% \tadAxioma{alto? (moverE(u, i))}{alto?($u$)\\}
-
-% \tadAxioma{ancho? (nuevaUni(cAs, al, an, cObs))}{an\\}
-% \tadAxioma{ancho? (agregarE(u, i, e, p))}{ancho?($u$)\\}
-% \tadAxioma{ancho? (agregarH(u, i, p))}{ancho?($u$)\\}
-% \tadAxioma{ancho? (moverAs(u, i))}{ancho?($u$)\\}
-% \tadAxioma{ancho? (moverH(u, i))}{ancho?($u$)\\}
-% \tadAxioma{ancho? (moverE(u, i))}{ancho?($u$)\\}
-
-% \tadAxioma{obstaculos? (nuevaUni(cAs, al, an, cObs))}{cObs\\}
-% \tadAxioma{obstaculos? (agregarE(u, i, e, p))}{obstaculos?($u$)\\}
-% \tadAxioma{obstaculos? (agregarH(u, i, p))}{obstaculos?($u$)\\}
-% \tadAxioma{obstaculos? (moverAs(u, i))}{obstaculos?($u$)\\}
-% \tadAxioma{obstaculos? (moverH(u, i))}{obstaculos?($u$)\\}
-% \tadAxioma{obstaculos? (moverE(u, i))}{obstaculos?($u$)\\}
 
 \tadAxioma{campus? (nuevaUni($c, dAs$))}{$c$\\}
 \tadAxioma{campus? (agregarE($u, i, e, p$))}{campus?($u$)\\}
@@ -633,9 +472,15 @@ Observadores Basicos
 \\ \\}
 
 \tadAxioma{moverEstudiante($i, u$)}{
-	\IF { prim($\Pi_{1}$(obtener($i$, estudiantes?($u$)))) $\in$ dirLibres($\Pi_{2}$(obtener($i$, estudiantes?($u$)))  $, u$)}
-		THEN { definir($i$, $\langle$ fin($\Pi_{1}$(obtener($i$, estudiantes?($u$)))), mover($\Pi_{2}$(obtener($i$, estudiantes?($u$))), prim($\Pi_{1}$(obtener($i$, estudiantes?($u$))))) $\rangle$, estudiantes?($u$) ) }
-		ELSE { estudiantes?($u$) }
+	\IF{ saleDeCampus(prim($\Pi_{1}$(obtener($i$, estudiantes?($u$)))), $\Pi_{2}$(obtener($i$, estudiantes?($u$))), campus?(u))} 
+		THEN {
+		borrar(i, estudiantes?(u))}
+		ELSE {
+			\IF { prim($\Pi_{1}$(obtener($i$, estudiantes?($u$)))) $\in$ dirLibres($\Pi_{2}$(obtener($i$, estudiantes?($u$)))  $, u$)}
+				THEN { definir($i$, $\langle$ fin($\Pi_{1}$(obtener($i$, estudiantes?($u$)))), mover($\Pi_{2}$(obtener($i$, estudiantes?($u$))), prim($\Pi_{1}$(obtener($i$, estudiantes?($u$))))) $\rangle$, estudiantes?($u$) ) }
+				ELSE { estudiantes?($u$) }
+			FI
+	}
 	FI
 \\ \\}
 
@@ -958,7 +803,6 @@ Observadores Basicos
 	FI
 \\ \\}
 
-
 \tadAxioma{cuantosHippies?($u$)}{
 	$\#$(claves(hippies?($u$)))
 \\ \\}
@@ -995,6 +839,13 @@ Observadores Basicos
 		ELSE {min \{ dameUno($cPl$), menorPlaca(sinUno($cPl$)) \}}
 	FI
 \\ \\}
+
+\tadAxioma{saleDeCampus($d$, $p$, $c$)}{
+	((d = n) $\land$  (entradaSuperior(p))) $\lor$ ( (d = s) $\land$ (entradaInferior(p,c)))}
+\tadAxioma{entradaSuperior(p)}{
+	fila?(p) = 0}
+\tadAxioma{entradaInferior(p,c)}{
+	entrada?(p,c) $\land$ $\neg$(entradaSuperior(p))}
 
 \end{tad}
 
@@ -1048,68 +899,44 @@ Observadores Basicos
 \tadOperacion{posiciones4Vecinas}{pos}{conj(pos)}{}
 \tadOperacion{mover}{pos \ $p$ ,\ dir}{pos}{$\neg$(col?(p) = 0 \ $\land$ \ (o) = dir) \ $\land$ \ $\neg$(fila?(p) = 0 \ $\land$ \ (n) = dir)}
 
+
 %%%%%%%%%%%%%%%%
 %    AXIOMAS   %
 %%%%%%%%%%%%%%%%
 
 \tadAxiomas[\paratodo{pos}{p,p'}\ $\land$ \ \paratodo{nat}{f,c,menorDist} \paratodo{dir}{d}]
-\tadAxioma{fila?(nuevaPos(f,c))}{f}
-
-\tadAxioma{col?(nuevaPos(f,c))}{c}
-
-
-
-
+\tadAxioma{fila?(nuevaPos(f,c))}{f\\ \\}
+\tadAxioma{col?(nuevaPos(f,c))}{c\\ \\}
 \tadAxioma{direccionesOptimas(p,\ p')}{ \{n,s,e,o\} $-$ (\IF fila?(p) <= fila?(p') THEN \{n\} ELSE $\emptyset$ FI) \\ 
 $-$ (\IF fila?(p) >= fila?(p') THEN \{s\} ELSE $\emptyset$ FI) \\
 $-$ (\IF col?(p) <= col?(p') THEN \{o\} ELSE $\emptyset$ FI) \\
-$-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)} 
-
-
-\tadAxioma{PosMasCercanaShort(p,\ cPos)}{cPosMasCercana(p,\ cPos,\ menorDistancia(p,cPos))}
-
-
- \tadAxioma{cPosMasCercana(p,\ cPos,\ menorDist)}{\IF vacio?(cPos) THEN {$\emptyset$} ELSE {\IF dist(p, dameUno(cPos)) =  menorDist THEN {Ag(p, cPosMasCercana(p, sinUno(cPos), menorDist))} ELSE {cPosMasCercana(p, sinUno(cPos), menorDist)}  FI}  FI}
-
-\tadAxioma{menorDistancia(p,\ cPos)}{ \IF $\neg$ vacia?(cpos) THEN min(dist(p, dameUno(cPos)), menorDistancia(p, sinUno(cpos))) ELSE dist(p, dameUno(cPos)) FI}
-
-\tadAxioma{dist(p,p')}{(max(fila?(p), fila?(p')) - min(fila?(p), fila?(p')) + (max(col?(p), col?(p')) - min(col?(p), col?(p'))}
-
+$-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)\\ \\} 
+\tadAxioma{PosMasCercanaShort(p,\ cPos)}{cPosMasCercana(p,\ cPos,\ menorDistancia(p,cPos))\\ \\}
+\tadAxioma{cPosMasCercana(p,\ cPos,\ menorDist)}{\IF vacio?(cPos) THEN {$\emptyset$} ELSE {\IF dist(p, dameUno(cPos)) =  menorDist THEN {Ag(p, cPosMasCercana(p, sinUno(cPos), menorDist))} ELSE {cPosMasCercana(p, sinUno(cPos), menorDist)}  FI}  FI\\ \\}
+\tadAxioma{menorDistancia(p,\ cPos)}{ \IF $\neg$ vacia?(sinUno(cpos)) THEN min(dist(p, dameUno(cPos)), menorDistancia(p, sinUno(cpos))) ELSE dist(p, dameUno(cPos)) FI\\ \\}
+\tadAxioma{dist(p,p')}{(max(fila?(p), fila?(p')) - min(fila?(p), fila?(p')) + (max(col?(p), col?(p')) - min(col?(p), col?(p'))\\ \\}
 \tadAxioma{mover(p,\ d)}{
 \IF (d = n ) 
-	THEN  {nuevaPos(fila?(p)-1, col?(p))}	ELSE {\IF (d=s) THEN {nuevaPos(fila?(p)+1, col?(p))} ELSE {\IF ( dir = o ) THEN {nuevaPos(fila?(p), col?(p)-1)} ELSE {nuevaPos(fila?(p), col?(p)+1)} FI} FI} FI}
-
+	THEN  {nuevaPos(fila?(p)-1, col?(p))}	ELSE {\IF (d=s) THEN {nuevaPos(fila?(p)+1, col?(p))} ELSE {\IF ( dir = o ) THEN {nuevaPos(fila?(p), col?(p)-1)} ELSE {nuevaPos(fila?(p), col?(p)+1)} FI} FI} FI\\ \\}
+\tadAxioma{posiciones4Vecinas(p)}{
+	\IF (fila?(p) = 0 )\ $\land$ \ (col?(p) = 0) 
+		THEN 
+			{Ag(nuevaPos(1,0), Ag(nuevaPos(0,1)),$\emptyset$))}
+		ELSE 
+			{\IF fila?(p) = 0 
+			 				THEN 
+			 					{Ag(nuevaPos(0, col?(p)-1),Ag(nuevaPos(0, col?(p)+1), Ag(nuevaPos(1, col?(p),$\emptyset$))))} 
+			 									ELSE 
+			 					{\IF col?(p) = 0 
+			 					 			 						THEN 
+			 					 			 							{Ag(nuevaPos(fila?(p)-1, 0),Ag( nuevaPos(fila?(p)+1, 0),Ag( nuevaPos(fila?(p), 1),$\emptyset$ )))}
+			 					 			 						ELSE 
+			 					 			 						{Ag(nuevaPos(fila?(p), col?(p)-1), Ag(nuevaPos(fila?(p), col?(p)+1),\\Ag( nuevaPos(fila?(p)+1, col?(p)), Ag(nuevaPos(fila?(p)-1, col?(p)),$\emptyset$)))) } FI} FI} FI		\\ \\}
 
 
 
 
 \end{tad}
-
-%\section{TAD \tadNombre{Direccion}}
-
-% \begin{tad}{\tadNombre{Direccion}}
-
-% \tadGeneros{dir}
-
-
-% \tadExporta{dir, Generadores}
-
-% \tadUsa{}
-
-% \tadIgualdadObservacionalSimple{n $\igobs$ n $\land$ s $\igobs$ s $\land$ e $\igobs$ e $\land$ o $\igobs$ o $\land$ $\neg$(s $\igobs$ n) $\land$ $\neg$(s $\igobs$ o) $\land$ $\neg$(s $\igobs$ e) $\land$ $\neg$(n $\igobs$ s) $\land$ $\neg$(n $\igobs$ e) $\land$ $\neg$(n $\igobs$ o) $\land$ $\neg$(e $\igobs$ s) $\land$ $\neg$(e $\igobs$ n) $\land$ $\neg$(e $\igobs$ o) $\land$ $\neg$(o $\igobs$ s) $\land$ \\ $\neg$(o $\igobs$ n) $\land$ $\neg$(o $\igobs$ e) }
-
-% \tadObservadores
-
-% \tadGeneradores
-
-% \tadOperacion{n}{}{dir}{}
-% \tadOperacion{s}{}{dir}{}
-% \tadOperacion{e}{}{dir}{}
-% \tadOperacion{o}{}{dir}{}
-
-% \tadOtrasOperaciones
-
-% \end{tad}
 
 \section{TAD \tadNombre{Campus}}
 
@@ -1142,17 +969,17 @@ $-$ (\IF col?(p) >= col?(p') THEN \{e\} ELSE $\emptyset$ FI)}
 
 \tadAxiomas[\paratodo{campus}{c}\ $\land$ \ \paratodo{nat}{al,an} \paratodo{pos}{p}]
 
-\tadAxioma{ancho?(nuevoCampus(al,an))}{an}
-\tadAxioma{ancho?(agregarObs(p,c))}{ancho?(c)}
+\tadAxioma{ancho?(nuevoCampus(al,an))}{an\\ \\}
+\tadAxioma{ancho?(agregarObs(p,c))}{ancho?(c)\\ \\}
 
-\tadAxioma{alto?(nuevoCampus(al,an))}{al}
-\tadAxioma{alto?(agregarObs(p,c))}{alto?(c)}
+\tadAxioma{alto?(nuevoCampus(al,an))}{al\\ \\}
+\tadAxioma{alto?(agregarObs(p,c))}{alto?(c)\\ \\}
 
-\tadAxioma{obstaculos?(nuevoCampus(al,an))}{$\emptyset$}
-\tadAxioma{obstaculos?(agregarObs(p,c))}{Ag(p,obstaculos?(c))}
+\tadAxioma{obstaculos?(nuevoCampus(al,an))}{$\emptyset$\\ \\}
+\tadAxioma{obstaculos?(agregarObs(p,c))}{Ag(p,obstaculos?(c))\\ \\}
 
-\tadAxioma{enRango(p,c)}{fila?(p) $\leq$ alto?(c) $\land$  col?(p) $\leq$ ancho?(c)}
-\tadAxioma{posValida?(p,c)}{fila?(p) $\leq$ alto?(c) $\land$  col?(p) $\leq$ ancho?(c) $\land$ $\neg$(p $\in$ obstaculos?(c)}
+\tadAxioma{enRango(p,c)}{fila?(p) $<$ alto?(c) $\land$  col?(p) $<$ ancho?(c)\\ \\}
+\tadAxioma{posValida?(p,c)}{fila?(p) $<$ alto?(c) $\land$  col?(p) $<$ ancho?(c) $\land$ $\neg$(p $\in$ obstaculos?(c)\\ \\}
 
 \end{tad}
 
